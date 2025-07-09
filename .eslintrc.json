@@ -1,0 +1,16 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": ["@angular-eslint/recommended"],
+      "rules": {}
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["@angular-eslint/template/recommended"],
+      "rules": {}
+    }
+  ]
+}

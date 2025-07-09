@@ -1,0 +1,54 @@
+.whisky-container {
+  padding: 20px;
+  margin-top: 0;
+
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.error {
+  background-color: #fee;
+  color: #c33;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.whisky-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.whisky-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    margin-top: 0;
+    color: #2c3e50;
+  }
+
+  .whisky-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+}
+
+.empty {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}

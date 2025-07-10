@@ -1,9 +1,14 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth-guard';
+import { Login } from './features/auth/login/login';
+import { Register } from './features/auth/register/register';
 import { Homepage } from './features/homepage/homepage';
 import { WhiskyList } from './features/whisky/whisky-list/whisky-list';
 
 export const routes: Routes = [
   { path: '', component: Homepage }, // default
-  { path: 'whisky', component: WhiskyList }, // Page des whiskies
+  { path: 'login', component: Login },
+  { path: 'register', component: Register },
+  { path: 'whisky', component: WhiskyList, canActivate: [authGuard] }, // Page des whiskies
   { path: '**', redirectTo: '/whisky' }, // Toutes les autres (404)
 ];

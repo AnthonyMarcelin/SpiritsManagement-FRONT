@@ -1,0 +1,112 @@
+.homepage-container {
+  min-height: 100vh;
+  background: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.header-logo {
+  margin-top: 18px;
+  margin-bottom: 0;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 12px;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #222;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 32px 32px 0 0;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  width: 90vw;
+  max-width: 400px;
+  margin-top: 24px;
+  padding: 32px 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 24px;
+  width: 100%;
+  justify-content: center;
+}
+
+.button-group a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.button-group button {
+  width: 90%;
+  max-width: 260px;
+}
+
+button {
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-width: 120px;
+}
+
+button:hover {
+  background: #444;
+}
+
+h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #444;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.card p {
+  color: #444;
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  color: #666;
+  font-size: 0.95rem;
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+}

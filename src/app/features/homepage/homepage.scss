@@ -50,21 +50,17 @@ h1 {
 .button-group {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 18px;
   margin-bottom: 24px;
   width: 100%;
-  justify-content: center;
-}
-
-.button-group a {
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .button-group button {
   width: 90%;
   max-width: 260px;
+  display: block;
 }
 
 button {

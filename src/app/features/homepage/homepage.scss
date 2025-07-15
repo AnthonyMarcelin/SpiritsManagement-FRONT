@@ -50,17 +50,29 @@ h1 {
 .button-group {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 18px;
   margin-bottom: 24px;
-  width: 100%;
 }
 
-.button-group button {
+.button-group a {
+  display: block;
   width: 90%;
   max-width: 260px;
-  display: block;
+  background: #222;
+  color: #fff;
+  border-radius: 24px;
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.button-group a:hover {
+  background: #444;
 }
 
 button {

@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api-de-prod/api', // mettre l'url de prod
+  apiUrl: 'https://ton-sous-domaine-railway.app/api', // Remplace par l'URL Railway réelle
   appName: 'A ta soif !',
   version: '1.0.0',
 };

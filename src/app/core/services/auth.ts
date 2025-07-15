@@ -15,7 +15,7 @@ interface RegisterCredentials {
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:3000/api/auth'; // a modif pour backend
+  private apiUrl = 'http://localhost:3000/api/auth'; // a modif pour backend
   constructor(private http: HttpClient) {}
 
   login(credentials: { email: string; password: string }): Observable<any> {

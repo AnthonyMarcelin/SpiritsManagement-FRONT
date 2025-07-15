@@ -73,3 +73,15 @@ button:hover {
   margin-top: 18px;
   text-align: center;
 }
+
+.register-underline {
+  color: #222;
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.register-underline:hover {
+  color: #1976d2;
+  text-decoration: underline;
+}

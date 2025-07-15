@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
 
 @Component({
@@ -8,7 +8,7 @@ import { AuthService } from '../../../core/services/auth';
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterModule],
 })
 export class Login {
   email = '';
@@ -22,7 +22,10 @@ export class Login {
 
   onSubmit() {
     this.auth.login({ email: this.email, password: this.password }).subscribe({
-      next: () => this.router.navigate(['/mainpage']),
+      next: () => {
+        console.log('login ok');
+        this.router.navigate(['/mainpage']);
+      },
       error: () => (this.error = 'Identifiants invalides'),
     });
   }

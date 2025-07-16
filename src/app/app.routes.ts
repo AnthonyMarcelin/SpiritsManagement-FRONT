@@ -4,6 +4,7 @@ import { Login } from './features/auth/login/login';
 import { Register } from './features/auth/register/register';
 import { Homepage } from './features/homepage/homepage';
 import { Mainpage } from './features/mainpage/mainpage';
+import { NotFound } from './features/not-found/not-found';
 import { WhiskyList } from './features/whisky/whisky-list/whisky-list';
 
 export const routes: Routes = [
@@ -12,5 +13,5 @@ export const routes: Routes = [
   { path: 'register', component: Register },
   { path: 'mainpage', component: Mainpage },
   { path: 'whisky', component: WhiskyList, canActivate: [authGuard] }, // Page des whiskies
-  { path: '**', redirectTo: '/whisky' }, // Toutes les autres (404)
+  { path: '**', component: NotFound }, // Toutes les autres (404)
 ];

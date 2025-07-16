@@ -1,7 +1,15 @@
 <div class="register-container">
+  <div class="header">
+    <h1>A ta soif !</h1>
+    <img
+      class="header-logo"
+      src="/logo/ChatGPT Image 9 juil. 2025, 20_41_54.png"
+      alt="logo du site"
+    />
+  </div>
   <div class="register-card">
-    <h1>Inscription</h1>
-    <form (ngSubmit)="onSubmit()">
+    <h2>Inscription</h2>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="pseudo">Pseudo</label>
         <input
@@ -68,14 +76,27 @@
           autocomplete="confirmPassword"
         />
       </div>
-      <button type="submit">S'inscrire</button>
-      @if (error) {
-        <div class="error">{{ error }}</div>
-      }
+      <button type="submit" [disabled]="!registerForm.form.valid">
+        S'inscrire
+      </button>
+      <div class="form-group error-group">
+        @if (password && confirmPassword && password !== confirmPassword) {
+          <div class="error">Les mots de passe diffèrent.</div>
+        }
+        @if (
+          error &&
+          !(password && confirmPassword && password !== confirmPassword)
+        ) {
+          <div class="error">{{ error }}</div>
+        }
+      </div>
     </form>
     <div class="login-link">
       <span>Déjà un compte ? </span
       ><a class="login-underline" routerLink="/login">Se connecter</a>
     </div>
   </div>
+  <footer class="footer">
+    <span>© 2025 - A ta soif !</span>
+  </footer>
 </div>

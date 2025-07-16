@@ -1,13 +1,40 @@
 .login-container {
   min-height: 100vh;
-  background: #f7f7f7;
+  background: var(--color-bg);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.header-logo {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  background: var(--color-card);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 18px;
+  margin-top: 8px;
 }
 
 .login-card {
-  background: #fff;
+  background: var(--color-card);
   border-radius: 24px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
   padding: 32px 24px;
@@ -18,10 +45,10 @@
   align-items: center;
 }
 
-h1 {
+h2 {
   font-size: 2rem;
   margin-bottom: 24px;
-  color: #222;
+  color: var(--color-primary);
 }
 
 .form-group {
@@ -32,7 +59,7 @@ h1 {
 label {
   display: block;
   margin-bottom: 6px;
-  color: #444;
+  color: var(--color-secondary);
   font-weight: 500;
 }
 
@@ -47,8 +74,8 @@ input {
 
 button {
   width: 100%;
-  background: #222;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-card);
   border: none;
   border-radius: 24px;
   padding: 12px 0;
@@ -60,11 +87,11 @@ button {
 }
 
 button:hover {
-  background: #444;
+  background: var(--color-secondary);
 }
 
 .error {
-  color: #d32f2f;
+  color: var(--color-error);
   margin-top: 10px;
   text-align: center;
 }
@@ -75,7 +102,7 @@ button:hover {
 }
 
 .register-underline {
-  color: #222;
+  color: var(--color-primary);
   text-decoration: underline;
   font-weight: 600;
   cursor: pointer;
@@ -84,4 +111,16 @@ button:hover {
 .register-underline:hover {
   color: #1976d2;
   text-decoration: underline;
+}
+
+.footer {
+  margin-top: auto;
+  position: static;
+  width: 100%;
+  text-align: center;
+  color: var(--color-footer);
+  font-size: 0.95rem;
+  position: absolute;
+  bottom: 18px;
+  left: 0;
 }

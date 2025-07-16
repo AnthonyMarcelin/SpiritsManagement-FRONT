@@ -1,6 +1,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.dev/guide/theming
 @use "@angular/material" as mat;
+@import "styles/_variables.scss";
 
 html {
   @include mat.theme(

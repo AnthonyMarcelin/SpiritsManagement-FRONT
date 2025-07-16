@@ -1,6 +1,6 @@
 .homepage-container {
   min-height: 100vh;
-  background: #f7f7f7;
+  background: var(--color-bg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +20,7 @@
   width: 180px;
   height: 180px;
   object-fit: contain;
-  background: #fff;
+  background: var(--color-card);
   border-radius: 50%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   padding: 12px;
@@ -29,13 +29,13 @@
 h1 {
   font-size: 3rem;
   font-weight: 700;
-  color: #222;
+  color: var(--color-primary);
   text-align: center;
   margin-bottom: 0px;
 }
 
 .card {
-  background: #fff;
+  background: var(--color-card);
   border-radius: 32px 32px 0 0;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
   width: 90vw;
@@ -59,8 +59,8 @@ h1 {
   display: block;
   width: 90%;
   max-width: 260px;
-  background: #222;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-card);
   border-radius: 24px;
   padding: 12px 32px;
   font-size: 1.3rem;
@@ -72,12 +72,12 @@ h1 {
 }
 
 .button-group a:hover {
-  background: #444;
+  background: var(--color-secondary);
 }
 
 button {
-  background: #222;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-card);
   border: none;
   border-radius: 24px;
   padding: 12px 32px;
@@ -89,13 +89,13 @@ button {
 }
 
 button:hover {
-  background: #444;
+  background: var(--color-secondary);
 }
 
 h2 {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #444;
+  color: var(--color-secondary);
   margin-top: 12px;
   margin-bottom: 8px;
   text-align: center;
@@ -103,7 +103,7 @@ h2 {
 }
 
 .card p {
-  color: #444;
+  color: var(--color-secondary);
   font-size: 1.2rem;
   text-align: center;
   margin: 0;
@@ -114,7 +114,7 @@ h2 {
   position: static;
   width: 100%;
   text-align: center;
-  color: #666;
+  color: var(--color-footer);
   font-size: 0.95rem;
   position: absolute;
   bottom: 18px;

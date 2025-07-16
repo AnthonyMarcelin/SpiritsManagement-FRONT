@@ -18,6 +18,7 @@ export class Register {
   password = '';
   confirmPassword = '';
   error = '';
+  submitted = false;
 
   constructor(
     private auth: AuthService,
@@ -25,10 +26,20 @@ export class Register {
   ) {}
 
   onSubmit() {
+    this.submitted = true;
+    console.log(
+      'submitted:',
+      this.submitted,
+      'password:',
+      this.password,
+      'confirmPassword:',
+      this.confirmPassword,
+    );
     if (this.password !== this.confirmPassword) {
-      this.error = 'Les mots de passe ne correspondent pas';
+      this.error = 'Les mots de passe ne correspondent pas.';
       return;
     }
+    this.error = '';
     this.auth
       .register({
         pseudo: this.pseudo,

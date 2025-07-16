@@ -9,7 +9,7 @@
   </div>
   <div class="register-card">
     <h2>Inscription</h2>
-    <form (ngSubmit)="onSubmit()">
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="pseudo">Pseudo</label>
         <input
@@ -76,10 +76,20 @@
           autocomplete="confirmPassword"
         />
       </div>
-      <button type="submit">S'inscrire</button>
-      @if (error) {
-        <div class="error">{{ error }}</div>
-      }
+      <button type="submit" [disabled]="!registerForm.form.valid">
+        S'inscrire
+      </button>
+      <div class="form-group error-group">
+        @if (password && confirmPassword && password !== confirmPassword) {
+          <div class="error">Les mots de passe diffèrent.</div>
+        }
+        @if (
+          error &&
+          !(password && confirmPassword && password !== confirmPassword)
+        ) {
+          <div class="error">{{ error }}</div>
+        }
+      </div>
     </form>
     <div class="login-link">
       <span>Déjà un compte ? </span

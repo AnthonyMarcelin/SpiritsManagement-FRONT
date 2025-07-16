@@ -1,1 +1,30 @@
-<p>mainpage works!</p>
+<div class="mainpage-container">
+  <header class="mainpage-header">
+    <h1>À ta soif !</h1>
+    <img
+      class="mainpage-logo"
+      src="/logo/ChatGPT Image 9 juil. 2025, 20_41_54.png"
+      alt="logo du site"
+    />
+  </header>
+
+  <main class="mainpage-content">
+    <h2>Ma cave</h2>
+    <div class="alcohol-cards">
+      <div class="alcohol-card whisky" (click)="goTo('whisky')">
+        <div class="alcohol-img whisky-img"><!-- image whisky ici --></div>
+        <span>Whisky</span>
+      </div>
+      <div class="alcohol-card beer" (click)="goTo('biere')">
+        <div class="alcohol-img beer-img"><!-- image bière ici --></div>
+        <span>Bière</span>
+      </div>
+      <div class="alcohol-card rum" (click)="goTo('rhum')">
+        <div class="alcohol-img rum-img"><!-- image rhum ici --></div>
+        <span>Rhum</span>
+      </div>
+    </div>
+  </main>
+
+  <app-navbar></app-navbar>
+</div>

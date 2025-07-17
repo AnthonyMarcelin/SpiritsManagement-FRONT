@@ -1,6 +1,20 @@
 <div class="navbar-container">
-  <div class="home">Acceuil</div>
-  <div class="account">Mon compte</div>
-  <div class="admin">admin</div>
-  <div class="logout">Se deconnecter</div>
+  <div class="navbar-item home">
+    <mat-icon>home</mat-icon>
+    <span>Accueil</span>
+  </div>
+  <div class="navbar-item account">
+    <mat-icon>account_circle</mat-icon>
+    <span>Mon compte</span>
+  </div>
+  @if (isAdmin) {
+    <div class="navbar-item admin">
+      <mat-icon>admin_panel_settings</mat-icon>
+      <span>Admin</span>
+    </div>
+  }
+  <div class="navbar-item logout" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Se déconnecter</span>
+  </div>
 </div>

@@ -34,7 +34,6 @@ export class Navbar implements OnInit {
         this.router.navigate(['']);
       },
       error: () => {
-        // Optionnel : afficher une erreur ou forcer la déconnexion côté front
         this.router.navigate(['/login']);
       },
     });

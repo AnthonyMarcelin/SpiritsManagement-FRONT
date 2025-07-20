@@ -11,18 +11,13 @@
   <main class="mainpage-content">
     <h2>Ma cave</h2>
     <div class="alcohol-cards">
-      <div class="alcohol-card whisky" (click)="goTo('whisky')">
-        <div class="alcohol-img whisky-img"><!-- image whisky ici --></div>
-        <span>Whisky</span>
-      </div>
-      <div class="alcohol-card beer" (click)="goTo('biere')">
-        <div class="alcohol-img beer-img"><!-- image bière ici --></div>
-        <span>Bière</span>
-      </div>
-      <div class="alcohol-card rum" (click)="goTo('rhum')">
-        <div class="alcohol-img rum-img"><!-- image rhum ici --></div>
-        <span>Rhum</span>
-      </div>
+      <app-mainpage-card
+        *ngFor="let alcohol of alcohols"
+        [label]="alcohol.label"
+        [img]="alcohol.img"
+        [route]="alcohol.route"
+        [goTo]="goTo.bind(this)"
+      ></app-mainpage-card>
     </div>
   </main>
 

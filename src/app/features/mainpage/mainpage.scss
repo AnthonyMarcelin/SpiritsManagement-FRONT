@@ -1,3 +1,9 @@
+.mainpage-logo {
+  width: 80px;
+  height: 80px;
+  margin-top: 0.5rem;
+}
+
 .mainpage-container {
   min-height: 100vh;
   display: flex;
@@ -12,19 +18,17 @@
   padding: 2rem 0 1rem 0;
 }
 
-.mainpage-logo {
-  width: 60px;
-  height: 60px;
-  margin-top: 0.5rem;
-}
-
 .mainpage-content {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 1rem 0 5rem 0; // espace pour la navbar
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 5rem 1rem; // espace pour la navbar
+  box-sizing: border-box;
 }
 
 .mainpage-content h2 {
@@ -37,61 +41,9 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  align-items: center;
+  align-items: stretch !important;
   width: 100%;
   margin: 2rem 0;
-}
-
-.alcohol-card {
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1.2rem;
-  padding: 1rem 1.5rem;
-  width: 90%;
-  max-width: 340px;
-  cursor: pointer;
-  transition:
-    box-shadow 0.2s,
-    transform 0.2s;
-  position: relative;
-}
-.alcohol-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px) scale(1.02);
-}
-.alcohol-img {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: #ececec;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  background-position: center;
-  /* Ajoute ici un background-image ou une icône selon l'alcool */
-}
-
-.whisky-img {
-  background-image: url(/images/whisky.jpg);
-}
-
-.beer-img {
-  background-image: url(/images/beer.jpg);
-}
-
-.rum-img {
-  background-image: url(/images/rhum.jpg);
-}
-
-.alcohol-card span {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--primary, #7b3f00);
 }
 
 app-navbar {

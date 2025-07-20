@@ -26,7 +26,13 @@ export class Login {
         console.log('login ok');
         this.router.navigate(['/mainpage']);
       },
-      error: () => (this.error = 'Identifiants invalides'),
+      error: (err) => {
+        if (err.status === 401) {
+          this.error = 'Identifiants invalides';
+        } else {
+          this.error = 'Erreur serveur';
+        }
+      },
     });
   }
 }

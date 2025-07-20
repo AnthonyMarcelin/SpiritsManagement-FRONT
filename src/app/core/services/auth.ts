@@ -1,3 +1,4 @@
+// ...existing code...
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -24,17 +25,21 @@ export class AuthService {
     });
   }
 
-  register(credentials: RegisterCredentials): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, credentials, {
-      withCredentials: true,
-    });
-  }
-
   logout(): Observable<any> {
     return this.http.post(
       `${this.apiUrl}/logout`,
       {},
       { withCredentials: true },
     );
+  }
+
+  register(credentials: RegisterCredentials): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, credentials, {
+      withCredentials: true,
+    });
+  }
+
+  getMe(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/me`, { withCredentials: true });
   }
 }

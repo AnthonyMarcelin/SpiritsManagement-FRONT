@@ -1,1 +1,20 @@
-<p>navbar works!</p>
+<div class="navbar-container">
+  <div class="navbar-item home" routerLink="/mainpage">
+    <mat-icon>home</mat-icon>
+    <span>Accueil</span>
+  </div>
+  <div class="navbar-item profile" routerLink="/profile">
+    <mat-icon>account_circle</mat-icon>
+    <span>Mon profil</span>
+  </div>
+  @if (isAdmin) {
+    <div class="navbar-item admin" routerLink="/admin">
+      <mat-icon>admin_panel_settings</mat-icon>
+      <span>Admin</span>
+    </div>
+  }
+  <div class="navbar-item logout" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Déconnexion</span>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+.navbar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background: #111;
+  color: white;
+  padding: 0.7rem 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  // min-height: auto;
+  // height: auto;
+}
+
+.navbar-item {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.navbar-item mat-icon {
+  font-size: 2.4rem;
+  height: inherit;
+  width: inherit;
+  margin-bottom: 0.15rem;
+  line-height: 1;
+}
+
+.navbar-item span {
+  font-size: 0.95rem;
+  margin-top: 0.1rem;
+  text-align: center;
+}

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { WhiskyService } from '../../../core/services/whisky.service';
+import { WhiskyService } from '../../../core/services/collection/whisky.service';
 import { Whisky } from '../../../models/whisky.interface';
 
 @Component({

@@ -2,5 +2,8 @@
   <div class="alcohol-img-container">
     <img [src]="img" alt="{{ label }}" class="alcohol-img" />
   </div>
-  <span>{{ label }}</span>
+  <div class="alcohol-info">
+    <h1>{{ label }}</h1>
+    <span>{{ getText(number) }}</span>
+  </div>
 </div>

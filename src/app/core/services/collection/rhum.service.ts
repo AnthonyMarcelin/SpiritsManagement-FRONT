@@ -10,10 +10,10 @@ export class RhumService {
   constructor(private apiService: ApiService) {}
 
   getAllRhum(): Observable<Rhum[]> {
-    return this.apiService.get<Rhum[]>('rhum');
+    return this.apiService.get<Rhum[]>('rhum', { withCredentials: true });
   }
 
   getRhumById(id: string): Observable<Rhum> {
-    return this.apiService.get<Rhum>(`rhum/${id}`);
+    return this.apiService.get<Rhum>(`rhum/${id}`, { withCredentials: true });
   }
 }

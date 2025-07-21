@@ -9,10 +9,12 @@ export class WhiskyService {
   constructor(private apiService: ApiService) {}
 
   getAllWhisky(): Observable<Whisky[]> {
-    return this.apiService.get<Whisky[]>('whisky');
+    return this.apiService.get<Whisky[]>('whisky', { withCredentials: true });
   }
 
   getWhiskyById(id: string): Observable<Whisky> {
-    return this.apiService.get<Whisky>(`whisky/${id}`);
+    return this.apiService.get<Whisky>(`whisky/${id}`, {
+      withCredentials: true,
+    });
   }
 }

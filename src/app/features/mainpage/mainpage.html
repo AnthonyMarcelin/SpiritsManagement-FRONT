@@ -14,9 +14,11 @@
       <app-mainpage-card
         *ngFor="let alcohol of alcohols"
         [label]="alcohol.label"
+        [number]="alcohol.count"
         [img]="alcohol.img"
         [route]="alcohol.route"
         [goTo]="goTo.bind(this)"
+        [getText]="alcohol.getText"
       ></app-mainpage-card>
     </div>
   </main>

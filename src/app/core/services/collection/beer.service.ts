@@ -10,10 +10,10 @@ export class BeerService {
   constructor(private apiService: ApiService) {}
 
   getAllBeer(): Observable<Beer[]> {
-    return this.apiService.get<Beer[]>('beer');
+    return this.apiService.get<Beer[]>('beer', { withCredentials: true });
   }
 
   getBeerById(id: string): Observable<Beer> {
-    return this.apiService.get<Beer>(`beer/${id}`);
+    return this.apiService.get<Beer>(`beer/${id}`, { withCredentials: true });
   }
 }

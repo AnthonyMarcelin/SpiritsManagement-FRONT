@@ -11,9 +11,11 @@ type AlcoholRoute = 'whisky' | 'biere' | 'rhum';
 })
 export class MainpageCardComponent {
   @Input() label!: string;
+  @Input() number!: number;
   @Input() img!: string;
   @Input() route!: AlcoholRoute;
   @Input() goTo!: (route: AlcoholRoute) => void;
+  @Input() getText!: (count: number) => string;
 
   onClick() {
     if (this.goTo) {

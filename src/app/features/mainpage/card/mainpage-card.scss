@@ -21,8 +21,8 @@
   transform: translateY(-2px) scale(1.02);
 }
 .alcohol-img-container {
-  width: 48px;
-  height: 48px;
+  width: 80px;
+  height: 80px;
   border-radius: 12px;
   background: #ececec;
   display: flex;
@@ -37,8 +37,27 @@
   object-position: center;
   display: block;
 }
-.alcohol-card span {
-  font-size: 1.3rem;
+
+.alcohol-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+}
+.alcohol-card h1 {
+  font-size: 1.7rem;
   font-weight: 600;
   color: var(--primary, #7b3f00);
+  text-align: center;
+  width: 100%;
+}
+
+.alcohol-card span {
+  font-size: 1rem;
+  color: var(--secondary, #555);
+  margin-top: 0.2rem;
+  display: block;
+  text-align: center;
 }

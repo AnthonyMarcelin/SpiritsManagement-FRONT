@@ -1,1 +1,9 @@
-<p>searchbar works!</p>
+<div class="searchbar">
+  <input
+    class="searchbar-input"
+    type="text"
+    [placeholder]="placeholder"
+    [(ngModel)]="searchText"
+    (ngModelChange)="onSearchChange()"
+  />
+</div>

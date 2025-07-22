@@ -1,1 +1,15 @@
-<p>collection works!</p>
+<h1>Ma collection</h1>
+<app-searchbar
+  [placeholder]="'Rechercher dans ma collection...'"
+  [(searchText)]="searchText"
+></app-searchbar>
+<app-filterbar></app-filterbar>
+<app-optionbar></app-optionbar>
+
+<div class="bottle-list">
+  <div *ngFor="let bottle of filteredBottles">
+    <app-bottle-card [bottle]="bottle"></app-bottle-card>
+  </div>
+</div>
+
+<app-navbar></app-navbar>

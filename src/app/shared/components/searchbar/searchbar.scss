@@ -2,13 +2,13 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 1.5rem;
 }
 
 .searchbar-input {
   width: 100%;
   max-width: 400px;
-  padding: 0.7rem 1rem;
+  height: 40px;
+  padding: 0 1rem;
   font-size: 1rem;
   border: 1px solid #ddd;
   border-radius: 24px;
@@ -16,6 +16,7 @@
   color: #333;
   outline: none;
   transition: border-color 0.2s;
+  box-sizing: border-box;
 }
 
 .searchbar-input:focus {

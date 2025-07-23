@@ -1,0 +1,37 @@
+// Style du container
+.sortbar-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+label {
+  font-weight: 500;
+  color: var(--primary, #7b3f00);
+  font-size: 1rem;
+}
+
+select {
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #d1bfa7;
+  background: #fff;
+  color: #7b3f00;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(123, 63, 0, 0.07);
+  outline: none;
+  transition: border-color 0.2s;
+  cursor: pointer;
+}
+
+select:focus {
+  border-color: #7b3f00;
+}
+
+option {
+  color: #7b3f00;
+  background: #fff;
+  font-size: 1rem;
+}

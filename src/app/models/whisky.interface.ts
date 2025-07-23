@@ -11,4 +11,5 @@ export interface Whisky {
   typeId: number;
   peatLevelId: number;
   userId: number;
+  note?: number;
 }

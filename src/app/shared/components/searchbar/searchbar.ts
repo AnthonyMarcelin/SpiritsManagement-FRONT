@@ -12,9 +12,7 @@ export class Searchbar {
   @Output() searchTextChange = new EventEmitter<string>();
   @Input() placeholder: string = '';
 
-  onSearchChange() {
-    this.searchText = this.searchText.trim();
-    this.searchText = this.searchText.toLowerCase();
-    this.searchTextChange.emit(this.searchText);
+  onSearchChange(value: string) {
+    this.searchTextChange.emit(value);
   }
 }

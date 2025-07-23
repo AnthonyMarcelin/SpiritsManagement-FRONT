@@ -10,4 +10,5 @@ export interface Beer {
   supplierId: number;
   typeId: number;
   userId: number;
+  note?: number;
 }

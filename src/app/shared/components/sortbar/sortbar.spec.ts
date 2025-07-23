@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Sortbar } from './sortbar';
 
-import { WhiskyList } from './whisky-list';
-
-describe('WhiskyList', () => {
-  let component: WhiskyList;
-  let fixture: ComponentFixture<WhiskyList>;
+describe('Sortbar', () => {
+  let component: Sortbar;
+  let fixture: ComponentFixture<Sortbar>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WhiskyList],
+      imports: [],
+      declarations: [Sortbar],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(WhiskyList);
+    fixture = TestBed.createComponent(Sortbar);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

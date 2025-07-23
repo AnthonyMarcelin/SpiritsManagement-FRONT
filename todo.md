@@ -14,3 +14,4 @@ rajoute run route /me au routeur et middleware verifyToken
 
 regler ce probleme de message d'error au register quand les mots de passe sont differents.
 faire un dark mode
+validation par mail, reset password

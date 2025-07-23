@@ -10,4 +10,5 @@ export interface Rhum {
   supplierId: number;
   typeId: number;
   userId: number;
+  note?: number;
 }

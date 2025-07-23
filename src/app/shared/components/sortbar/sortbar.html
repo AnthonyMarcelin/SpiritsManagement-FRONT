@@ -1,0 +1,13 @@
+<div class="sortbar-container">
+  <label for="sort">Trier :</label>
+  <select id="sort" [(ngModel)]="sortOption" (change)="onSortChange()">
+    <option value="name-asc">Nom &#8593;</option>
+    <option value="name-desc">Nom &#8595;</option>
+    <option value="date-asc">Date d'ajout &#8593;</option>
+    <option value="date-desc">Date d'ajout &#8595;</option>
+    <option value="note-asc">Note &#8593;</option>
+    <option value="note-desc">Note &#8595;</option>
+    <option value="price-asc">Prix &#8593;</option>
+    <option value="price-desc">Prix &#8595;</option>
+  </select>
+</div>

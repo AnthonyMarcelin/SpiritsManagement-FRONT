@@ -1,1 +1,22 @@
-<p>collection works!</p>
+<h1>Ma collection</h1>
+<div class="searchbar-row">
+  <div class="searchbar-col">
+    <app-searchbar
+      [placeholder]="'Rechercher dans ma collection...'"
+      [(searchText)]="searchText"
+      (searchTextChange)="onSearchChange()"
+    ></app-searchbar>
+  </div>
+  <div class="optionbar-col">
+    <app-optionbar></app-optionbar>
+  </div>
+</div>
+<app-sortbar (sortChange)="onSortChange($event)"></app-sortbar>
+
+<div class="bottle-list">
+  <div *ngFor="let bottle of filteredBottles">
+    <app-bottle-card [bottle]="bottle"></app-bottle-card>
+  </div>
+</div>
+
+<app-navbar></app-navbar>

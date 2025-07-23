@@ -1,0 +1,70 @@
+h1 {
+  color: var(--primary, #7b3f00);
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+app-searchbar input {
+  height: 40px;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: block;
+  font-size: 1rem;
+}
+.add-alcohol-btn {
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.searchbar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.searchbar-col {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+app-searchbar {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.optionbar-col {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+app-optionbar {
+  width: auto;
+  max-width: 140px;
+  display: flex;
+  align-items: center;
+}
+
+/* Le style du bouton est géré dans optionbar.scss */
+app-navbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.bottle-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.2rem 1.5rem;
+  padding: 0;
+}

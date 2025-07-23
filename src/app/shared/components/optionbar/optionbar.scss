@@ -1,0 +1,21 @@
+/* Adding modern style for the 'Add a Bottle' button */
+.add-alcohol-btn {
+  height: 40px;
+  padding: 0 22px;
+  background: var(--color-primary);
+  color: var(--color-card);
+  border: none;
+  border-radius: 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-width: 120px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+.add-alcohol-btn:hover {
+  background: var(--color-secondary);
+}

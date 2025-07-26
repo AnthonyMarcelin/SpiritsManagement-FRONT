@@ -1,1 +1,114 @@
-<p>add-bottle works!</p>
+<h1>Ajouter une bouteille</h1>
+<form class="add-bottle-form">
+  <div class="form-row">
+    <label for="name">Nom</label>
+    <input
+      id="name"
+      name="name"
+      type="text"
+      [(ngModel)]="bottle.name"
+      required
+    />
+  </div>
+  <div class="form-row">
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      name="description"
+      rows="3"
+      [(ngModel)]="bottle.description"
+    ></textarea>
+  </div>
+  <div class="form-row">
+    <label for="review">Avis</label>
+    <textarea
+      id="review"
+      name="review"
+      rows="2"
+      [(ngModel)]="bottle.review"
+    ></textarea>
+  </div>
+  <div class="form-row">
+    <label for="note">Note</label>
+    <input
+      id="note"
+      name="note"
+      type="number"
+      step="0.1"
+      min="0"
+      max="10"
+      [(ngModel)]="bottle.note"
+    />
+  </div>
+  <div class="form-row">
+    <label for="price">Prix (€)</label>
+    <input
+      id="price"
+      name="price"
+      type="number"
+      step="0.01"
+      min="0"
+      [(ngModel)]="bottle.price"
+      required
+    />
+  </div>
+  <div class="form-row">
+    <label for="photo">Photo (URL)</label>
+    <input id="photo" name="photo" type="text" [(ngModel)]="bottle.photo" />
+  </div>
+  <div class="form-row">
+    <label for="labelId">Label</label>
+    <input
+      id="labelId"
+      name="labelId"
+      type="number"
+      min="1"
+      [(ngModel)]="bottle.labelId"
+      required
+    />
+  </div>
+  <div class="form-row">
+    <label for="originId">Origine</label>
+    <input
+      id="originId"
+      name="originId"
+      type="text"
+      [(ngModel)]="bottle.originId"
+      required
+    />
+  </div>
+  <div class="form-row">
+    <label for="supplierId">Fournisseur</label>
+    <input
+      id="supplierId"
+      name="supplierId"
+      type="text"
+      [(ngModel)]="bottle.supplierId"
+      required
+    />
+  </div>
+  <div class="form-row">
+    <label for="typeId">Type</label>
+    <select id="typeId" name="typeId" [(ngModel)]="bottle.typeId" required>
+      <option value="">Sélectionner</option>
+      <option *ngFor="let type of filteredTypes" [value]="type.id">
+        {{ type.name }}
+      </option>
+    </select>
+  </div>
+  <div class="form-row" *ngIf="bottle.typeId && isWhiskyType(bottle.typeId)">
+    <label for="peatLevelId">Niveau de tourbe</label>
+    <select
+      id="peatLevelId"
+      name="peatLevelId"
+      [(ngModel)]="bottle.peatLevelId"
+    >
+      <option value="">Sélectionner</option>
+      <option *ngFor="let peat of peatLevels" [value]="peat.id">
+        {{ peat.name }}
+      </option>
+    </select>
+  </div>
+  <!-- userId caché, géré côté TS -->
+  <button type="submit" (click)="onAddBottle()">Ajouter</button>
+</form>

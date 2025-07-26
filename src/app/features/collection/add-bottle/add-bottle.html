@@ -53,19 +53,36 @@
     />
   </div>
   <div class="form-row">
-    <label for="photo">Photo (URL)</label>
-    <input id="photo" name="photo" type="text" [(ngModel)]="bottle.photo" />
+    <label for="photo">Photo</label>
+    <input
+      id="photo"
+      name="photo"
+      type="file"
+      accept="image/*"
+      (change)="onPhotoSelected($event)"
+      capture="environment"
+    />
+    <div *ngIf="photoPreviewUrl" class="photo-preview">
+      <img
+        [src]="photoPreviewUrl"
+        alt="Aperçu photo"
+        style="
+          max-width: 100%;
+          max-height: 200px;
+          margin-top: 0.5rem;
+          border-radius: 8px;
+        "
+      />
+    </div>
   </div>
   <div class="form-row">
     <label for="labelId">Label</label>
-    <input
-      id="labelId"
-      name="labelId"
-      type="number"
-      min="1"
-      [(ngModel)]="bottle.labelId"
-      required
-    />
+    <select id="labelId" name="labelId" [(ngModel)]="bottle.labelId" required>
+      <option value="">Sélectionner</option>
+      <option *ngFor="let label of labels" [value]="label.id">
+        {{ label.name }}
+      </option>
+    </select>
   </div>
   <div class="form-row">
     <label for="originId">Origine</label>

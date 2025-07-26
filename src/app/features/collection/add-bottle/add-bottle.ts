@@ -29,7 +29,16 @@ interface Bottle {
   styleUrls: ['./add-bottle.scss'],
 })
 export class AddBottle {
-  alcoolType: 'whisky' | 'rhum' | 'beer' = 'whisky';
+  labels: any[] = [];
+
+  // Exemple de récupération des labels via API (à adapter selon ton service)
+  ngOnInit() {
+    // Remplace par ton service/API réel
+    // this.apiService.getLabels().subscribe(labels => {
+    //   this.labels = labels;
+    // });
+  }
+  alcoolType?: 'whisky' | 'rhum' | 'beer';
   peatLevels = [
     { id: 1, name: 'Non tourbé' },
     { id: 2, name: 'Peu tourbé' },
@@ -79,6 +88,24 @@ export class AddBottle {
     year: null,
   };
 
+  selectedPhoto?: File;
+  photoPreviewUrl?: string;
+
+  onPhotoSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedPhoto = input.files[0];
+      // Génère l'aperçu
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.photoPreviewUrl = e.target.result;
+      };
+      reader.readAsDataURL(this.selectedPhoto);
+    } else {
+      this.photoPreviewUrl = undefined;
+    }
+  }
+
   get filteredTypes() {
     if (this.alcoolType === 'whisky') {
       return this.types.filter((t: any) => t.for_whisky);
@@ -121,8 +148,19 @@ export class AddBottle {
     // Récupérer l'id du user connecté (exemple)
     // this.bottle.userId = this.authService.getUserId();
 
+    // Préparer le FormData pour l'upload de la photo et des données
+    const formData = new FormData();
+    Object.entries(this.bottle).forEach(([key, value]) => {
+      if (value !== null && value !== undefined) {
+        formData.append(key, value as string);
+      }
+    });
+    if (this.selectedPhoto) {
+      formData.append('photo', this.selectedPhoto);
+    }
+
     // Appel à l'API pour ajouter la bouteille dans la collection du user
-    // this.apiService.addBottleToCollection(this.bottle).subscribe({
+    // this.apiService.addBottleToCollection(formData).subscribe({
     //   next: () => {
     //     alert('Bouteille ajoutée à votre collection !');
     //     // Redirection ou reset du formulaire si besoin

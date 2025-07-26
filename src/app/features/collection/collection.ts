@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BeerService } from '../../core/services/collection/beer.service';
 import { RhumService } from '../../core/services/collection/rhum.service';
 import { WhiskyService } from '../../core/services/collection/whisky.service';
@@ -11,13 +11,21 @@ import { Sortbar } from '../../shared/components/sortbar/sortbar';
 import { BottleCard } from './bottle-card/bottle-card';
 @Component({
   selector: 'app-collection',
-  imports: [Searchbar, Optionbar, Sortbar, Navbar, BottleCard, CommonModule],
+  imports: [
+    Searchbar,
+    Optionbar,
+    Sortbar,
+    Navbar,
+    BottleCard,
+    CommonModule,
+    RouterModule,
+  ],
   templateUrl: './collection.html',
   styleUrl: './collection.scss',
 })
 export class Collection {
   searchText: string = '';
-  type: string = '';
+  alcool: string = '';
   bottles: any[] = [];
   filteredBottles: any[] = [];
   sortCriteria: string = 'name';
@@ -31,23 +39,23 @@ export class Collection {
   ) {}
 
   ngOnInit() {
-    this.type = this.route.snapshot.params['type'];
+    this.alcool = this.route.snapshot.params['alcool'];
 
-    if (this.type === 'whisky') {
+    if (this.alcool === 'whisky') {
       this.whiskyService.getAllWhisky().subscribe((bottles) => {
         this.bottles = bottles;
         this.filteredBottles = bottles;
         this.applySort();
       });
     }
-    if (this.type === 'biere') {
+    if (this.alcool === 'beer') {
       this.beerService.getAllBeer().subscribe((bottles) => {
         this.bottles = bottles;
         this.filteredBottles = bottles;
         this.applySort();
       });
     }
-    if (this.type === 'rhum') {
+    if (this.alcool === 'rhum') {
       this.rhumService.getAllRhum().subscribe((bottles) => {
         this.bottles = bottles;
         this.filteredBottles = bottles;

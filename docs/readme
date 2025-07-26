@@ -1,0 +1,60 @@
+# 🥃 À ta soif !
+
+Bienvenue dans **À ta soif !**, ta cave numérique pour explorer, collectionner et savourer whisky, rhum, bière…
+Parce qu’une bonne bouteille mérite plus qu’une étagère.
+
+---
+
+## 📱 Maquettes d’interface
+
+### 🎬 Écran d’accueil
+
+<img src="./assets/mockup-welcome.png" alt="Écran d'accueil" width="400"/>
+
+---
+
+### 📚 Page "Ma collection"
+
+<img src="./assets/mockup-collection.png" alt="Page de collection de whiskys" width="400"/>
+
+---
+
+## 🎨 Charte graphique
+
+Palette moderne, chaleureuse et élégante inspirée des tons whisky / bois / beige :
+
+```css
+:root {
+  /* Couleurs principales */
+  --color-primary: #A06A2D;
+  --color-primary-dark: #774C1B;
+
+  /* Couleur secondaire */
+  --color-secondary: #EDE4D3;
+  --color-secondary-dark: #CFC2AE;
+
+  /* Texte */
+  --color-text: #2C2C2C;
+  --color-muted: #6E6E6E;
+  --color-light: #FFFFFF;
+
+  /* Fond */
+  --color-background: #FAF9F6;
+  --color-surface: #FFFFFF;
+
+  /* Accent */
+  --color-accent: #C85000;
+  --color-accent-hover: #A64300;
+
+  /* État */
+  --color-success: #3E7C47;
+  --color-error: #B03E3E;
+}
+
+✨ Typographie recommandée
+Titres : Poppins, Inter ou Rubik en bold
+
+Texte courant : 400 ou 500
+
+Design mobile-first, avec border-radius: 1.5rem et box-shadow doux
+```

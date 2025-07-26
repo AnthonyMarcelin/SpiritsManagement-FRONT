@@ -16,4 +16,19 @@ export class RhumService {
   getRhumById(id: string): Observable<Rhum> {
     return this.apiService.get<Rhum>(`rhum/${id}`, { withCredentials: true });
   }
+  createRhum(formData: FormData): Observable<Rhum> {
+    return this.apiService.post<Rhum>('rhum', formData, {
+      withCredentials: true,
+    });
+  }
+  updateRhum(id: string, formData: FormData): Observable<Rhum> {
+    return this.apiService.put<Rhum>(`rhum/${id}`, formData, {
+      withCredentials: true,
+    });
+  }
+  deleteRhum(id: string): Observable<void> {
+    return this.apiService.delete<void>(`rhum/${id}`, {
+      withCredentials: true,
+    });
+  }
 }

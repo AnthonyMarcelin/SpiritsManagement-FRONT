@@ -3,5 +3,11 @@
   <div class="bottle-info">
     <h2 class="bottle-name">{{ bottle?.name }}</h2>
     <div class="bottle-note">Note : {{ bottle?.note }}/10</div>
+    <div
+      class="bottle-price"
+      *ngIf="bottle?.price !== null && bottle?.price !== undefined"
+    >
+      Prix : {{ bottle?.price | number: "1.2-2" }} €
+    </div>
   </div>
 </div>

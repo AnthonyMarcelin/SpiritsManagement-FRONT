@@ -1,3 +1,22 @@
+.column-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.bottle-list-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.bottle-card {
+  width: 100%;
+  max-width: 540px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  background: #fffbe6;
+  padding: 1.2rem 1.5rem;
+  margin: 0 auto;
+}
 h1 {
   color: var(--primary, #7b3f00);
   font-size: 2rem;
@@ -53,7 +72,6 @@ app-optionbar {
   align-items: center;
 }
 
-/* Le style du bouton est géré dans optionbar.scss */
 app-navbar {
   position: fixed;
   left: 0;

@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import ImageKit from 'imagekit-javascript';
+import { firstValueFrom } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../core/services/auth';
 import { LabelService } from '../../../core/services/bottle/label.service';
 import {
@@ -47,6 +51,7 @@ interface Bottle {
   styleUrls: ['./add-bottle.scss'],
 })
 export class AddBottle implements OnInit {
+  imagekit: ImageKit;
   onCancel() {
     if (this.alcoolType) {
       window.location.href = `/collection/${this.alcoolType}`;
@@ -75,7 +80,38 @@ export class AddBottle implements OnInit {
     private originService: OriginService,
     private supplierService: SupplierService,
     private authService: AuthService,
-  ) {}
+    private http: HttpClient,
+  ) {
+    this.imagekit = new ImageKit({
+      publicKey: environment.imagekitPublicKey,
+      urlEndpoint: environment.imagekitUrlEndpoint,
+    });
+  }
+
+  async uploadPhotoToImageKit(file: File): Promise<string> {
+    // 1. Récupérer le token d'authentification auprès du backend
+    const authData: any = await firstValueFrom(
+      this.http.get(environment.imagekitAuthEndpoint, {
+        withCredentials: true,
+      }),
+    );
+    // 2. Uploader l'image avec les bons paramètres
+    return new Promise((resolve, reject) => {
+      this.imagekit.upload(
+        {
+          file,
+          fileName: file.name,
+          signature: authData.signature,
+          token: authData.token,
+          expire: authData.expire,
+        },
+        (err: any, result: any) => {
+          if (err) reject(err);
+          else resolve(result.url);
+        },
+      );
+    });
+  }
 
   ngOnInit() {
     this.route.url.subscribe((segments) => {
@@ -187,39 +223,49 @@ export class AddBottle implements OnInit {
     return this.alcoolType === 'whisky';
   }
 
-  onAddBottle() {
+  async onAddBottle() {
     this.authService.getMe().subscribe({
-      next: (user: any) => {
+      next: async (user: any) => {
         this.bottle.userId = user?.id;
-        console.log('[AddBottle] Soumission du formulaire', this.bottle);
+        let photoUrl = '';
+        if (this.selectedPhoto) {
+          try {
+            photoUrl = await this.uploadPhotoToImageKit(this.selectedPhoto);
+            console.log('[AddBottle] URL ImageKit:', photoUrl);
+          } catch (err) {
+            this.errorToastMessage = 'Erreur upload ImageKit';
+            this.showErrorToast = true;
+            setTimeout(() => {
+              this.showErrorToast = false;
+            }, 3000);
+            return;
+          }
+        }
+        // Création du FormData avec l'URL de la photo
         const formData = new FormData();
         Object.entries(this.bottle).forEach(([key, value]) => {
-          if (value !== null && value !== undefined) {
+          if (value !== null && value !== undefined && key !== 'photo') {
             formData.append(key, value as string);
           }
         });
-        if (this.selectedPhoto) {
-          formData.append('photo', this.selectedPhoto);
-          console.log('[AddBottle] Photo sélectionnée', this.selectedPhoto);
+        if (photoUrl) {
+          formData.append('photo', photoUrl);
         }
-        for (const pair of (formData as any).entries()) {
+        // Log du contenu du FormData
+        for (const pair of formData.entries()) {
           console.log(`[AddBottle] FormData: ${pair[0]} =`, pair[1]);
         }
         let addBottleObservable;
         if (this.alcoolType === 'whisky') {
-          console.log('[AddBottle] Appel API: createWhisky');
           addBottleObservable = this.whiskyService.createWhisky(formData);
         } else if (this.alcoolType === 'rhum') {
-          console.log('[AddBottle] Appel API: createRhum');
           addBottleObservable = this.rhumService.createRhum(formData);
         } else if (this.alcoolType === 'beer') {
-          console.log('[AddBottle] Appel API: createBeer');
           addBottleObservable = this.beerService.createBeer(formData);
         }
         if (addBottleObservable) {
           addBottleObservable.subscribe({
             next: (res: any) => {
-              console.log('[AddBottle] Réponse API OK', res);
               this.errorToastMessage = 'Bouteille ajoutée à votre collection !';
               this.showErrorToast = true;
               setTimeout(() => {
@@ -234,7 +280,6 @@ export class AddBottle implements OnInit {
               }, 10);
             },
             error: (err: any) => {
-              console.error('[AddBottle] Erreur API', err);
               let message = 'Erreur lors de l’ajout';
               if (err.status === 409) {
                 message =
@@ -261,7 +306,6 @@ export class AddBottle implements OnInit {
         }
       },
       error: (err: any) => {
-        console.error('[AddBottle] Erreur récupération user', err);
         this.errorToastMessage = 'Impossible de récupérer l’utilisateur.';
         this.showErrorToast = true;
         setTimeout(() => {

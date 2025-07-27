@@ -19,6 +19,8 @@ export class Register {
   confirmPassword = '';
   error = '';
   submitted = false;
+  showSuccessToast = false;
+  successToastMessage = '';
 
   constructor(
     private auth: AuthService,
@@ -27,14 +29,6 @@ export class Register {
 
   onSubmit() {
     this.submitted = true;
-    console.log(
-      'submitted:',
-      this.submitted,
-      'password:',
-      this.password,
-      'confirmPassword:',
-      this.confirmPassword,
-    );
     if (this.password !== this.confirmPassword) {
       this.error = 'Les mots de passe ne correspondent pas.';
       return;
@@ -50,15 +44,18 @@ export class Register {
         isAdmin: false,
       })
       .subscribe({
-        next: () => {
-          console.log('Registration successful');
-          this.router.navigate(['/login']);
+        next: (res: any) => {
+          this.successToastMessage =
+            'Inscription réussie ! Vérifiez vos mails pour activer votre compte.';
+          this.showSuccessToast = true;
+          setTimeout(() => {
+            this.showSuccessToast = false;
+            this.router.navigate(['/login']);
+          }, 3500);
         },
         error: (err) => {
-          console.error('Registration failed', err);
           this.error = "Erreur lors de l'inscription";
         },
       });
-    console.log('Registration successful for:', this.email);
   }
 }

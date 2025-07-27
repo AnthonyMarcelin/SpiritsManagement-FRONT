@@ -16,3 +16,6 @@ regler ce probleme de message d'error au register quand les mots de passe sont d
 faire un dark mode
 validation par mail, reset password
 RGPD
+afficher lors du register pour les manquants du schema back (il maue 1 carac, special, mdp trop court ect)
+gerer suppression du compte avec validation par mail
+toast pour user qui se co sans etre verifie

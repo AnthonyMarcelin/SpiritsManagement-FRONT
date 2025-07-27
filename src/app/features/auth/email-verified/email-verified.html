@@ -1,0 +1,16 @@
+<div class="email-verified-container">
+  @if (status === "pending") {
+    <h1>Validation en cours...</h1>
+    <p>Veuillez patienter pendant la vérification de votre email.</p>
+  }
+  @if (status === "success") {
+    <h1>Votre email a été vérifié !</h1>
+    <p>{{ message }}</p>
+    <a routerLink="/login" class="btn">Se connecter</a>
+  }
+  @if (status === "error") {
+    <h1>Erreur de validation</h1>
+    <p>{{ message }}</p>
+    <a routerLink="/register" class="btn">Retour à l'inscription</a>
+  }
+</div>

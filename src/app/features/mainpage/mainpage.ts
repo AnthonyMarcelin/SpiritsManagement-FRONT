@@ -28,7 +28,7 @@ export class Mainpage {
       route: 'whisky',
       count: 0,
       getText: (count: number) =>
-        `J'ai ${count} bouteille${count === 1 ? '' : 's'} dans mon bar`,
+        `J'ai ${count} bouteille${count > 1 ? 's' : ''} dans mon bar`,
     },
     {
       label: 'Bière',
@@ -36,7 +36,7 @@ export class Mainpage {
       route: 'beer',
       count: 0,
       getText: (count: number) =>
-        `J'ai ${count} bière${count === 1 ? '' : 's'} au frais`,
+        `J'ai ${count} bière${count > 1 ? 's' : ''} au frais`,
     },
     {
       label: 'Rhum',
@@ -44,7 +44,7 @@ export class Mainpage {
       route: 'rhum',
       count: 0,
       getText: (count: number) =>
-        `J'ai ${count} bouteille${count === 1 ? '' : 's'} dans ma calle`,
+        `J'ai ${count} bouteille${count > 1 ? 's' : ''} dans ma calle`,
     },
   ];
 

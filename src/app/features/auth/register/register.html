@@ -7,6 +7,11 @@
       alt="logo du site"
     />
   </div>
+  @if (showSuccessToast) {
+    <div class="success-toast">
+      {{ successToastMessage }}
+    </div>
+  }
   <div class="register-card">
     <h2>Inscription</h2>
     <form #registerForm="ngForm" (ngSubmit)="onSubmit()">

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth-guard';
 import { Adminpage } from './features/adminpage/adminpage';
+import { EmailVerifiedPage } from './features/auth/email-verified/email-verified';
 import { Login } from './features/auth/login/login';
 import { Register } from './features/auth/register/register';
 import { AddBottle } from './features/collection/add-bottle/add-bottle';
@@ -26,6 +27,13 @@ export const routes: Routes = [
     path: ':alcool/add_bottle',
     component: AddBottle,
     canActivate: [authGuard],
+  },
+  {
+    path: 'email-verified',
+    loadComponent: () =>
+      import('./features/auth/email-verified/email-verified').then(
+        (m) => EmailVerifiedPage,
+      ),
   },
   { path: '**', component: NotFound },
 ];

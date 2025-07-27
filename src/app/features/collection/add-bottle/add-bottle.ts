@@ -170,12 +170,48 @@ export class AddBottle implements OnInit {
   onPhotoSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.selectedPhoto = input.files[0];
+      const file = input.files[0];
+      const img = new Image();
       const reader = new FileReader();
       reader.onload = (e: any) => {
+        img.src = e.target.result;
         this.photoPreviewUrl = e.target.result;
+        img.onload = () => {
+          const MAX_WIDTH = 1200;
+          const MAX_HEIGHT = 1200;
+          let width = img.width;
+          let height = img.height;
+          if (width > MAX_WIDTH || height > MAX_HEIGHT) {
+            if (width > height) {
+              height = Math.round((height * MAX_WIDTH) / width);
+              width = MAX_WIDTH;
+            } else {
+              width = Math.round((width * MAX_HEIGHT) / height);
+              height = MAX_HEIGHT;
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx?.drawImage(img, 0, 0, width, height);
+          canvas.toBlob(
+            (blob) => {
+              if (blob) {
+                const resizedFile = new File([blob], file.name, {
+                  type: 'image/jpeg',
+                });
+                this.selectedPhoto = resizedFile;
+              } else {
+                this.selectedPhoto = file;
+              }
+            },
+            'image/jpeg',
+            0.85,
+          );
+        };
       };
-      reader.readAsDataURL(this.selectedPhoto);
+      reader.readAsDataURL(file);
     } else {
       this.photoPreviewUrl = undefined;
     }

@@ -16,6 +16,15 @@ interface RegisterCredentials {
   providedIn: 'root',
 })
 export class AuthService {
+  public token: string | null = null;
+
+  setToken(token: string) {
+    this.token = token;
+  }
+
+  getToken(): string | null {
+    return this.token;
+  }
   private apiUrl = 'http://localhost:3000/api/auth'; // a modif pour backend
   constructor(private http: HttpClient) {}
 

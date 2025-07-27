@@ -17,4 +17,19 @@ export class WhiskyService {
       withCredentials: true,
     });
   }
+  createWhisky(formData: FormData): Observable<Whisky> {
+    return this.apiService.post<Whisky>('whisky', formData, {
+      withCredentials: true,
+    });
+  }
+  updateWhisky(id: string, formData: FormData): Observable<Whisky> {
+    return this.apiService.put<Whisky>(`whisky/${id}`, formData, {
+      withCredentials: true,
+    });
+  }
+  deleteWhisky(id: string): Observable<void> {
+    return this.apiService.delete<void>(`whisky/${id}`, {
+      withCredentials: true,
+    });
+  }
 }

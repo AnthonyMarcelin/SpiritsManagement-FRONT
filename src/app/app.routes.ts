@@ -17,7 +17,15 @@ export const routes: Routes = [
   { path: 'profile', component: Profilepage, canActivate: [authGuard] },
   { path: 'admin', component: Adminpage, canActivate: [authGuard] },
   { path: 'mainpage', component: Mainpage, canActivate: [authGuard] },
-  { path: 'collection/:type', component: Collection, canActivate: [authGuard] },
-  { path: 'add_bottle', component: AddBottle, canActivate: [authGuard] },
+  {
+    path: 'collection/:alcool',
+    component: Collection,
+    canActivate: [authGuard],
+  },
+  {
+    path: ':alcool/add_bottle',
+    component: AddBottle,
+    canActivate: [authGuard],
+  },
   { path: '**', component: NotFound },
 ];

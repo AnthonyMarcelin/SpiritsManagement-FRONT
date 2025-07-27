@@ -6,7 +6,7 @@ import { RhumService } from '../../core/services/collection/rhum.service';
 import { WhiskyService } from '../../core/services/collection/whisky.service';
 import { Navbar } from '../../shared/components/layout/navbar/navbar';
 import { MainpageCardComponent } from './card/mainpage-card';
-type AlcoholRoute = 'whisky' | 'biere' | 'rhum';
+type AlcoholRoute = 'whisky' | 'beer' | 'rhum';
 
 @Component({
   selector: 'app-mainpage',
@@ -33,7 +33,7 @@ export class Mainpage {
     {
       label: 'Bière',
       img: '/images/beer.jpg',
-      route: 'biere',
+      route: 'beer',
       count: 0,
       getText: (count: number) =>
         `J'ai ${count} bière${count === 1 ? '' : 's'} au frais`,
@@ -67,7 +67,7 @@ export class Mainpage {
       .subscribe((list) => (this.alcohols[2].count = list.length));
   }
 
-  goTo(type: 'whisky' | 'biere' | 'rhum') {
+  goTo(type: 'whisky' | 'beer' | 'rhum') {
     this.router.navigate(['/collection', type]);
   }
 }

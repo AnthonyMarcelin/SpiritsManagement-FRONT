@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-type AlcoholRoute = 'whisky' | 'biere' | 'rhum';
+type AlcoholRoute = 'whisky' | 'beer' | 'rhum';
 
 @Component({
   selector: 'app-mainpage-card',

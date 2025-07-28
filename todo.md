@@ -23,10 +23,12 @@ RGPD
 
 gerer suppression du compte avec validation par mail : bien dire que toute la collection sera perdue
 
-toast pour user qui se co sans etre verifie : apres inscription, erreur serveur apres se connecter : il faut expliciter le fait de valider avant
+<!-- toast pour user qui se co sans etre verifie : apres inscription, erreur serveur apres se connecter : il faut expliciter le fait de valider avant -->
+
+<!-- systeme de renvoi de mail de verification si non recu ou delete dans les mails  -->
 
 refaire css template mail
 
-refaire page apres validation de mail, css pas bon, logo trop gros. Et ne pas faire disparaitre mais plutot un bouton vers login
+<!-- refaire page apres validation de mail, css pas bon, logo trop gros. Et ne pas faire disparaitre mais plutot un bouton vers login -->
 
 <!-- Message en front pour signifier case rateLimiter : 5 tentatives puis blocage 1 min -->

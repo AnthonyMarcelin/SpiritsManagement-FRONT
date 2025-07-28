@@ -1,4 +1,3 @@
-// ...existing code...
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -16,6 +15,9 @@ interface RegisterCredentials {
   providedIn: 'root',
 })
 export class AuthService {
+  resendVerification(email: string) {
+    return this.http.post(`${this.apiUrl}/resend-verification`, { email });
+  }
   public token: string | null = null;
 
   setToken(token: string) {

@@ -12,6 +12,26 @@ import { AuthService } from '../../../core/services/auth';
   styleUrl: './register.scss',
 })
 export class Register {
+  resendEmail = '';
+  onResendVerification() {
+    if (!this.resendEmail) return;
+    this.auth
+      .resendVerification(this.resendEmail)
+      .toPromise()
+      .then(() => {
+        this.successToastMessage =
+          'Email de validation renvoyé. Vérifiez votre boîte mail.';
+        this.showSuccessToast = true;
+        setTimeout(() => {
+          this.showSuccessToast = false;
+        }, 4000);
+      })
+      .catch((err: any) => {
+        this.showErrorToastMessage(
+          err?.error?.error || 'Erreur lors de l’envoi du mail.',
+        );
+      });
+  }
   pseudo = '';
   firstName = '';
   lastName = '';
@@ -21,8 +41,12 @@ export class Register {
 
   error = '';
   submitted = false;
+
   showSuccessToast = false;
   successToastMessage = '';
+  showErrorToast = false;
+  errorToastMessage = '';
+  errorToastTimeout: any;
 
   passwordCriteria = {
     minLength: false,
@@ -63,6 +87,15 @@ export class Register {
     this.validatePasswordCriteria(this.password);
   }
 
+  showErrorToastMessage(message: string) {
+    this.errorToastMessage = message;
+    this.showErrorToast = true;
+    if (this.errorToastTimeout) clearTimeout(this.errorToastTimeout);
+    this.errorToastTimeout = setTimeout(() => {
+      this.showErrorToast = false;
+    }, 4000);
+  }
+
   onSubmit() {
     this.submitted = true;
     this.validatePasswordCriteria(this.password);
@@ -97,7 +130,17 @@ export class Register {
           }, 3500);
         },
         error: (err) => {
-          this.error = "Erreur lors de l'inscription";
+          if (
+            err.status === 409 ||
+            (err.error &&
+              err.error.message &&
+              err.error.message.toLowerCase().includes('existe'))
+          ) {
+            this.resendEmail = this.email;
+            this.showErrorToast = false;
+          } else {
+            this.showErrorToastMessage("Erreur lors de l'inscription");
+          }
         },
       });
   }

@@ -15,12 +15,33 @@
     @if (status === "success") {
       <h2>Votre email a été vérifié !</h2>
       <p>{{ message }}</p>
-      <a routerLink="/login" class="btn">Se connecter</a>
+      <button class="btn" (click)="goToLogin()">Se connecter</button>
     }
     @if (status === "error") {
       <h2>Erreur de validation</h2>
       <p>{{ message }}</p>
-      <a routerLink="/register" class="btn">Retour à l'inscription</a>
+      <form (ngSubmit)="onResendVerification()">
+        <input
+          type="email"
+          [(ngModel)]="resendEmail"
+          name="resendEmail"
+          placeholder="Votre email"
+          required
+          class="input-email"
+        />
+        <button class="btn" type="submit">
+          Renvoyer l'email de validation
+        </button>
+      </form>
+      @if (showSuccessToast) {
+        <div class="success-toast">{{ successToastMessage }}</div>
+      }
+      @if (showErrorToast) {
+        <div class="error-toast">{{ errorToastMessage }}</div>
+      }
+      <button class="btn" (click)="goToRegister()" style="margin-top: 10px">
+        Retour à l'inscription
+      </button>
     }
   </div>
   <footer class="footer">

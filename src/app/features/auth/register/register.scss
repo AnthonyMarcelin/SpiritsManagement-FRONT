@@ -1,3 +1,20 @@
+// Toast d’erreur après inscription
+.error-toast {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e53935;
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  animation: fadeIn 0.3s;
+  text-align: center;
+}
 // Critères mot de passe
 .password-criteria-list {
   list-style: none;

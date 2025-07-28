@@ -8,9 +8,17 @@
   background: var(--color-card, #fff);
   padding: 8px;
 }
+.homepage-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg, #faf6ed);
+}
 .email-verified-card {
   max-width: 350px;
-  margin: 32px auto 0 auto;
+  margin: 0 auto;
   padding: 32px 18px 24px 18px;
   border-radius: 18px;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);

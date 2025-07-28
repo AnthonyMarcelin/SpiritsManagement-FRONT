@@ -1,16 +1,29 @@
-<div class="email-verified-container">
-  @if (status === "pending") {
-    <h1>Validation en cours...</h1>
-    <p>Veuillez patienter pendant la vérification de votre email.</p>
-  }
-  @if (status === "success") {
-    <h1>Votre email a été vérifié !</h1>
-    <p>{{ message }}</p>
-    <a routerLink="/login" class="btn">Se connecter</a>
-  }
-  @if (status === "error") {
-    <h1>Erreur de validation</h1>
-    <p>{{ message }}</p>
-    <a routerLink="/register" class="btn">Retour à l'inscription</a>
-  }
+<div class="homepage-container">
+  <div class="header">
+    <h1>A ta soif !</h1>
+    <img
+      class="header-logo"
+      src="/logo/ChatGPT Image 9 juil. 2025, 20_41_54.png"
+      alt="logo du site"
+    />
+  </div>
+  <div class="card email-verified-card">
+    @if (status === "pending") {
+      <h2>Validation en cours...</h2>
+      <p>Veuillez patienter pendant la vérification de votre email.</p>
+    }
+    @if (status === "success") {
+      <h2>Votre email a été vérifié !</h2>
+      <p>{{ message }}</p>
+      <a routerLink="/login" class="btn">Se connecter</a>
+    }
+    @if (status === "error") {
+      <h2>Erreur de validation</h2>
+      <p>{{ message }}</p>
+      <a routerLink="/register" class="btn">Retour à l'inscription</a>
+    }
+  </div>
+  <footer class="footer">
+    <span>© 2025 - A ta soif !</span>
+  </footer>
 </div>

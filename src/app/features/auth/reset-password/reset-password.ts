@@ -15,9 +15,13 @@ import { ApiService } from '../../../core/services/api.service';
 export class ResetPasswordComponent {
   password = '';
   confirmPassword = '';
-  message = '';
   loading = false;
   token = '';
+
+  showToast = false;
+  toastMessage = '';
+  toastSuccess = false;
+  toastTimeout: any;
 
   constructor(
     private api: ApiService,
@@ -27,13 +31,23 @@ export class ResetPasswordComponent {
     this.token = this.route.snapshot.queryParamMap.get('token') || '';
   }
 
+  showResetToast(message: string, success: boolean) {
+    this.toastMessage = message;
+    this.toastSuccess = success;
+    this.showToast = true;
+    clearTimeout(this.toastTimeout);
+    this.toastTimeout = setTimeout(() => {
+      this.showToast = false;
+      if (success) this.router.navigate(['/login']);
+    }, 2200);
+  }
+
   async onSubmit() {
     if (this.password !== this.confirmPassword) {
-      this.message = 'Les mots de passe ne correspondent pas.';
+      this.showResetToast('Les mots de passe ne correspondent pas.', false);
       return;
     }
     this.loading = true;
-    this.message = '';
     try {
       const response = await firstValueFrom(
         this.api.post('auth/reset-password', {
@@ -42,11 +56,10 @@ export class ResetPasswordComponent {
         }),
       );
       console.log('[RESET PASSWORD] Réponse backend :', response);
-      this.message = 'Mot de passe réinitialisé avec succès.';
-      setTimeout(() => this.router.navigate(['/login']), 2000);
+      this.showResetToast('Mot de passe réinitialisé avec succès.', true);
     } catch (e) {
       console.error('[RESET PASSWORD] Erreur API :', e);
-      this.message = 'Erreur lors de la réinitialisation.';
+      this.showResetToast('Erreur lors de la réinitialisation.', false);
     }
     this.loading = false;
   }

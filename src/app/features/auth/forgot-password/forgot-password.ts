@@ -16,6 +16,11 @@ export class ForgotPasswordComponent {
   message = '';
   loading = false;
 
+  showToast = false;
+  toastMessage = '';
+  toastSuccess = false;
+  toastTimeout: any;
+
   constructor(private api: ApiService) {}
 
   async onSubmit(event: Event) {
@@ -28,11 +33,26 @@ export class ForgotPasswordComponent {
         this.api.post('auth/forgot-password', { email: this.email }),
       );
       console.log('[FORGOT PASSWORD] Réponse backend :', response);
-      this.message = 'Un email de réinitialisation a été envoyé.';
+      this.showForgotToast('Un email de réinitialisation a été envoyé.', true);
     } catch (e) {
       console.error('[FORGOT PASSWORD] Erreur API :', e);
-      this.message = "Erreur lors de l'envoi. Vérifiez l'adresse e-mail.";
+      this.showForgotToast(
+        "Erreur lors de l'envoi. Vérifiez l'adresse e-mail.",
+        false,
+      );
     }
     this.loading = false;
+  }
+
+  showForgotToast(message: string, success: boolean) {
+    this.toastMessage = message;
+    this.toastSuccess = success;
+    this.showToast = true;
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+    }
+    this.toastTimeout = setTimeout(() => {
+      this.showToast = false;
+    }, 3500);
   }
 }

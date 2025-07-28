@@ -14,8 +14,10 @@ import { NotFound } from './features/not-found/not-found';
 // Lazy loading pour forgot-password
 import { ForgotPasswordComponent } from './features/auth/forgot-password/forgot-password';
 import { Profilepage } from './features/profilepage/profilepage';
+import { RGPDComponent } from './shared/components/rgpd/rgpd';
 
 export const routes: Routes = [
+  { path: 'politique-confidentialite', component: RGPDComponent },
   { path: '', component: Homepage },
   { path: 'login', component: Login },
   { path: 'register', component: Register },

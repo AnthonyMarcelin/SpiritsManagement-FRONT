@@ -1,3 +1,64 @@
+.login-toast {
+  position: fixed;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 280px;
+  max-width: 90vw;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+  z-index: 1000;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+  background: #e53935;
+  opacity: 0.97;
+  animation: fadeInToast 0.3s;
+  text-align: center;
+}
+@keyframes fadeInToast {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 0.97;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+// Lien mot de passe oublié modernisé
+.forgot-link {
+  margin-top: 12px;
+  text-align: center;
+}
+.forgot-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(90deg, #f7f7fa 60%, #e9e9f7 100%);
+  color: var(--color-primary, #6c63ff);
+  border: none;
+  border-radius: 16px;
+  padding: 7px 18px 7px 13px;
+  font-size: 1.01rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 1px 4px rgba(108, 99, 255, 0.07);
+  transition:
+    background 0.18s,
+    color 0.18s;
+}
+.forgot-btn:hover {
+  background: linear-gradient(90deg, #e0e0f7 60%, #d1d1f7 100%);
+  color: #4e47c6;
+}
+.icon-lock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .login-container {
   min-height: 100vh;
   background: var(--color-bg);

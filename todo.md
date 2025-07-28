@@ -8,14 +8,25 @@ https://chatgpt.com/share/686d8ca3-0b70-8000-b143-31ec08a840e3
 
 # A faire en back
 
-rajoute run route /me au routeur et middleware verifyToken
+<!-- rajoute run route /me au routeur et middleware verifyToken -->
 
 # A faire en front
 
 regler ce probleme de message d'error au register quand les mots de passe sont differents.
-faire un dark mode
-validation par mail, reset password
+
+<!-- faire un dark mode -->
+<!-- validation par mail, reset password -->
+
 RGPD
-afficher lors du register pour les manquants du schema back (il maue 1 carac, special, mdp trop court ect)
-gerer suppression du compte avec validation par mail
-toast pour user qui se co sans etre verifie
+
+<!-- afficher lors du register pour les manquants du schema back (il manque 1 carac, special, mdp trop court ect) -->
+
+gerer suppression du compte avec validation par mail : bien dire que toute la collection sera perdue
+
+toast pour user qui se co sans etre verifie : apres inscription, erreur serveur apres se connecter : il faut expliciter le fait de valider avant
+
+refaire css template mail
+
+refaire page apres validation de mail, css pas bon, logo trop gros. Et ne pas faire disparaitre mais plutot un bouton vers login
+
+<!-- Message en front pour signifier case rateLimiter : 5 tentatives puis blocage 1 min -->

@@ -1,0 +1,13 @@
+@if (showBanner) {
+  <div class="cookie-banner">
+    <span>
+      Ce site utilise des cookies pour améliorer votre expérience. En
+      continuant, vous acceptez notre
+      <a href="/politique-confidentialite" target="_blank"
+        >politique de confidentialité</a
+      >.
+    </span>
+    <button (click)="accept()">Accepter</button>
+    <button (click)="refuse()">Refuser</button>
+  </div>
+}

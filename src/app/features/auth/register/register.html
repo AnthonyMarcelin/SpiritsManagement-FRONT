@@ -12,6 +12,11 @@
       {{ successToastMessage }}
     </div>
   }
+  @if (showErrorToast) {
+    <div class="error-toast">
+      {{ errorToastMessage }}
+    </div>
+  }
   <div class="register-card">
     <h2>Inscription</h2>
     <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
@@ -64,11 +69,23 @@
         <input
           id="password"
           type="password"
-          [(ngModel)]="password"
+          [ngModel]="password"
+          (input)="onPasswordInput($event)"
           name="password"
           required
           autocomplete="password"
         />
+        <ul class="password-criteria-list">
+          <li
+            *ngFor="let crit of passwordCriteriaList"
+            [class.valid]="crit.valid"
+            [class.invalid]="!crit.valid"
+          >
+            <span class="icon-check" *ngIf="crit.valid">✔</span>
+            <span class="icon-cross" *ngIf="!crit.valid">✖</span>
+            {{ crit.label }}
+          </li>
+        </ul>
       </div>
       <div class="form-group">
         <label for="confirmPassword">Confirmez le mot de passe</label>
@@ -94,6 +111,25 @@
         ) {
           <div class="error">{{ error }}</div>
         }
+        <!-- Affichage du formulaire de renvoi d'email de validation si l'email existe déjà -->
+        <form
+          (ngSubmit)="onResendVerification()"
+          *ngIf="resendEmail"
+          style="margin-top: 12px"
+        >
+          <input
+            type="email"
+            [(ngModel)]="resendEmail"
+            name="resendEmail"
+            placeholder="Votre email"
+            required
+            class="input-email"
+            style="margin-bottom: 6px"
+          />
+          <button class="btn" type="submit">
+            Renvoyer l'email de validation
+          </button>
+        </form>
       </div>
     </form>
     <div class="login-link">

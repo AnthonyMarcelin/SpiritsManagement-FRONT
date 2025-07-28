@@ -1,3 +1,50 @@
+// Toast d’erreur après inscription
+.error-toast {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e53935;
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  animation: fadeIn 0.3s;
+  text-align: center;
+}
+// Critères mot de passe
+.password-criteria-list {
+  list-style: none;
+  padding: 0 0 0 2px;
+  margin: 8px 0 0 0;
+  font-size: 0.98rem;
+}
+.password-criteria-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 2px;
+  color: #c0392b;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.password-criteria-list li.valid {
+  color: #2e7d32;
+}
+.password-criteria-list li.invalid {
+  color: #c0392b;
+}
+.icon-check {
+  color: #2e7d32;
+  font-size: 1.1em;
+}
+.icon-cross {
+  color: #c0392b;
+  font-size: 1.1em;
+}
 // Toast de succès après inscription
 .success-toast {
   position: fixed;

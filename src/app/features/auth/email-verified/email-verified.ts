@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../../../environments/environment';
@@ -8,13 +9,44 @@ import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-email-verified',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './email-verified.html',
   styleUrls: ['./email-verified.scss'],
 })
 export class EmailVerifiedPage implements OnInit {
   status: 'pending' | 'success' | 'error' = 'pending';
   message = '';
+  resendEmail = '';
+  showSuccessToast = false;
+  successToastMessage = '';
+  showErrorToast = false;
+  errorToastMessage = '';
+  errorToastTimeout: any;
+  onResendVerification() {
+    if (!this.resendEmail) return;
+    firstValueFrom(
+      this.http.post(`${environment.apiUrl}/auth/resend-verification`, {
+        email: this.resendEmail,
+      }),
+    )
+      .then(() => {
+        this.successToastMessage =
+          'Email de validation renvoyé. Vérifiez votre boîte mail.';
+        this.showSuccessToast = true;
+        setTimeout(() => {
+          this.showSuccessToast = false;
+        }, 4000);
+      })
+      .catch((err: any) => {
+        this.errorToastMessage =
+          err?.error?.error || 'Erreur lors de l’envoi du mail.';
+        this.showErrorToast = true;
+        if (this.errorToastTimeout) clearTimeout(this.errorToastTimeout);
+        this.errorToastTimeout = setTimeout(() => {
+          this.showErrorToast = false;
+        }, 4000);
+      });
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -40,9 +72,6 @@ export class EmailVerifiedPage implements OnInit {
         this.message =
           res?.message ||
           'Votre email a été vérifié ! Votre compte est maintenant activé.';
-        setTimeout(() => {
-          this.router.navigate(['/login']);
-        }, 3500);
       } catch (err: any) {
         this.status = 'error';
         this.message =
@@ -51,5 +80,13 @@ export class EmailVerifiedPage implements OnInit {
           'Erreur lors de la validation du mail.';
       }
     });
+  }
+
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 }

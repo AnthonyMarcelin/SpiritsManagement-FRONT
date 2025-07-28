@@ -38,7 +38,16 @@ export class Login {
     this.auth.login({ email: this.email, password: this.password }).subscribe({
       next: () => {
         console.log('login ok');
-        this.router.navigate(['/mainpage']);
+        this.auth.getMe().subscribe({
+          next: (user) => {
+            console.log('Utilisateur courant récupéré:', user);
+            this.router.navigate(['/mainpage']);
+          },
+          error: (err) => {
+            console.error('Erreur getMe après login:', err);
+            this.error = 'Erreur lors de la récupération du profil';
+          },
+        });
       },
       error: (err) => {
         if (err.status === 429) {

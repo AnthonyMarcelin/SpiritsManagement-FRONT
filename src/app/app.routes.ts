@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/guards/auth-guard';
+import { adminGuard, authGuard } from './core/guards/auth-guard';
 import { Adminpage } from './features/adminpage/adminpage';
 import { EmailVerifiedPage } from './features/auth/email-verified/email-verified';
 import { Login } from './features/auth/login/login';
@@ -22,8 +22,8 @@ export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'register', component: Register },
   { path: 'profile', component: Profilepage, canActivate: [authGuard] },
-  { path: 'admin', component: Adminpage, canActivate: [authGuard] },
   { path: 'mainpage', component: Mainpage, canActivate: [authGuard] },
+  { path: 'admin', component: Adminpage, canActivate: [adminGuard] },
   {
     path: 'collection/:alcool',
     component: Collection,

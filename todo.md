@@ -32,3 +32,5 @@ refaire css template mail
 <!-- refaire page apres validation de mail, css pas bon, logo trop gros. Et ne pas faire disparaitre mais plutot un bouton vers login -->
 
 <!-- Message en front pour signifier case rateLimiter : 5 tentatives puis blocage 1 min -->
+
+virer les logs

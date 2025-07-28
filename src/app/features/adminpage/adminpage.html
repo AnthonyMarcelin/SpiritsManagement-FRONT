@@ -1,1 +1,311 @@
-<p>adminpage works!</p>
+<div class="admin-container modern-admin">
+  <header class="admin-header">
+    <div class="admin-header-row">
+      <img
+        src="/logo/ChatGPT Image 9 juil. 2025, 20_40_49.png"
+        alt="Logo"
+        class="admin-logo"
+      />
+      <button class="btn btn-main btn-header-return" (click)="goToMainpage()">
+        Retour à la page principale
+      </button>
+    </div>
+    <h1>Administration</h1>
+    <p class="admin-subtitle">
+      Gérez vos données et vos utilisateurs en toute simplicité
+    </p>
+  </header>
+  <div class="admin-sections">
+    <section class="admin-block card">
+      <h2><span class="icon">🏷️</span> Labels</h2>
+      <form class="admin-form" (ngSubmit)="addLabel()">
+        <input
+          type="text"
+          [(ngModel)]="newLabelName"
+          name="labelName"
+          placeholder="Nom du label"
+        />
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </form>
+      <ul class="admin-list">
+        <li *ngFor="let label of labels" class="admin-list-item">
+          <ng-container *ngIf="editLabelId === label.id; else labelView">
+            <input
+              type="text"
+              [(ngModel)]="editLabelName"
+              name="editLabelName{{ label.id }}"
+            />
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="saveEditLabel(label)"
+            >
+              Enregistrer
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="cancelEditLabel()"
+            >
+              Annuler
+            </button>
+          </ng-container>
+          <ng-template #labelView>
+            <span class="label-name">{{ label.name }}</span>
+            <button
+              type="button"
+              class="btn btn-warning"
+              (click)="startEditLabel(label)"
+            >
+              Modifier
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deleteLabel(label)"
+            >
+              Supprimer
+            </button>
+          </ng-template>
+        </li>
+      </ul>
+    </section>
+    <section class="admin-block card">
+      <h2><span class="icon">🌫️</span> PeatLevels</h2>
+      <form class="admin-form" (ngSubmit)="addPeatLevel()">
+        <input
+          type="text"
+          [(ngModel)]="newPeatLevelName"
+          name="peatLevelName"
+          placeholder="Nom du peatlevel"
+        />
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </form>
+      <ul class="admin-list">
+        <li *ngFor="let peat of peatlevels" class="admin-list-item">
+          <ng-container *ngIf="editPeatId === peat.id; else peatView">
+            <input
+              type="text"
+              [(ngModel)]="editPeatName"
+              name="editPeatName{{ peat.id }}"
+            />
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="saveEditPeat(peat)"
+            >
+              Enregistrer
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="cancelEditPeat()"
+            >
+              Annuler
+            </button>
+          </ng-container>
+          <ng-template #peatView>
+            <span class="peat-name">{{ peat.name }}</span>
+            <button
+              type="button"
+              class="btn btn-warning"
+              (click)="startEditPeat(peat)"
+            >
+              Modifier
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deletePeatLevel(peat)"
+            >
+              Supprimer
+            </button>
+          </ng-template>
+        </li>
+      </ul>
+    </section>
+    <section class="admin-block card">
+      <h2><span class="icon">🧩</span> Types</h2>
+      <form class="admin-form" (ngSubmit)="addType()">
+        <input
+          type="text"
+          [(ngModel)]="newTypeName"
+          name="typeName"
+          placeholder="Nom du type"
+        />
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </form>
+      <div class="type-groups">
+        <div class="type-group">
+          <h3>Whisky</h3>
+          <ul class="admin-list">
+            <li
+              *ngFor="let type of whiskyTypes"
+              class="admin-list-item type-mobile-item"
+            >
+              <div class="type-label">{{ type.name }}</div>
+              <div class="type-actions">
+                <ng-container
+                  *ngIf="editTypeId === type.id; else typeViewWhisky"
+                >
+                  <input
+                    type="text"
+                    [(ngModel)]="editTypeName"
+                    name="editTypeNameWhisky{{ type.id }}"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="saveEditType(type)"
+                  >
+                    Enregistrer
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="cancelEditType()"
+                  >
+                    Annuler
+                  </button>
+                </ng-container>
+                <ng-template #typeViewWhisky>
+                  <button
+                    type="button"
+                    class="btn btn-warning"
+                    (click)="startEditType(type)"
+                  >
+                    Modifier
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="deleteType(type)"
+                  >
+                    Supprimer
+                  </button>
+                </ng-template>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="type-group">
+          <h3>Rhum</h3>
+          <ul class="admin-list">
+            <li
+              *ngFor="let type of rhumTypes"
+              class="admin-list-item type-mobile-item"
+            >
+              <div class="type-label">{{ type.name }}</div>
+              <div class="type-actions">
+                <ng-container *ngIf="editTypeId === type.id; else typeViewRhum">
+                  <input
+                    type="text"
+                    [(ngModel)]="editTypeName"
+                    name="editTypeNameRhum{{ type.id }}"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="saveEditType(type)"
+                  >
+                    Enregistrer
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="cancelEditType()"
+                  >
+                    Annuler
+                  </button>
+                </ng-container>
+                <ng-template #typeViewRhum>
+                  <button
+                    type="button"
+                    class="btn btn-warning"
+                    (click)="startEditType(type)"
+                  >
+                    Modifier
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="deleteType(type)"
+                  >
+                    Supprimer
+                  </button>
+                </ng-template>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="type-group">
+          <h3>Bière</h3>
+          <ul class="admin-list">
+            <li
+              *ngFor="let type of beerTypes"
+              class="admin-list-item type-mobile-item"
+            >
+              <div class="type-label">{{ type.name }}</div>
+              <div class="type-actions">
+                <ng-container *ngIf="editTypeId === type.id; else typeViewBeer">
+                  <input
+                    type="text"
+                    [(ngModel)]="editTypeName"
+                    name="editTypeNameBeer{{ type.id }}"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="saveEditType(type)"
+                  >
+                    Enregistrer
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="cancelEditType()"
+                  >
+                    Annuler
+                  </button>
+                </ng-container>
+                <ng-template #typeViewBeer>
+                  <button
+                    type="button"
+                    class="btn btn-warning"
+                    (click)="startEditType(type)"
+                  >
+                    Modifier
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="deleteType(type)"
+                  >
+                    Supprimer
+                  </button>
+                </ng-template>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="admin-block card">
+      <h2><span class="icon">👤</span> Utilisateurs</h2>
+      <ul class="admin-list">
+        <li *ngFor="let user of users" class="admin-list-item">
+          <span class="user-email">{{ user.email }}</span>
+          <span *ngIf="user.isAdmin" class="user-role">(admin)</span>
+          <button
+            class="btn btn-danger"
+            [disabled]="user.isAdmin || user.id === currentUserId"
+            (click)="deleteUser(user)"
+          >
+            Supprimer
+          </button>
+        </li>
+      </ul>
+    </section>
+  </div>
+  <!-- footer supprimé, bouton déplacé en haut -->
+</div>

@@ -39,6 +39,12 @@ export class ApiService {
         headers = { ...headers, Authorization: `Bearer ${token}` };
       }
     }
+    console.log('[API SERVICE][GET]', {
+      url: `${this.baseUrl}/${endpoint}`,
+      token,
+      headers,
+      withCredentials: true,
+    });
     return this.http.get<T>(`${this.baseUrl}/${endpoint}`, {
       ...options,
       headers,
@@ -72,6 +78,13 @@ export class ApiService {
         headers = { ...headers, Authorization: `Bearer ${token}` };
       }
     }
+    console.log('[API SERVICE][POST]', {
+      url: `${this.baseUrl}/${endpoint}`,
+      token,
+      headers,
+      withCredentials: true,
+      data,
+    });
     return this.http.post<T>(`${this.baseUrl}/${endpoint}`, data, {
       ...options,
       headers,
@@ -105,6 +118,13 @@ export class ApiService {
         headers = { ...headers, Authorization: `Bearer ${token}` };
       }
     }
+    console.log('[API SERVICE][PUT]', {
+      url: `${this.baseUrl}/${endpoint}`,
+      token,
+      headers,
+      withCredentials: true,
+      data,
+    });
     return this.http.put<T>(`${this.baseUrl}/${endpoint}`, data, {
       ...options,
       headers,
@@ -137,6 +157,12 @@ export class ApiService {
         headers = { ...headers, Authorization: `Bearer ${token}` };
       }
     }
+    console.log('[API SERVICE][DELETE]', {
+      url: `${this.baseUrl}/${endpoint}`,
+      token,
+      headers,
+      withCredentials: true,
+    });
     return this.http.delete<T>(`${this.baseUrl}/${endpoint}`, {
       ...options,
       headers,

@@ -1,0 +1,84 @@
+.editmodal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(44, 62, 80, 0.35);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editmodal-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 24px rgba(44, 62, 80, 0.18);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  min-width: 320px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  font-size: 1.3rem;
+  color: #2c3e50;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+}
+
+label {
+  font-size: 1rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  outline: none;
+  transition: border 0.2s;
+}
+input:focus {
+  border-color: #e67e22;
+}
+
+.editmodal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+.btn {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  border-radius: 8px;
+  padding: 0.6rem 1.3rem;
+  border: none;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.btn-primary {
+  background: #2c3e50;
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #e67e22;
+  color: #fff;
+}
+.btn-secondary {
+  background: #e0e0e0;
+  color: #2c3e50;
+}
+.btn-secondary:hover {
+  background: #b2bec3;
+}

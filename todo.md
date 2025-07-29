@@ -34,3 +34,7 @@ refaire css template mail
 <!-- Message en front pour signifier case rateLimiter : 5 tentatives puis blocage 1 min -->
 
 virer les logs
+
+bio / description pour v2
+
+modif du mail dans mon profil pour v2

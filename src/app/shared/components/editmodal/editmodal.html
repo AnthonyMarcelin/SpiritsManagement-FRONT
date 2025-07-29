@@ -1,0 +1,22 @@
+<div class="editmodal-overlay">
+  <div class="editmodal-card">
+    <h3>{{ title || "Modifier" }}</h3>
+    <form (ngSubmit)="onValidate()">
+      <label [for]="fieldId">{{ label || "Nouvelle valeur" }}</label>
+      <input
+        [id]="fieldId"
+        [type]="type || 'text'"
+        [(ngModel)]="value"
+        name="editValue"
+        required
+        autocomplete="off"
+      />
+      <div class="editmodal-actions">
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">
+          Annuler
+        </button>
+        <button type="submit" class="btn btn-primary">Valider</button>
+      </div>
+    </form>
+  </div>
+</div>

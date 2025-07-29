@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ApiService } from '../api.service';
 
 export interface Origin {
   id: number;
@@ -9,9 +9,16 @@ export interface Origin {
 
 @Injectable({ providedIn: 'root' })
 export class OriginService {
-  constructor(private http: HttpClient) {}
+  createOrigin(payload: { country: string }) {
+    return this.apiService.post('origin', payload);
+  }
+  constructor(private apiService: ApiService) {}
 
   getAllOrigins(): Observable<Origin[]> {
-    return this.http.get<Origin[]>('/api/origin');
+    return this.apiService.get<Origin[]>('origin');
+  }
+
+  updateOrigin(id: number, payload: { country: string }) {
+    return this.apiService.put(`origin/${id}`, payload);
   }
 }

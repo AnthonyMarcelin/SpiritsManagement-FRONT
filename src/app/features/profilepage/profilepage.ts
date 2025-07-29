@@ -71,12 +71,18 @@ export class Profilepage implements OnInit {
       await firstValueFrom(
         this.api.put('auth/me', { [payload.field]: payload.value }),
       );
-      if (payload.field === 'pseudo' || payload.field === 'username') {
-        this.user.username = payload.value;
-      }
+      // Log du cookie après modification
+      console.log('[PROFILEPAGE] Cookie après modification:', document.cookie);
+      // Recharge le profil complet après modification
+      const response = await firstValueFrom(this.api.get('auth/me'));
+      this.user = response;
       this.showEditModal = false;
       this.showProfileToast('Modification enregistrée avec succès.', true);
     } catch (e) {
+      console.log(
+        '[PROFILEPAGE] Cookie après erreur modification:',
+        document.cookie,
+      );
       this.showProfileToast('Erreur lors de la modification.', false);
     }
   }

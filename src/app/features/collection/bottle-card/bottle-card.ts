@@ -1,5 +1,5 @@
 import { CommonModule, DecimalPipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-bottle-card',
@@ -10,9 +10,18 @@ import { Component, Input } from '@angular/core';
 })
 export class BottleCard {
   @Input() bottle?: {
+    id: string;
     name: string;
     photo: string;
     note: number;
     price?: number;
   };
+
+  @Output() bottleClick = new EventEmitter<string>();
+
+  onCardClick() {
+    if (this.bottle?.id) {
+      this.bottleClick.emit(this.bottle.id);
+    }
+  }
 }

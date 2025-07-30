@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BeerService } from '../../core/services/collection/beer.service';
 import { RhumService } from '../../core/services/collection/rhum.service';
 import { WhiskyService } from '../../core/services/collection/whisky.service';
@@ -33,10 +33,15 @@ export class Collection {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private whiskyService: WhiskyService,
     private beerService: BeerService,
     private rhumService: RhumService,
   ) {}
+
+  onBottleClick(id: string) {
+    this.router.navigate(['/collection', this.alcool, 'bottle', id]);
+  }
 
   ngOnInit() {
     this.alcool = this.route.snapshot.params['alcool'];

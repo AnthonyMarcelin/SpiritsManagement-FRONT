@@ -49,7 +49,9 @@ export class AuthService {
 
   login(credentials: { email: string; password: string }): Observable<any> {
     return this.http
-      .post<{ token: string }>(`${this.apiUrl}/login`, credentials)
+      .post<{ token: string }>(`${this.apiUrl}/login`, credentials, {
+        withCredentials: true,
+      })
       .pipe(
         tap((response) => {
           if (response && response.token) {
@@ -82,6 +84,7 @@ export class AuthService {
     const token = this.getToken();
     return this.http.get(`${this.apiUrl}/me`, {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
+      withCredentials: true,
     });
   }
 }

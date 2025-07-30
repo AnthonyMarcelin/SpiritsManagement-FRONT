@@ -1,0 +1,14 @@
+<div class="deletemodal-overlay">
+  <div class="deletemodal-card">
+    <h3>{{ title || "Confirmer la suppression" }}</h3>
+    <p>{{ message || "Voulez-vous vraiment supprimer cette bouteille ?" }}</p>
+    <div class="deletemodal-actions">
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">
+        Annuler
+      </button>
+      <button type="button" class="btn btn-danger" (click)="onConfirm()">
+        Supprimer
+      </button>
+    </div>
+  </div>
+</div>

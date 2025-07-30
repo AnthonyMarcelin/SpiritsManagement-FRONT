@@ -15,7 +15,10 @@
 
 <div class="bottle-list">
   <div *ngFor="let bottle of filteredBottles">
-    <app-bottle-card [bottle]="bottle"></app-bottle-card>
+    <app-bottle-card
+      [bottle]="bottle"
+      (bottleClick)="onBottleClick($event)"
+    ></app-bottle-card>
   </div>
 </div>
 

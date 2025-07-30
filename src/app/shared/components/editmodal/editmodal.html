@@ -3,14 +3,31 @@
     <h3>{{ title || "Modifier" }}</h3>
     <form (ngSubmit)="onValidate()">
       <label [for]="fieldId">{{ label || "Nouvelle valeur" }}</label>
-      <input
-        [id]="fieldId"
-        [type]="type || 'text'"
-        [(ngModel)]="value"
-        name="editValue"
-        required
-        autocomplete="off"
-      />
+      @if (options && options.length > 0) {
+        <select
+          class="editmodal-select"
+          [id]="fieldId"
+          [(ngModel)]="value"
+          name="editValue"
+          required
+        >
+          <option
+            *ngFor="let opt of options"
+            [value]="opt.id || opt.value || opt"
+          >
+            {{ opt.name || opt.label || opt.value || opt }}
+          </option>
+        </select>
+      } @else {
+        <input
+          [id]="fieldId"
+          [type]="type || 'text'"
+          [(ngModel)]="value"
+          name="editValue"
+          required
+          autocomplete="off"
+        />
+      }
       <div class="editmodal-actions">
         <button type="button" class="btn btn-secondary" (click)="onCancel()">
           Annuler

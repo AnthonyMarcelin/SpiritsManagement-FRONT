@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-editmodal',
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './editmodal.html',
   styleUrl: './editmodal.scss',
 })
@@ -14,6 +15,7 @@ export class Editmodal {
   @Input() fieldId: string = 'editValue';
   @Input() value: string = '';
   @Input() fieldName: string = '';
+  @Input() options: any[] = [];
   @Output() validate = new EventEmitter<{ field: string; value: string }>();
   @Output() cancel = new EventEmitter<void>();
 

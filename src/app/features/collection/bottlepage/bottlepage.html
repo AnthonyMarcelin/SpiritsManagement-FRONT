@@ -1,0 +1,384 @@
+<div class="bottle-container">
+  <h2>Ma bouteille</h2>
+
+  <div class="bottle-name">
+    {{ bottle.name }}
+  </div>
+
+  <form class="bottle-form">
+    <!-- Name -->
+    <div class="form-group">
+      <label for="name">Nom</label>
+      <div class="input-with-icon">
+        <input
+          id="name"
+          name="name"
+          type="text"
+          [value]="bottle.name"
+          readonly
+        />
+        <button
+          type="button"
+          class="edit-icon"
+          aria-label="Modifier le nom"
+          (click)="openEditModal('name')"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 17.25V21h3.75l11.06-11.06a1 1 0 0 0 0-1.41l-2.24-2.24a1 1 0 0 0-1.41 0L3 17.25z"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+            <path
+              d="M14.06 7.94l2.24 2.24"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <div class="input-with-icon">
+        <input
+          id="description"
+          name="description"
+          type="text"
+          [value]="bottle.description"
+          readonly
+        />
+        <button
+          type="button"
+          class="edit-icon"
+          aria-label="Modifier la description"
+          (click)="openEditModal('description')"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 17.25V21h3.75l11.06-11.06a1 1 0 0 0 0-1.41l-2.24-2.24a1 1 0 0 0-1.41 0L3 17.25z"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+            <path
+              d="M14.06 7.94l2.24 2.24"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Review -->
+    <div class="form-group">
+      <label for="review">Review</label>
+      <div class="input-with-icon">
+        <input
+          id="review"
+          name="review"
+          type="text"
+          [value]="bottle.review"
+          readonly
+        />
+        <button
+          type="button"
+          class="edit-icon"
+          aria-label="Modifier la review"
+          (click)="openEditModal('review')"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 17.25V21h3.75l11.06-11.06a1 1 0 0 0 0-1.41l-2.24-2.24a1 1 0 0 0-1.41 0L3 17.25z"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+            <path
+              d="M14.06 7.94l2.24 2.24"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Prix -->
+    <div class="form-group">
+      <label for="price">Prix</label>
+      <div class="input-with-icon">
+        <input
+          id="price"
+          name="price"
+          type="number"
+          [value]="bottle.price"
+          readonly
+        />
+        <button
+          type="button"
+          class="edit-icon"
+          aria-label="Modifier le prix"
+          (click)="openEditModal('price')"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 17.25V21h3.75l11.06-11.06a1 1 0 0 0 0-1.41l-2.24-2.24a1 1 0 0 0-1.41 0L3 17.25z"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+            <path
+              d="M14.06 7.94l2.24 2.24"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Label -->
+    <div class="form-group">
+      <label for="label">Label</label>
+      <div class="input-with-icon">
+        <input
+          id="label"
+          name="label"
+          type="text"
+          [value]="bottle.label ?? ''"
+          readonly
+        />
+        <button
+          type="button"
+          class="edit-icon"
+          aria-label="Modifier le label"
+          (click)="openEditModal('label')"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 17.25V21h3.75l11.06-11.06a1 1 0 0 0 0-1.41l-2.24-2.24a1 1 0 0 0-1.41 0L3 17.25z"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+            <path
+              d="M14.06 7.94l2.24 2.24"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Origine -->
+    <div class="form-group">
+      <label for="origin">Origine</label>
+      <div class="input-with-icon">
+        <input
+          id="origin"
+          name="origin"
+          type="text"
+          [value]="bottle.origin"
+          readonly
+        />
+        <button
+          type="button"
+          class="edit-icon"
+          aria-label="Modifier l'origine"
+          (click)="openEditModal('origin')"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 17.25V21h3.75l11.06-11.06a1 1 0 0 0 0-1.41l-2.24-2.24a1 1 0 0 0-1.41 0L3 17.25z"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+            <path
+              d="M14.06 7.94l2.24 2.24"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Fournisseur -->
+    <div class="form-group">
+      <label for="supplier">Fournisseur</label>
+      <div class="input-with-icon">
+        <input
+          id="supplier"
+          name="supplier"
+          type="text"
+          [value]="bottle.supplier"
+          readonly
+        />
+        <button
+          type="button"
+          class="edit-icon"
+          aria-label="Modifier le fournisseur"
+          (click)="openEditModal('supplier')"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 17.25V21h3.75l11.06-11.06a1 1 0 0 0 0-1.41l-2.24-2.24a1 1 0 0 0-1.41 0L3 17.25z"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+            <path
+              d="M14.06 7.94l2.24 2.24"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Type -->
+    <div class="form-group">
+      <label for="type">Type</label>
+      <div class="input-with-icon">
+        <input
+          id="type"
+          name="type"
+          type="text"
+          [value]="bottle.type ?? ''"
+          readonly
+        />
+        <button
+          type="button"
+          class="edit-icon"
+          aria-label="Modifier le type"
+          (click)="openEditModal('type')"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 17.25V21h3.75l11.06-11.06a1 1 0 0 0 0-1.41l-2.24-2.24a1 1 0 0 0-1.41 0L3 17.25z"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+            <path
+              d="M14.06 7.94l2.24 2.24"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- PeatLevel si whisky -->
+    @if (bottleType === "whisky") {
+      <div class="form-group">
+        <label for="peatLevel">Niveau de tourbe</label>
+        <div class="input-with-icon">
+          <input
+            id="peatLevel"
+            name="peatLevel"
+            type="text"
+            [value]="bottle.peatLevel ?? ''"
+            readonly
+          />
+          <button
+            type="button"
+            class="edit-icon"
+            aria-label="Modifier le niveau de tourbe"
+            (click)="openEditModal('peatLevel')"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M3 17.25V21h3.75l11.06-11.06a1 1 0 0 0 0-1.41l-2.24-2.24a1 1 0 0 0-1.41 0L3 17.25z"
+                stroke="#888"
+                stroke-width="2"
+                fill="none"
+              />
+              <path
+                d="M14.06 7.94l2.24 2.24"
+                stroke="#888"
+                stroke-width="2"
+                fill="none"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    }
+  </form>
+
+  <div class="bottle-dates">
+    <div>
+      Date de création du compte :
+      {{ bottle.created_at | date: "dd/MM/yyyy HH:mm" }}
+    </div>
+    <div>
+      Dernière modification : {{ bottle.updated_at | date: "dd/MM/yyyy HH:mm" }}
+    </div>
+  </div>
+
+  <button class="btn btn-danger delete-bottle" (click)="showDeleteModal = true">
+    Supprimer ma bouteille
+  </button>
+
+  <button class="btn btn-secondary btn-fullwidth" (click)="goToCollection()">
+    Retour à ma collection
+  </button>
+
+  @if (showToast) {
+    <div
+      class="reset-toast"
+      [ngClass]="{ success: toastSuccess, error: !toastSuccess }"
+    >
+      {{ toastMessage }}
+    </div>
+  }
+
+  @if (showEditModal) {
+    <app-editmodal
+      [title]="'Modifier ' + editField"
+      [label]="'Nouvelle valeur'"
+      [type]="editField === 'price' ? 'number' : 'text'"
+      [fieldId]="'edit' + editField"
+      [value]="bottle[editField]"
+      [fieldName]="editField"
+      [options]="
+        editField === 'label'
+          ? labelOptions
+          : editField === 'type'
+            ? typeOptions
+            : editField === 'peatLevel'
+              ? peatLevelOptions
+              : []
+      "
+      (validate)="onEditField($event)"
+      (cancel)="closeEditModal()"
+    ></app-editmodal>
+  }
+
+  @if (showDeleteModal) {
+    <app-deletemodal
+      [title]="'Confirmer la suppression'"
+      [message]="'Voulez-vous vraiment supprimer cette bouteille ?'"
+      (confirm)="onDeleteConfirm()"
+      (cancel)="onDeleteCancel()"
+    />
+  }
+</div>

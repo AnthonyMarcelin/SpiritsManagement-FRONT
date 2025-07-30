@@ -38,3 +38,5 @@ virer les logs
 bio / description pour v2
 
 modif du mail dans mon profil pour v2
+
+clean code

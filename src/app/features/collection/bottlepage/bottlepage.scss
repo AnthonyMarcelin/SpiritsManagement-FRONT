@@ -1,6 +1,35 @@
-@use "../../../styles/variables.scss";
+@use "../../../../styles/variables.scss";
+/* Style moderne pour les <select> du modal d'édition */
+select {
+  width: 100%;
+  padding: 0.6em 2.5em 0.6em 1em;
+  border: 1px solid #d1d5db;
+  border-radius: 0.7em;
+  background: #fff
+    url('data:image/svg+xml;utf8,<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5" stroke="%23888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+    no-repeat right 1em center/1.2em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  font-size: 1em;
+  color: #222;
+  appearance: none;
+  transition:
+    border 0.2s,
+    box-shadow 0.2s;
+}
 
-.profile-container {
+select:focus {
+  border-color: #888;
+  box-shadow: 0 0 0 2px #e0e7ff;
+  outline: none;
+}
+
+select:disabled {
+  background-color: #f3f4f6;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.bottle-container {
   max-width: 400px;
   margin: 40px auto;
   background: variables.$color-card;
@@ -21,7 +50,7 @@ h2 {
   text-align: center;
 }
 
-.profile-form {
+.bottle-form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -64,10 +93,10 @@ input {
   transition: color 0.2s;
 }
 .edit-icon svg path {
-  stroke: variables.$color-primary;
+  stroke: var(--color-primary, #2c3e50);
 }
 .edit-icon:hover svg path {
-  stroke: variables.$color-secondary;
+  stroke: var(--color-secondary, #e67e22);
 }
 
 .btn {
@@ -83,15 +112,15 @@ input {
     color 0.2s;
 }
 .btn-primary {
-  background: variables.$color-primary;
+  background: var(--color-primary, #2c3e50);
   color: #fff;
 }
 .btn-primary:hover {
-  background: variables.$color-secondary;
+  background: var(--color-secondary, #e67e22);
   color: #fff;
 }
 .btn-danger {
-  background: #c0392b;
+  background: var(--danger-color, #c0392b);
   color: #fff;
   margin-top: 2.5rem;
 }
@@ -103,13 +132,13 @@ input {
   margin-top: 2rem;
 }
 
-.profile-dates {
+.bottle-dates {
   margin-top: 1.5rem;
-  background: variables.$color-bg;
+  background: var(--color-bg, #f7f7f7);
   border-radius: 16px;
   padding: 1rem;
   font-size: 1rem;
-  color: variables.$color-secondary;
+  color: var(--color-secondary, #e67e22);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
@@ -120,8 +149,8 @@ input {
   font-size: 1rem;
   font-weight: 600;
   text-align: center;
-  background: variables.$color-bg;
-  color: variables.$color-primary;
+  background: var(--color-bg, #f7f7f7);
+  color: var(--color-primary, #2c3e50);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 .reset-toast.success {

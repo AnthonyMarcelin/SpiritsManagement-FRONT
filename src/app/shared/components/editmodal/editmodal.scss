@@ -1,3 +1,19 @@
+/* Prévisualisation d'image dans le modal d'édition */
+.editmodal-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.editmodal-preview img {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  border: 1.5px solid #e67e22;
+  background: #fff;
+}
 /* Style moderne pour le select du modal d'édition */
 .editmodal-select {
   width: 100%;

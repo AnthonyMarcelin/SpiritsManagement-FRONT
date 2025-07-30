@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../../../core/services/api.service';
+import { ImageKitService } from '../../../core/services/bottle/imagekit.service';
 import { LabelService } from '../../../core/services/bottle/label.service';
 import { PeatLevelService } from '../../../core/services/bottle/peatLevel.service';
 import { TypeService } from '../../../core/services/bottle/type.service';
@@ -68,6 +69,7 @@ export class Bottlepage implements OnInit {
     private labelService: LabelService,
     private typeService: TypeService,
     private peatLevelService: PeatLevelService,
+    private imageKitService: ImageKitService,
   ) {}
 
   goToCollection(): void {
@@ -85,6 +87,7 @@ export class Bottlepage implements OnInit {
     if (field === 'peatLevel' && this.bottleType === 'whisky') {
       await this.fetchPeatLevelOptions();
     }
+    // Pour la photo, le modal doit accepter un input type file
     this.showEditModal = true;
   }
 
@@ -136,23 +139,77 @@ export class Bottlepage implements OnInit {
 
   async onEditField(payload: {
     field: string;
-    value: string | { id: number };
+    value: string | { id: number } | File;
   }) {
     try {
+      if (payload.field === 'photo' && payload.value instanceof File) {
+        // Log avant update
+        console.log('[PHOTO][AVANT UPDATE]', this.bottle.photo);
+        // 1. Récupérer les credentials ImageKit
+        const authData: any = await firstValueFrom(
+          this.imageKitService.getAuthData(),
+        );
+        // 2. Uploader l'image avec imagekit-javascript
+        const imagekit = new (await import('imagekit-javascript')).default({
+          publicKey: (await import('../../../../environments/environment'))
+            .environment.imagekitPublicKey,
+          urlEndpoint: (await import('../../../../environments/environment'))
+            .environment.imagekitUrlEndpoint,
+        });
+        const imagekitUrl: string = await new Promise((resolve, reject) => {
+          imagekit.upload(
+            {
+              file: payload.value as File,
+              fileName: (payload.value as File).name,
+              signature: authData.signature,
+              token: authData.token,
+              expire: authData.expire,
+            },
+            (err: any, result: any) => {
+              if (err) reject(err);
+              else resolve(result.url);
+            },
+          );
+        });
+        if (!imagekitUrl) throw new Error('Upload ImageKit échoué');
+        // 3. Mettre à jour la photo dans l'API bouteille
+        const body = { photo: imagekitUrl };
+        await firstValueFrom(
+          this.api.put(`${this.bottleType}/${this.bottleId}`, body),
+        );
+        const response = await firstValueFrom(
+          this.api.get(`${this.bottleType}/${this.bottleId}`),
+        );
+        // Log après update
+        const bottleData = response as { photo?: string };
+        console.log('[PHOTO][APRES UPDATE]', bottleData.photo);
+        this.bottle = bottleData;
+        this.showEditModal = false;
+        this.showBottleToast('Photo modifiée avec succès', true);
+        return;
+      }
       // Correction du mapping des champs pour l'API sans utiliser 'any' et avec accès indexé
       const body: Record<string, string | number> = {};
       if (payload.field === 'peatLevel') {
         body['peatLevelId'] =
-          typeof payload.value === 'object' ? payload.value.id : payload.value;
+          typeof payload.value === 'object'
+            ? (payload.value as any).id
+            : payload.value;
       } else if (payload.field === 'label') {
         body['labelId'] =
-          typeof payload.value === 'object' ? payload.value.id : payload.value;
+          typeof payload.value === 'object'
+            ? (payload.value as any).id
+            : payload.value;
       } else if (payload.field === 'type') {
         body['typeId'] =
-          typeof payload.value === 'object' ? payload.value.id : payload.value;
+          typeof payload.value === 'object'
+            ? (payload.value as any).id
+            : payload.value;
       } else {
         body[payload.field] =
-          typeof payload.value === 'object' ? payload.value.id : payload.value;
+          typeof payload.value === 'object'
+            ? (payload.value as any).id
+            : payload.value;
       }
       await firstValueFrom(
         this.api.put(`${this.bottleType}/${this.bottleId}`, body),

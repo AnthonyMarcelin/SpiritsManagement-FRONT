@@ -3,7 +3,20 @@
     <h3>{{ title || "Modifier" }}</h3>
     <form (ngSubmit)="onValidate()">
       <label [for]="fieldId">{{ label || "Nouvelle valeur" }}</label>
-      @if (options && options.length > 0) {
+      @if (fieldName === "photo") {
+        <input
+          [id]="fieldId"
+          type="file"
+          (change)="onFileChange($event)"
+          accept="image/*"
+          required
+        />
+        @if (previewUrl) {
+          <div class="editmodal-preview">
+            <img [src]="previewUrl" alt="Prévisualisation" />
+          </div>
+        }
+      } @else if (options && options.length > 0) {
         <select
           class="editmodal-select"
           [id]="fieldId"

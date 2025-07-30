@@ -1,4 +1,18 @@
 @use "../../../../styles/variables.scss";
+/* Bloc photo bouteille */
+.photo-block {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bottle-photo-img {
+  max-width: 180px;
+  max-height: 180px;
+  border-radius: 16px;
+  margin-bottom: 0.5rem;
+  background: #f3f3f3;
+  object-fit: cover;
+}
 /* Style moderne pour les <select> du modal d'édition */
 select {
   width: 100%;

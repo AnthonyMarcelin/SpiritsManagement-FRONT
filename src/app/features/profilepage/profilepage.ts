@@ -17,9 +17,7 @@ export class Profilepage implements OnInit {
   async ngOnInit() {
     try {
       const response = await firstValueFrom(this.api.get('auth/me'));
-      console.log('Réponse API auth/me:', response);
       this.user = response;
-      console.log('Objet user après assignation:', this.user);
     } catch (e) {
       console.error('Erreur lors de la récupération du user:', e);
       this.showProfileToast(
@@ -72,17 +70,12 @@ export class Profilepage implements OnInit {
         this.api.put('auth/me', { [payload.field]: payload.value }),
       );
       // Log du cookie après modification
-      console.log('[PROFILEPAGE] Cookie après modification:', document.cookie);
       // Recharge le profil complet après modification
       const response = await firstValueFrom(this.api.get('auth/me'));
       this.user = response;
       this.showEditModal = false;
       this.showProfileToast('Modification enregistrée avec succès.', true);
     } catch (e) {
-      console.log(
-        '[PROFILEPAGE] Cookie après erreur modification:',
-        document.cookie,
-      );
       this.showProfileToast('Erreur lors de la modification.', false);
     }
   }

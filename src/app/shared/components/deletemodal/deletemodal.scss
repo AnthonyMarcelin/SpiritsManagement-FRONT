@@ -1,50 +1,4 @@
-/* Prévisualisation d'image dans le modal d'édition */
-.editmodal-preview {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.editmodal-preview img {
-  max-width: 100%;
-  max-height: 200px;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  border: 1.5px solid #e67e22;
-  background: #fff;
-}
-/* Style moderne pour le select du modal d'édition */
-.editmodal-select {
-  width: 100%;
-  padding: 0.7em 2.5em 0.7em 1em;
-  border: 1.5px solid #d1d5db;
-  border-radius: 1em;
-  background: #fff
-    url('data:image/svg+xml;utf8,<svg fill="none" height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M10 14l6 6 6-6" stroke="%23888" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>')
-    no-repeat right 1em center/1.5em;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-  font-size: 1.1em;
-  color: #222;
-  appearance: none;
-  transition:
-    border 0.2s,
-    box-shadow 0.2s;
-  margin-bottom: 1.2rem;
-}
-
-.editmodal-select:focus {
-  border-color: #e67e22;
-  box-shadow: 0 0 0 2px #ffe5c4;
-  outline: none;
-}
-
-.editmodal-select:disabled {
-  background-color: #f3f4f6;
-  color: #aaa;
-  cursor: not-allowed;
-}
-.editmodal-overlay {
+.deletemodal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -57,7 +11,7 @@
   justify-content: center;
 }
 
-.editmodal-card {
+.deletemodal-card {
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 2px 24px rgba(44, 62, 80, 0.18);
@@ -97,7 +51,7 @@ input:focus {
   border-color: #e67e22;
 }
 
-.editmodal-actions {
+.deletemodal-actions {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;

@@ -6,6 +6,7 @@ import { Login } from './features/auth/login/login';
 import { Register } from './features/auth/register/register';
 import { ResetPasswordComponent } from './features/auth/reset-password/reset-password';
 import { AddBottle } from './features/collection/add-bottle/add-bottle';
+import { Bottlepage } from './features/collection/bottlepage/bottlepage';
 import { Collection } from './features/collection/collection';
 import { Homepage } from './features/homepage/homepage';
 import { Mainpage } from './features/mainpage/mainpage';
@@ -27,6 +28,11 @@ export const routes: Routes = [
   {
     path: 'collection/:alcool',
     component: Collection,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'collection/:alcool/bottle/:id',
+    component: Bottlepage,
     canActivate: [authGuard],
   },
   {

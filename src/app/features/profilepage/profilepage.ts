@@ -64,12 +64,19 @@ export class Profilepage implements OnInit {
     this.showEditModal = false;
   }
 
-  async onEditField(payload: { field: string; value: string }) {
+  async onEditField(payload: {
+    field: string;
+    value: string | File | { id: number };
+  }) {
+    // Ignore File and { id: number } cases since profile has no photo or complex select fields
+    if (typeof payload.value !== 'string') {
+      this.showProfileToast('This field cannot be modified here.', false);
+      return;
+    }
     try {
       await firstValueFrom(
         this.api.put('auth/me', { [payload.field]: payload.value }),
       );
-      // Log du cookie après modification
       // Recharge le profil complet après modification
       const response = await firstValueFrom(this.api.get('auth/me'));
       this.user = response;

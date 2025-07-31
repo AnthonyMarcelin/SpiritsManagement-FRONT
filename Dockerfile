@@ -15,7 +15,7 @@ FROM nginx:stable-alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 COPY --from=build /app/dist/spirits-management-front /usr/share/nginx/html
-RUN chmod -R o+r /usr/share/nginx/html
+RUN find /usr/share/nginx/html -type d -exec chmod o+rx {} \; && chmod -R o+r /usr/share/nginx/html
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 

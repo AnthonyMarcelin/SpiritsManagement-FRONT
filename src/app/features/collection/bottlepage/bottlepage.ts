@@ -145,6 +145,51 @@ export class Bottlepage implements OnInit {
   }) {
     try {
       if (payload.field === 'photo' && payload.value instanceof File) {
+        // Redimensionnement et compression avant upload
+        const file = payload.value as File;
+        const img = new Image();
+        const reader = new FileReader();
+        const resizedFile: File = await new Promise((resolve, reject) => {
+          reader.onload = (e: any) => {
+            img.src = e.target.result;
+            img.onload = () => {
+              const MAX_WIDTH = 1200;
+              const MAX_HEIGHT = 1200;
+              let width = img.width;
+              let height = img.height;
+              if (width > MAX_WIDTH || height > MAX_HEIGHT) {
+                if (width > height) {
+                  height = Math.round((height * MAX_WIDTH) / width);
+                  width = MAX_WIDTH;
+                } else {
+                  width = Math.round((width * MAX_HEIGHT) / height);
+                  height = MAX_HEIGHT;
+                }
+              }
+              const canvas = document.createElement('canvas');
+              canvas.width = width;
+              canvas.height = height;
+              const ctx = canvas.getContext('2d');
+              ctx?.drawImage(img, 0, 0, width, height);
+              canvas.toBlob(
+                (blob) => {
+                  if (blob) {
+                    resolve(
+                      new File([blob], file.name, { type: 'image/jpeg' }),
+                    );
+                  } else {
+                    resolve(file);
+                  }
+                },
+                'image/jpeg',
+                0.85,
+              );
+            };
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+
         const authData: any = await firstValueFrom(
           this.imageKitService.getAuthData(),
         );
@@ -159,8 +204,8 @@ export class Bottlepage implements OnInit {
         const imagekitUrl: string = await new Promise((resolve, reject) => {
           imagekit.upload(
             {
-              file: payload.value as File,
-              fileName: (payload.value as File).name,
+              file: resizedFile,
+              fileName: resizedFile.name,
               signature: authData.signature,
               token: authData.token,
               expire: authData.expire,

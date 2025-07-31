@@ -1,3 +1,5 @@
+@use "../../../styles/variables.scss";
+
 .homepage-title {
   margin-bottom: 1.5rem;
 }
@@ -62,8 +64,8 @@ h1 {
   display: block;
   width: 90%;
   max-width: 260px;
-  background: var(--color-primary);
-  color: var(--color-card);
+  background: variables.$color-primary;
+  color: variables.$color-light;
   border-radius: 24px;
   padding: 12px 32px;
   font-size: 1.3rem;
@@ -75,7 +77,8 @@ h1 {
 }
 
 .button-group a:hover {
-  background: var(--color-secondary);
+  background: variables.$color-accent-whisky;
+  color: variables.$color-light;
 }
 
 button {

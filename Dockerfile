@@ -21,4 +21,6 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 8080
 
+RUN ls -l /usr/share/nginx/html
+
 CMD ["nginx", "-g", "daemon off;"]

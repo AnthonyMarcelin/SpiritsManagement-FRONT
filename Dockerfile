@@ -3,29 +3,25 @@ FROM node:20.19.0 AS build
 
 WORKDIR /app
 
-# Copie package.json et package-lock.json
 COPY package*.json ./
-
-# Install deps
 RUN npm ci
 
-# Copie le reste
 COPY . .
-
-# Build Angular
 RUN npm run build --prod
 
-# Étape 2 : Serveur statique
+# Étape 2 : Serveur Nginx
 FROM nginx:stable-alpine
 
-# Supprime les fichiers par défaut de Nginx
+# Supprime les fichiers HTML par défaut
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copie les fichiers Angular compilés
-COPY --from=build /app/dist/ /usr/share/nginx/html/
+# Copie les fichiers Angular générés
+COPY --from=build /app/dist/spirits-management-front /usr/share/nginx/html
 
-# Expose le port 80
+# Copie la config Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port
 EXPOSE 80
 
-# Lance Nginx
 CMD ["nginx", "-g", "daemon off;"]

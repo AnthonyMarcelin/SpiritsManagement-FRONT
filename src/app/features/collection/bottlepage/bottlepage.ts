@@ -145,7 +145,6 @@ export class Bottlepage implements OnInit {
   }) {
     try {
       if (payload.field === 'photo' && payload.value instanceof File) {
-        // Redimensionnement et compression avant upload
         const file = payload.value as File;
         const img = new Image();
         const reader = new FileReader();

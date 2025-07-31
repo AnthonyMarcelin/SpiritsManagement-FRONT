@@ -77,6 +77,7 @@ export class AuthService {
 
   getMe(): Observable<any> {
     const token = this.getToken();
+
     return this.http.get(`${this.apiUrl}/me`, {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
       withCredentials: true,

@@ -17,7 +17,7 @@ regler ce probleme de message d'error au register quand les mots de passe sont d
 <!-- faire un dark mode -->
 <!-- validation par mail, reset password -->
 
-RGPD
+<!-- RGPD -->
 
 <!-- afficher lors du register pour les manquants du schema back (il manque 1 carac, special, mdp trop court ect) -->
 
@@ -33,15 +33,18 @@ refaire css template mail
 
 <!-- Message en front pour signifier case rateLimiter : 5 tentatives puis blocage 1 min -->
 
-virer les logs
+<!-- virer les logs -->
 
 bio / description pour v2
 
 modif du mail dans mon profil pour v2
 
-clean code
+<!-- clean code -->
 
-mettre euro bottlepage
-mettre nom dans mainpage
+<!-- mettre euro bottlepage -->
+
+<!-- mettre nom dans mainpage -->
+
 modif auth
+
 couleur label et tri collection par label

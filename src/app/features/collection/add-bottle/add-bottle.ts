@@ -64,7 +64,6 @@ export class AddBottle implements OnInit {
     private originService: OriginService,
     private supplierService: SupplierService,
     private authService: AuthService,
-    // private http: HttpClient,
     private imageKitService: ImageKitService,
     private router: Router,
   ) {
@@ -81,6 +80,7 @@ export class AddBottle implements OnInit {
       this.router.navigate(['/collection']);
     }
   }
+
   showErrorToast: boolean = false;
   errorToastMessage: string = '';
   labels: Label[] = [];
@@ -92,11 +92,11 @@ export class AddBottle implements OnInit {
   supplierSuggestions: Supplier[] = [];
 
   async uploadPhotoToImageKit(file: File): Promise<string> {
-    // 1. Get authentication token from backend via ImageKitService
+    // Get authentication token from backend via ImageKitService
     const authData: any = await firstValueFrom(
       this.imageKitService.getAuthData(),
     );
-    // 2. Upload the image with the correct parameters
+    // Upload the image with the correct parameters
     return new Promise((resolve, reject) => {
       this.imagekit.upload(
         {
@@ -127,17 +127,21 @@ export class AddBottle implements OnInit {
             this.types = types;
           });
       }
+
       this.labelService.getAllLabel().subscribe((labels: Label[]) => {
         this.labels = labels;
       });
+
       this.peatLevelService
         .getAllPeatLevel()
         .subscribe((peatLevels: PeatLevel[]) => {
           this.peatLevels = peatLevels;
         });
+
       this.originService.getAllOrigins().subscribe((origins: Origin[]) => {
         this.origins = origins;
       });
+
       this.supplierService
         .getAllSuppliers()
         .subscribe((suppliers: Supplier[]) => {
@@ -145,6 +149,7 @@ export class AddBottle implements OnInit {
         });
     });
   }
+
   alcoolType?: 'whisky' | 'rhum' | 'beer';
 
   bottle: Bottle = {
@@ -191,6 +196,7 @@ export class AddBottle implements OnInit {
               height = MAX_HEIGHT;
             }
           }
+
           const canvas = document.createElement('canvas');
           canvas.width = width;
           canvas.height = height;
@@ -217,6 +223,7 @@ export class AddBottle implements OnInit {
       this.photoPreviewUrl = undefined;
     }
   }
+
   onOriginInput(event: Event) {
     const inputValue = (event.target as HTMLInputElement)?.value || '';
     this.originSuggestions = this.origins.filter(
@@ -226,6 +233,7 @@ export class AddBottle implements OnInit {
         o.country.toLowerCase().includes(inputValue.toLowerCase()),
     );
   }
+
   selectOrigin(country: string) {
     this.bottle.originId = country;
     this.originSuggestions = [];
@@ -261,14 +269,10 @@ export class AddBottle implements OnInit {
   }
 
   async onAddBottle() {
-    console.log('[AddBottle] Début ajout bouteille');
     this.authService.getMe().subscribe({
       next: async (user: any) => {
-        console.log('[AddBottle] Utilisateur récupéré:', user);
         this.bottle.userId = user?.id;
-        // Log bottle.name for debug
-        console.log('[AddBottle] bottle.name:', this.bottle.name);
-        // Validation des champs obligatoires pour whisky
+
         if (
           !this.bottle.name ||
           typeof this.bottle.name !== 'string' ||
@@ -299,12 +303,12 @@ export class AddBottle implements OnInit {
           }, 3000);
           return;
         }
+
         let photoUrl = '';
+
         if (this.selectedPhoto) {
           try {
-            console.log('[AddBottle] Upload photo vers ImageKit...');
             photoUrl = await this.uploadPhotoToImageKit(this.selectedPhoto);
-            console.log('[AddBottle] URL ImageKit:', photoUrl);
           } catch (err) {
             console.error('[AddBottle] Erreur upload ImageKit:', err);
             this.errorToastMessage = 'Erreur upload ImageKit';
@@ -316,7 +320,6 @@ export class AddBottle implements OnInit {
           }
         }
 
-        // Préparer le payload pour le backend whisky : origin et supplier
         const payload: any = {
           name: this.bottle.name,
           description: this.bottle.description,
@@ -327,23 +330,17 @@ export class AddBottle implements OnInit {
           origin: this.bottle.originId,
           supplier: this.bottle.supplierId,
         };
+
         if (this.bottle.labelId) payload.labelId = this.bottle.labelId;
         if (this.bottle.typeId) payload.typeId = this.bottle.typeId;
         if (this.bottle.peatLevelId && this.alcoolType === 'whisky')
           payload.peatLevelId = this.bottle.peatLevelId;
-        // Nettoyage des champs undefined uniquement (on garde 0 et les chaînes vides)
         Object.keys(payload).forEach((key) => {
           if (payload[key] === undefined) delete payload[key];
         });
 
-        // Log du payload juste avant l'appel API
-        console.log(
-          '[AddBottle] Payload envoyé au backend:',
-          JSON.stringify(payload, null, 2),
-        );
-
-        // Créer FormData si photo, sinon envoyer l'objet
         let addBottleObservable;
+
         if (photoUrl) {
           const formData = new FormData();
           Object.entries(payload).forEach(([key, value]) => {
@@ -351,6 +348,7 @@ export class AddBottle implements OnInit {
               formData.append(key, value as string);
             }
           });
+
           if (this.alcoolType === 'whisky') {
             addBottleObservable = this.whiskyService.createWhisky(formData);
           } else if (this.alcoolType === 'rhum') {
@@ -367,12 +365,9 @@ export class AddBottle implements OnInit {
             addBottleObservable = this.beerService.createBeer(payload);
           }
         }
-        // Log cookie juste avant redirect
-        console.log('[AddBottle] Cookie avant redirect:', document.cookie);
         if (addBottleObservable) {
           addBottleObservable.subscribe({
             next: (res: any) => {
-              console.log('[AddBottle] Réponse API:', res);
               this.errorToastMessage = 'Bouteille ajoutée à votre collection !';
               this.showErrorToast = true;
               setTimeout(() => {
@@ -381,17 +376,16 @@ export class AddBottle implements OnInit {
                   this.router.navigate([`/collection/${this.alcoolType}`]);
                 }
               }, 2000);
+
               setTimeout(() => {
                 const toast = document.querySelector('.error-toast');
                 if (toast) toast.classList.add('success');
               }, 10);
             },
+
             error: (err: any) => {
               console.error('[AddBottle] Erreur API:', err);
-              console.log(
-                '[AddBottle] Cookie après erreur API:',
-                document.cookie,
-              );
+
               let message = 'Erreur lors de l’ajout';
               if (err.status === 409) {
                 message =
@@ -400,11 +394,13 @@ export class AddBottle implements OnInit {
                 message += ' : ' + err.message;
               }
               this.errorToastMessage = message;
+
               this.showErrorToast = true;
               setTimeout(() => {
                 const toast = document.querySelector('.error-toast');
                 if (toast) toast.classList.remove('success');
               }, 10);
+
               setTimeout(() => {
                 this.showErrorToast = false;
               }, 3000);
@@ -417,14 +413,14 @@ export class AddBottle implements OnInit {
           );
         }
       },
+
       error: (err: any) => {
         console.error('[AddBottle] Erreur récupération utilisateur:', err);
-        console.log(
-          '[AddBottle] Cookie après erreur récupération utilisateur:',
-          document.cookie,
-        );
+
         this.errorToastMessage = 'Impossible de récupérer l’utilisateur.';
+
         this.showErrorToast = true;
+
         setTimeout(() => {
           this.showErrorToast = false;
         }, 3000);

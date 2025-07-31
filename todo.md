@@ -40,3 +40,8 @@ bio / description pour v2
 modif du mail dans mon profil pour v2
 
 clean code
+
+mettre euro bottlepage
+mettre nom dans mainpage
+modif auth
+couleur label et tri collection par label

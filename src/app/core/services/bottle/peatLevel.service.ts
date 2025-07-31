@@ -16,12 +16,15 @@ export class PeatLevelService {
   getPeatLevelById(id: number): Observable<PeatLevel> {
     return this.apiService.get<PeatLevel>(`peat/${id}`);
   }
+
   createPeatLevel(peatLevel: PeatLevel): Observable<PeatLevel> {
     return this.apiService.post<PeatLevel>('peat', peatLevel);
   }
+
   updatePeatLevel(id: number, peatLevel: PeatLevel): Observable<PeatLevel> {
     return this.apiService.put<PeatLevel>(`peat/${id}`, peatLevel);
   }
+
   deletePeatLevel(id: number): Observable<void> {
     return this.apiService.delete<void>(`peat/${id}`);
   }

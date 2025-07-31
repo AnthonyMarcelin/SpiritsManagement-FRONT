@@ -53,6 +53,7 @@ export class Collection {
         this.applySort();
       });
     }
+
     if (this.alcool === 'beer') {
       this.beerService.getAllBeer().subscribe((bottles) => {
         this.bottles = bottles;
@@ -60,6 +61,7 @@ export class Collection {
         this.applySort();
       });
     }
+
     if (this.alcool === 'rhum') {
       this.rhumService.getAllRhum().subscribe((bottles) => {
         this.bottles = bottles;

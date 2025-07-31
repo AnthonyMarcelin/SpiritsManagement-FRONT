@@ -50,16 +50,14 @@ export class Adminpage implements OnInit {
 
   ngOnInit(): void {
     this.loadAll();
-    // Log le token au démarrage
+    // Get cookie token at start
     const token = this.authService.getToken();
-    console.log('[ADMINPAGE] Token utilisé:', token);
   }
 
   // Suppression d'utilisateur
   deleteUser(user: User): void {
     this.userService.deleteUser(user.id).subscribe({
       next: () => {
-        console.log('[ADMINPAGE] Utilisateur supprimé avec succès');
         this.loadAll();
       },
       error: (err: any) => {
@@ -79,36 +77,32 @@ export class Adminpage implements OnInit {
   loadAll(): void {
     this.labelService.getAllLabel().subscribe((labels) => {
       this.labels = labels;
-      console.log('[ADMINPAGE] Labels chargés:', labels);
     });
+
     this.peatLevelService.getAllPeatLevel().subscribe((peatlevels) => {
       this.peatlevels = peatlevels;
-      console.log('[ADMINPAGE] PeatLevels chargés:', peatlevels);
     });
+
     this.typeService.getAllType().subscribe((types) => {
       this.types = types;
-      console.log('[ADMINPAGE] Types chargés:', types);
     });
+
     this.userService.getAllUsers().subscribe((users) => {
       this.users = users;
-      console.log('[ADMINPAGE] Users chargés:', users);
     });
+
     this.authService.getMe().subscribe((user) => {
       this.currentUserId = user.id;
-      console.log('[ADMINPAGE] Utilisateur courant:', user);
     });
   }
 
   // LABELS
-  // LABELS
   addLabel(): void {
     if (!this.newLabelName.trim()) return;
-    console.log("[ADMINPAGE] Tentative d'ajout de label:", this.newLabelName);
     this.labelService
       .createLabel({ name: this.newLabelName, color: '#000', id: 0 })
       .subscribe({
         next: () => {
-          console.log('[ADMINPAGE] Label ajouté avec succès');
           this.newLabelName = '';
           this.loadAll();
         },
@@ -119,10 +113,8 @@ export class Adminpage implements OnInit {
   }
 
   deleteLabel(label: Label): void {
-    console.log('[ADMINPAGE] Tentative suppression label:', label);
     this.labelService.deleteLabel(label.id).subscribe({
       next: () => {
-        console.log('[ADMINPAGE] Label supprimé avec succès');
         this.loadAll();
       },
       error: (err) => {
@@ -141,17 +133,11 @@ export class Adminpage implements OnInit {
 
   saveEditLabel(label: Label): void {
     if (!this.editLabelName.trim()) return;
-    console.log(
-      '[ADMINPAGE] Tentative modification label:',
-      label,
-      '->',
-      this.editLabelName,
-    );
+
     this.labelService
       .updateLabel(label.id, { ...label, name: this.editLabelName })
       .subscribe({
         next: () => {
-          console.log('[ADMINPAGE] Label modifié avec succès');
           this.cancelEditLabel();
           this.loadAll();
         },
@@ -169,7 +155,6 @@ export class Adminpage implements OnInit {
     this.editLabelName = '';
   }
 
-  // PEATLEVELS
   // PEATLEVELS
   addPeatLevel(): void {
     if (!this.newPeatLevelName.trim()) return;
@@ -208,10 +193,6 @@ export class Adminpage implements OnInit {
   }
 
   // TYPES
-  // TYPES
-
-  // (getters déplacés à la fin de la classe)
-
   addType(): void {
     if (!this.newTypeName.trim()) return;
     this.typeService
@@ -252,7 +233,7 @@ export class Adminpage implements OnInit {
     this.editTypeName = '';
   }
 
-  // Getters pour trier les types par alcool
+  // Getters to sort alcools
   get whiskyTypes(): Type[] {
     return this.types.filter((t) => t.forWhisky);
   }

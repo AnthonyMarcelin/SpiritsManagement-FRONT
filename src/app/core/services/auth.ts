@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 interface RegisterCredentials {
   pseudo: string;
@@ -17,14 +18,13 @@ interface RegisterCredentials {
 })
 export class AuthService {
   public token: string | null = null;
-  private apiUrl = 'http://localhost:3000/api/auth'; // a modif pour backend
+  private apiUrl = `${environment.apiUrl}/auth`;
 
   constructor(private http: HttpClient) {
-    // Récupère le token du cookie au démarrage
+    // Get cookie token at start
     const cookieToken = AuthService.getTokenFromCookie('accessToken');
     if (cookieToken) {
       this.setToken(cookieToken);
-      console.log('[AUTH] Token initialisé depuis le cookie:', cookieToken);
     }
   }
 
@@ -56,11 +56,6 @@ export class AuthService {
         tap((response) => {
           if (response && response.token) {
             this.setToken(response.token);
-            // Optionnel : localStorage.setItem('accessToken', response.token);
-            console.log(
-              '[AUTH] Token reçu et stocké après login:',
-              response.token,
-            );
           }
         }),
       );

@@ -17,7 +17,9 @@ export const authGuard: CanActivateFn = (_state) => {
 
 export const adminGuard: CanActivateFn = (_state) => {
   const auth = inject(AuthService);
+
   const router = inject(Router);
+
   return auth.getMe().pipe(
     map((user: any) => {
       if (user.isAdmin) {
@@ -27,6 +29,7 @@ export const adminGuard: CanActivateFn = (_state) => {
         return false;
       }
     }),
+
     catchError(() => {
       router.navigate(['/login']);
       return of(false);

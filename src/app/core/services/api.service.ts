@@ -9,6 +9,7 @@ import { AuthService } from './auth';
 })
 export class ApiService {
   private baseUrl = environment.apiUrl;
+
   constructor(
     private http: HttpClient,
     private authService: AuthService,
@@ -31,7 +32,9 @@ export class ApiService {
     },
   ): Observable<T> {
     const token = this.authService.getToken();
+
     let headers = options && options.headers ? options.headers : {};
+
     if (token) {
       if (headers instanceof HttpHeaders) {
         headers = headers.set('Authorization', `Bearer ${token}`);
@@ -65,7 +68,9 @@ export class ApiService {
     },
   ): Observable<T> {
     const token = this.authService.getToken();
+
     let headers = options && options.headers ? options.headers : {};
+
     if (token) {
       if (headers instanceof HttpHeaders) {
         headers = headers.set('Authorization', `Bearer ${token}`);
@@ -99,7 +104,9 @@ export class ApiService {
     },
   ): Observable<T> {
     const token = this.authService.getToken();
+
     let headers = options && options.headers ? options.headers : {};
+
     if (token) {
       if (headers instanceof HttpHeaders) {
         headers = headers.set('Authorization', `Bearer ${token}`);
@@ -107,13 +114,7 @@ export class ApiService {
         headers = { ...headers, Authorization: `Bearer ${token}` };
       }
     }
-    console.log('[API SERVICE][PUT]', {
-      url: `${this.baseUrl}/${endpoint}`,
-      token,
-      headers,
-      withCredentials: true,
-      data,
-    });
+
     return this.http.put<T>(`${this.baseUrl}/${endpoint}`, data, {
       ...options,
       headers,
@@ -138,7 +139,9 @@ export class ApiService {
     },
   ): Observable<T> {
     const token = this.authService.getToken();
+
     let headers = options && options.headers ? options.headers : {};
+
     if (token) {
       if (headers instanceof HttpHeaders) {
         headers = headers.set('Authorization', `Bearer ${token}`);
@@ -146,12 +149,7 @@ export class ApiService {
         headers = { ...headers, Authorization: `Bearer ${token}` };
       }
     }
-    console.log('[API SERVICE][DELETE]', {
-      url: `${this.baseUrl}/${endpoint}`,
-      token,
-      headers,
-      withCredentials: true,
-    });
+
     return this.http.delete<T>(`${this.baseUrl}/${endpoint}`, {
       ...options,
       headers,

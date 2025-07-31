@@ -17,6 +17,7 @@ export class Profilepage implements OnInit {
   async ngOnInit() {
     try {
       const response = await firstValueFrom(this.api.get('auth/me'));
+
       this.user = response;
     } catch (e) {
       console.error('Erreur lors de la récupération du user:', e);
@@ -43,6 +44,7 @@ export class Profilepage implements OnInit {
       await firstValueFrom(
         this.api.post('auth/forgot-password', { email: this.user.email }),
       );
+
       this.showProfileToast('Un email de réinitialisation a été envoyé.', true);
     } catch (e) {
       this.showProfileToast(
@@ -73,14 +75,18 @@ export class Profilepage implements OnInit {
       this.showProfileToast('This field cannot be modified here.', false);
       return;
     }
+
     try {
       await firstValueFrom(
         this.api.put('auth/me', { [payload.field]: payload.value }),
       );
-      // Recharge le profil complet après modification
+
       const response = await firstValueFrom(this.api.get('auth/me'));
+
       this.user = response;
+
       this.showEditModal = false;
+
       this.showProfileToast('Modification enregistrée avec succès.', true);
     } catch (e) {
       this.showProfileToast('Erreur lors de la modification.', false);
@@ -89,11 +95,15 @@ export class Profilepage implements OnInit {
 
   showProfileToast(message: string, success: boolean) {
     this.toastMessage = message;
+
     this.toastSuccess = success;
+
     this.showToast = true;
+
     if (this.toastTimeout) {
       clearTimeout(this.toastTimeout);
     }
+
     this.toastTimeout = setTimeout(() => {
       this.showToast = false;
     }, 3500);

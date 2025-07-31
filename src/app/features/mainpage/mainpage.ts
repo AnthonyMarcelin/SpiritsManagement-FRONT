@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth';
 import { BeerService } from '../../core/services/collection/beer.service';
 import { RhumService } from '../../core/services/collection/rhum.service';
 import { WhiskyService } from '../../core/services/collection/whisky.service';
@@ -15,6 +16,8 @@ type AlcoholRoute = 'whisky' | 'beer' | 'rhum';
   styleUrl: './mainpage.scss',
 })
 export class Mainpage {
+  pseudo: string = '';
+
   alcohols: {
     label: string;
     img: string;
@@ -53,18 +56,30 @@ export class Mainpage {
     private whiskyService: WhiskyService,
     private beerService: BeerService,
     private rumService: RhumService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
     this.whiskyService
       .getAllWhisky()
       .subscribe((list) => (this.alcohols[0].count = list.length));
+
     this.beerService
       .getAllBeer()
       .subscribe((list) => (this.alcohols[1].count = list.length));
+
     this.rumService
       .getAllRhum()
       .subscribe((list) => (this.alcohols[2].count = list.length));
+
+    this.authService.getMe().subscribe({
+      next: (user) => {
+        this.pseudo = user?.pseudo || '';
+      },
+      error: () => {
+        this.pseudo = '';
+      },
+    });
   }
 
   goTo(type: 'whisky' | 'beer' | 'rhum') {

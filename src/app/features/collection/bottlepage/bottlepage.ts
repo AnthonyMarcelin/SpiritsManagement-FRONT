@@ -42,7 +42,7 @@ export class Bottlepage implements OnInit {
         const response = await firstValueFrom(
           this.api.get(`${this.bottleType}/${this.bottleId}`),
         );
-        console.log('Réponse API bouteille:', response);
+
         this.bottle = response;
       } catch (error) {
         this.showBottleToast(
@@ -52,6 +52,7 @@ export class Bottlepage implements OnInit {
       }
     });
   }
+
   showToast = false;
   toastMessage = '';
   toastSuccess = true;
@@ -87,7 +88,6 @@ export class Bottlepage implements OnInit {
     if (field === 'peatLevel' && this.bottleType === 'whisky') {
       await this.fetchPeatLevelOptions();
     }
-    // Pour la photo, le modal doit accepter un input type file
     this.showEditModal = true;
   }
 
@@ -116,6 +116,7 @@ export class Bottlepage implements OnInit {
       this.labelOptions = [];
     }
   }
+
   async fetchTypeOptions() {
     try {
       this.typeOptions = await firstValueFrom(this.typeService.getAllType());
@@ -123,6 +124,7 @@ export class Bottlepage implements OnInit {
       this.typeOptions = [];
     }
   }
+
   async fetchPeatLevelOptions() {
     try {
       this.peatLevelOptions = await firstValueFrom(
@@ -143,19 +145,17 @@ export class Bottlepage implements OnInit {
   }) {
     try {
       if (payload.field === 'photo' && payload.value instanceof File) {
-        // Log avant update
-        console.log('[PHOTO][AVANT UPDATE]', this.bottle.photo);
-        // 1. Récupérer les credentials ImageKit
         const authData: any = await firstValueFrom(
           this.imageKitService.getAuthData(),
         );
-        // 2. Uploader l'image avec imagekit-javascript
+
         const imagekit = new (await import('imagekit-javascript')).default({
           publicKey: (await import('../../../../environments/environment'))
             .environment.imagekitPublicKey,
           urlEndpoint: (await import('../../../../environments/environment'))
             .environment.imagekitUrlEndpoint,
         });
+
         const imagekitUrl: string = await new Promise((resolve, reject) => {
           imagekit.upload(
             {
@@ -171,25 +171,29 @@ export class Bottlepage implements OnInit {
             },
           );
         });
+
         if (!imagekitUrl) throw new Error('Upload ImageKit échoué');
-        // 3. Mettre à jour la photo dans l'API bouteille
+
         const body = { photo: imagekitUrl };
+
         await firstValueFrom(
           this.api.put(`${this.bottleType}/${this.bottleId}`, body),
         );
+
         const response = await firstValueFrom(
           this.api.get(`${this.bottleType}/${this.bottleId}`),
         );
-        // Log après update
+
         const bottleData = response as { photo?: string };
-        console.log('[PHOTO][APRES UPDATE]', bottleData.photo);
+
         this.bottle = bottleData;
         this.showEditModal = false;
         this.showBottleToast('Photo modifiée avec succès', true);
         return;
       }
-      // Correction du mapping des champs pour l'API sans utiliser 'any' et avec accès indexé
+
       const body: Record<string, string | number> = {};
+
       if (payload.field === 'peatLevel') {
         body['peatLevelId'] =
           typeof payload.value === 'object'
@@ -211,14 +215,19 @@ export class Bottlepage implements OnInit {
             ? (payload.value as any).id
             : payload.value;
       }
+
       await firstValueFrom(
         this.api.put(`${this.bottleType}/${this.bottleId}`, body),
       );
+
       const response = await firstValueFrom(
         this.api.get(`${this.bottleType}/${this.bottleId}`),
       );
+
       this.bottle = response;
+
       this.showEditModal = false;
+
       this.showBottleToast('Modification enregistrée avec succès', true);
     } catch (error) {
       this.showBottleToast('Erreur lors de la modification', false);

@@ -7,7 +7,6 @@ import { provideRouter } from '@angular/router';
 
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-// Suppression de l'import ImageKit non compatible standalone
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -17,6 +16,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
     provideAnimationsAsync(),
-    // Intégration ImageKit via SDK JS classique dans les composants (voir add-bottle.ts)
+    // Intégration ImageKit via SDK JS classique in components (see add-bottle.ts)
   ],
 };

@@ -40,12 +40,16 @@ export class Editmodal {
 
   onFileChange(event: Event) {
     const input = event.target as HTMLInputElement;
+
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
+
       const reader = new FileReader();
+
       reader.onload = (e: any) => {
         this.previewUrl = e.target.result;
       };
+
       reader.readAsDataURL(this.selectedFile);
     } else {
       this.previewUrl = undefined;

@@ -11,6 +11,7 @@ import { FooterComponent } from '../footer/footer';
 })
 export class RGPDComponent {
   constructor(private router: Router) {}
+
   goHome() {
     this.router.navigate(['/']);
   }

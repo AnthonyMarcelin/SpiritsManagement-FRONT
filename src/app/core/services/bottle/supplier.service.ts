@@ -12,6 +12,7 @@ export class SupplierService {
   createSupplier(payload: { name: string }) {
     return this.apiService.post('supplier', payload);
   }
+
   constructor(private apiService: ApiService) {}
 
   getAllSuppliers(): Observable<Supplier[]> {

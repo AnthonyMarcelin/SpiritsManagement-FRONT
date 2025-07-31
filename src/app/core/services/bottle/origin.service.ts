@@ -12,6 +12,7 @@ export class OriginService {
   createOrigin(payload: { country: string }) {
     return this.apiService.post('origin', payload);
   }
+
   constructor(private apiService: ApiService) {}
 
   getAllOrigins(): Observable<Origin[]> {

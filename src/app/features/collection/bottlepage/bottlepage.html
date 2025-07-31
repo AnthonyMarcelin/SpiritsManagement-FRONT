@@ -1,9 +1,9 @@
 <div class="bottle-container">
-  <h2>Ma bouteille</h2>
-
-  <div class="bottle-name">
-    {{ bottle.name }}
-  </div>
+  <h1>
+    <div class="bottle-name">
+      {{ bottle.name }}
+    </div>
+  </h1>
 
   <form class="bottle-form">
     <!-- Name -->
@@ -120,6 +120,7 @@
           [value]="bottle.price"
           readonly
         />
+        <span class="euro-symbol">€</span>
         <button
           type="button"
           class="edit-icon"

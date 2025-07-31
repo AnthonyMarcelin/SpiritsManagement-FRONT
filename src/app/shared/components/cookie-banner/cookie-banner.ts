@@ -11,16 +11,19 @@ export class CookieBannerComponent {
 
   accept() {
     this.setCookie('cookie_consent', 'accepted', 365);
+
     this.showBanner = false;
   }
 
   refuse() {
     this.setCookie('cookie_consent', 'refused', 365);
+
     this.showBanner = false;
   }
 
   private setCookie(name: string, value: string, days: number) {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
+
     document.cookie =
       name +
       '=' +

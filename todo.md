@@ -48,3 +48,9 @@ modif du mail dans mon profil pour v2
 modif auth
 
 couleur label et tri collection par label
+
+Mdp au register dans le payload
+
+Promise register
+
+Favicon

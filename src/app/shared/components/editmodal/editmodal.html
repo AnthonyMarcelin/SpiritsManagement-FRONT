@@ -39,13 +39,27 @@
           name="editValue"
           required
           autocomplete="off"
+          [min]="fieldName === 'note' ? 0 : null"
+          [max]="fieldName === 'note' ? 10 : null"
+          step="fieldName === 'note' ? 0.1 : null"
         />
+        @if (fieldName === "note" && (+value < 0 || +value > 10)) {
+          <div class="error-message">
+            La note doit être comprise entre 0 et 10.
+          </div>
+        }
       }
       <div class="editmodal-actions">
         <button type="button" class="btn btn-secondary" (click)="onCancel()">
           Annuler
         </button>
-        <button type="submit" class="btn btn-primary">Valider</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="fieldName === 'note' && (+value < 0 || +value > 10)"
+        >
+          Valider
+        </button>
       </div>
     </form>
   </div>

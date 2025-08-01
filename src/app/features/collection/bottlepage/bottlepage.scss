@@ -1,4 +1,9 @@
 @use "../../../../styles/variables.scss";
+/* Astérisque rouge pour champs obligatoires */
+.required {
+  color: #d32f2f;
+  font-weight: bold;
+}
 /* Bloc photo bouteille */
 .photo-block {
   flex-direction: column;

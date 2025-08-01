@@ -76,7 +76,7 @@
     <button
       type="button"
       class="btn btn-secondary change-password"
-      (click)="onChangePassword()"
+      (click)="openChangePasswordModal()"
     >
       Modifier mon mot de passe
     </button>
@@ -113,6 +113,16 @@
       [fieldName]="'pseudo'"
       (validate)="onEditField($event)"
       (cancel)="closeEditModal()"
+    />
+  }
+
+  @if (showChangePasswordModal) {
+    <app-passwordmodal
+      [passwordError]="passwordError"
+      [passwordLoading]="passwordLoading"
+      [passwordRules]="passwordRules"
+      (close)="closeChangePasswordModal()"
+      (submit)="onChangePasswordSubmit($event)"
     />
   }
 </div>

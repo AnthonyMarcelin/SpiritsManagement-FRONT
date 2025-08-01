@@ -5,15 +5,29 @@ import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../../core/services/api.service';
 import { Editmodal } from '../../shared/components/editmodal/editmodal';
+import { Passwordmodal } from '../../shared/components/passwordmodal/passwordmodal';
 
 @Component({
   selector: 'app-profilepage',
-  imports: [FormsModule, NgClass, DatePipe, Editmodal],
+  imports: [FormsModule, NgClass, DatePipe, Editmodal, Passwordmodal],
   templateUrl: './profilepage.html',
-  styleUrl: './profilepage.scss',
+  styleUrls: ['./profilepage.scss'],
 })
 export class Profilepage implements OnInit {
   user: any = {};
+  showChangePasswordModal: boolean = false;
+  currentPassword: string = '';
+  newPassword: string = '';
+  confirmNewPassword: string = '';
+  passwordError: string = '';
+  passwordLoading: boolean = false;
+  passwordRules: string[] = [
+    'Au moins 8 caractères',
+    'Une majuscule',
+    'Une minuscule',
+    'Un chiffre',
+    'Un caractère spécial',
+  ];
   async ngOnInit() {
     try {
       const response = await firstValueFrom(this.api.get('auth/me'));
@@ -38,21 +52,6 @@ export class Profilepage implements OnInit {
     private api: ApiService,
     private router: Router,
   ) {}
-
-  async onChangePassword() {
-    try {
-      await firstValueFrom(
-        this.api.post('auth/forgot-password', { email: this.user.email }),
-      );
-
-      this.showProfileToast('Un email de réinitialisation a été envoyé.', true);
-    } catch (e) {
-      this.showProfileToast(
-        "Erreur lors de l'envoi. Vérifiez l'adresse e-mail.",
-        false,
-      );
-    }
-  }
 
   goToMainpage(): void {
     this.router.navigate(['/mainpage']);
@@ -91,6 +90,76 @@ export class Profilepage implements OnInit {
     } catch (e) {
       this.showProfileToast('Erreur lors de la modification.', false);
     }
+  }
+
+  openChangePasswordModal() {
+    this.passwordError = '';
+    this.showChangePasswordModal = true;
+    this.currentPassword = '';
+    this.newPassword = '';
+    this.confirmNewPassword = '';
+  }
+
+  closeChangePasswordModal() {
+    this.showChangePasswordModal = false;
+    this.passwordLoading = false;
+    this.passwordError = '';
+  }
+
+  validatePassword(password: string): boolean {
+    // Vérifie les modalités du mot de passe
+    const rules = [/.{8,}/, /[A-Z]/, /[a-z]/, /[0-9]/, /[^A-Za-z0-9]/];
+    return rules.every((rule) => rule.test(password));
+  }
+
+  onChangePasswordSubmit(payload: any) {
+    // Filtrer les événements natifs
+    if (
+      !payload ||
+      typeof payload !== 'object' ||
+      !(
+        'currentPassword' in payload &&
+        'newPassword' in payload &&
+        'confirmNewPassword' in payload
+      )
+    ) {
+      return;
+    }
+    this.passwordError = '';
+    const { currentPassword, newPassword, confirmNewPassword } = payload;
+    if (!currentPassword || !newPassword || !confirmNewPassword) {
+      this.passwordError = 'Tous les champs sont obligatoires.';
+      return;
+    }
+    if (newPassword !== confirmNewPassword) {
+      this.passwordError = 'Les mots de passe ne correspondent pas.';
+      return;
+    }
+    if (!this.validatePassword(newPassword)) {
+      this.passwordError = 'Le mot de passe ne respecte pas les modalités.';
+      return;
+    }
+    // Réinitialisation immédiate avant l'appel API
+    this.passwordError = '';
+    this.passwordLoading = true;
+    firstValueFrom(
+      this.api.put('auth/change-password', {
+        currentPassword,
+        newPassword,
+      }),
+    )
+      .then(() => {
+        setTimeout(() => {
+          this.closeChangePasswordModal();
+          this.showProfileToast('Mot de passe modifié avec succès.', true);
+        }, 0);
+      })
+      .catch(() => {
+        this.passwordError = 'Erreur lors de la modification du mot de passe.';
+      })
+      .finally(() => {
+        this.passwordLoading = false;
+      });
   }
 
   showProfileToast(message: string, success: boolean) {

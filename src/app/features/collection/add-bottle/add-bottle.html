@@ -83,7 +83,7 @@
     </div>
   </div>
   <div class="form-row">
-    <label for="labelId">Label</label>
+    <label for="labelId">Label <span class="required">*</span></label>
     <select id="labelId" name="labelId" [(ngModel)]="bottle.labelId" required>
       <option value="">Sélectionner</option>
       <option *ngFor="let label of labels" [value]="label.id">
@@ -130,7 +130,7 @@
     </datalist>
   </div>
   <div class="form-row">
-    <label for="typeId">Type</label>
+    <label for="typeId">Type <span class="required">*</span></label>
     <select id="typeId" name="typeId" [(ngModel)]="bottle.typeId" required>
       <option value="">Sélectionner</option>
       <option *ngFor="let type of filteredTypes" [value]="type.id">
@@ -139,7 +139,9 @@
     </select>
   </div>
   <div class="form-row" *ngIf="alcoolType === 'whisky'">
-    <label for="peatLevelId">Niveau de tourbe</label>
+    <label for="peatLevelId"
+      >Niveau de tourbe <span class="required">*</span></label
+    >
     <select
       id="peatLevelId"
       name="peatLevelId"

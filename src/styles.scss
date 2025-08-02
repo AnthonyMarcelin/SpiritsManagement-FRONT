@@ -1,52 +1,18 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.dev/guide/theming
+/* Custom Theming for Angular Material */
 @use "@angular/material" as mat;
-@use "styles/variables.scss";
 
-html {
-  @include mat.theme(
-    (
-      color: (
-        theme-type: light,
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-      ),
-      typography: Roboto,
-      density: 0,
-    )
-  );
-} // Custom Theming for Angular Material
-// For more information: https://material.angular.dev/guide/theming
-@import "@angular/material/prebuilt-themes/azure-blue.css";
+/* Import des variables personnalisées */
+@use "styles/variables.scss" as vars;
 
-html {
-  @include mat.theme(
-    (
-      color: (
-        theme-type: light,
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-      ),
-      typography: Roboto,
-      density: 0,
-    )
-  );
-} /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
 
 html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+* {
+  box-sizing: border-box;
 }

@@ -1,4 +1,4 @@
-@use "../../../styles/variables.scss";
+@use "../../../styles/variables.scss" as vars;
 
 // Variables pour les breakpoints
 $breakpoint-sm: 576px;
@@ -105,7 +105,7 @@ $breakpoint-xl: 1200px;
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 2.6rem;
   font-weight: 700;
   color: var(--color-primary);
   text-align: center;
@@ -113,11 +113,11 @@ h1 {
   text-shadow: 1px 1px 3px rgba(158, 78, 0, 0.2);
 
   @media (min-width: $breakpoint-sm) {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
   @media (min-width: $breakpoint-md) {
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 }
 
@@ -194,11 +194,9 @@ h1 {
 }
 
 .button-group a {
-  display: block;
-  width: 100%;
-  max-width: 220px;
-  background: variables.$color-primary;
-  color: variables.$color-light;
+  border: none;
+  background: var(--color-primary);
+  color: var(--color-light);
   border-radius: 20px;
   padding: 10px 24px;
   font-size: 1.1rem;
@@ -210,6 +208,8 @@ h1 {
     background 0.2s,
     transform 0.2s;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 200px;
 
   @media (min-width: $breakpoint-sm) {
     max-width: 240px;
@@ -232,97 +232,112 @@ h1 {
 }
 
 .button-group a:hover {
-  background: variables.$color-accent-whisky;
-  color: variables.$color-light;
+  background: var(--color-accent-whisky);
+  color: var(--color-light);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 button {
   background: var(--color-primary);
-  color: var(--color-card);
+  color: var(--color-light);
   border: none;
   border-radius: 20px;
   padding: 10px 24px;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
-  min-width: 100px;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 200px;
 
   @media (min-width: $breakpoint-sm) {
+    max-width: 240px;
     border-radius: 22px;
     padding: 11px 28px;
-    font-size: 0.95rem;
-    min-width: 110px;
+    font-size: 1.2rem;
   }
 
   @media (min-width: $breakpoint-md) {
+    max-width: 260px;
     border-radius: 24px;
     padding: 12px 32px;
-    font-size: 1rem;
-    min-width: 120px;
+    font-size: 1.3rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    width: 45%;
   }
 }
 
 button:hover {
-  background: var(--color-secondary);
+  background: var(--color-accent-whisky);
+  color: var(--color-light);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 h2 {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--color-secondary);
   margin-top: 10px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   text-align: center;
   letter-spacing: 0.5px;
 
   @media (min-width: $breakpoint-sm) {
-    font-size: 1.2rem;
-    margin-top: 11px;
-    margin-bottom: 7px;
+    font-size: 1.4rem;
+    margin-top: 12px;
+    margin-bottom: 10px;
   }
 
   @media (min-width: $breakpoint-md) {
-    font-size: 1.3rem;
-    margin-top: 12px;
-    margin-bottom: 8px;
+    font-size: 1.6rem;
+    margin-top: 14px;
+    margin-bottom: 12px;
   }
 }
 
 .card p {
   color: var(--color-secondary);
-  font-size: 1rem;
+  font-size: 1.1rem;
   text-align: center;
   margin: 0;
+  line-height: 1.5;
 
   @media (min-width: $breakpoint-sm) {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
   }
 
   @media (min-width: $breakpoint-md) {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    line-height: 1.6;
   }
 }
 
 .privacy-link {
   display: block;
-  margin-top: 14px;
+  margin-top: 18px;
   text-align: center;
   text-decoration: underline;
   color: var(--color-primary);
-  font-size: 0.9rem;
+  font-size: 1rem;
   transition: color 0.2s;
 
   @media (min-width: $breakpoint-sm) {
-    margin-top: 16px;
-    font-size: 0.95rem;
+    margin-top: 20px;
+    font-size: 1.05rem;
   }
 
   @media (min-width: $breakpoint-md) {
-    margin-top: 18px;
-    font-size: 1rem;
+    margin-top: 22px;
+    font-size: 1.1rem;
   }
 
   &:hover {
@@ -330,6 +345,7 @@ h2 {
   }
 }
 
+// Supprimer toute la largeur du footer
 .footer {
   margin-top: auto;
   width: 100%;
@@ -373,7 +389,7 @@ h2 {
   }
 
   h1 {
-    animation: fadeIn 1s ease;
+    animation: fadeInTitle 1s ease;
   }
 
   .card p,
@@ -387,6 +403,17 @@ h2 {
     }
     to {
       opacity: 1;
+    }
+  }
+
+  @keyframes fadeInTitle {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 

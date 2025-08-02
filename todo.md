@@ -62,3 +62,5 @@ Modif bouteille, on peut choisir prendre photo ou bibliotheque
 
 <!-- note obligatoire ? apparement erreur si pas de note. -->
 <!-- Et bloque la note entre 1 et 10 -->
+
+hover sur bouton de nav

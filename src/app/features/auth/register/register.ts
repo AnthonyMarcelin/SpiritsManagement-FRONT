@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../../core/services/auth';
 
 @Component({
@@ -13,24 +14,21 @@ import { AuthService } from '../../../core/services/auth';
 })
 export class Register {
   resendEmail = '';
-  onResendVerification() {
+  async onResendVerification() {
     if (!this.resendEmail) return;
-    this.auth
-      .resendVerification(this.resendEmail)
-      .toPromise()
-      .then(() => {
-        this.successToastMessage =
-          'Email de validation renvoyé. Vérifiez votre boîte mail.';
-        this.showSuccessToast = true;
-        setTimeout(() => {
-          this.showSuccessToast = false;
-        }, 4000);
-      })
-      .catch((err: any) => {
-        this.showErrorToastMessage(
-          err?.error?.error || 'Erreur lors de l’envoi du mail.',
-        );
-      });
+    try {
+      await firstValueFrom(this.auth.resendVerification(this.resendEmail));
+      this.successToastMessage =
+        'Email de validation renvoyé. Vérifiez votre boîte mail.';
+      this.showSuccessToast = true;
+      setTimeout(() => {
+        this.showSuccessToast = false;
+      }, 4000);
+    } catch (err: any) {
+      this.showErrorToastMessage(
+        err?.error?.error || 'Erreur lors de l’envoi du mail.',
+      );
+    }
   }
   pseudo = '';
   firstName = '';

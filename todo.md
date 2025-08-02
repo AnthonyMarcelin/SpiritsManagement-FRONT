@@ -55,10 +55,10 @@ Promise register
 
 <!-- Favicon -->
 
-ajout bouteille : on peut uniquement prendre uen photo
+ajout bouteille : on peut uniquement prendre une photo
 Modif bouteille, on peut choisir prendre photo ou bibliotheque
 
-Mettre les selects en obligatoire pour le create en front
+<!-- Mettre les selects en obligatoire pour le create en front -->
 
 <!-- note obligatoire ? apparement erreur si pas de note. -->
 <!-- Et bloque la note entre 1 et 10 -->

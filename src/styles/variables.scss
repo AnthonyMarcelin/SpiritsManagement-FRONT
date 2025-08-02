@@ -1,33 +1,62 @@
-$color-bg: #f7f7f7;
-$color-card: #f3f3f3;
-$color-primary: #222;
-$color-secondary: #444;
-$color-accent: #e67e22;
-$color-error: #d32f2f;
-$color-white: #fff;
-$color-footer: #666;
+:root {
+  /* Couleurs principales */
+  --color-primary: #9e4e00;
+  --color-primary-dark: #7b3c00;
 
-// Couleurs principales
-$color-primary-whisky: #a06a2d; // Ambre whisky
-$color-primary-dark: #774c1b; // Variante foncée pour hover, boutons
+  /* Couleur secondaire */
+  --color-secondary: #4a2a00;
+  --color-secondary-dark: #2e1a00;
 
-// Couleur secondaire
-$color-secondary-light: #ede4d3; // Beige clair, doux et élégant
-$color-secondary-dark: #cfc2ae;
+  /* Texte */
+  --color-text: #4a2a00;
+  --color-muted: #6e5c4a;
+  --color-light: #ffffff;
 
-// Texte
-$color-text: #2c2c2c; // Gris presque noir
-$color-muted: #6e6e6e; // Texte secondaire
+  /* Fond */
+  --color-bg: #fff3d9;
+  --color-card: #fff8e8;
+  --color-surface: #ffffff;
+
+  /* Footer */
+  --color-footer: #ffffff;
+
+  /* Accent */
+  --color-accent: #9e4e00;
+  --color-accent-hover: #7b3c00;
+
+  /* Accents spécifiques */
+  --color-accent-whisky: #c25a00;
+  --color-accent-rhum: #9e4e00;
+  --color-accent-beer: #d67d00;
+
+  /* État */
+  --color-success: #3e7c47;
+  --color-error: #b03e3e;
+}
+
+/* Variables SCSS pour utilisation avec @use */
+$color-primary: #9e4e00;
+$color-primary-dark: #7b3c00;
+
+$color-secondary: #4a2a00;
+$color-secondary-dark: #2e1a00;
+
+$color-text: #4a2a00;
+$color-muted: #6e5c4a;
 $color-light: #ffffff;
 
-// Fond
-$color-background: #faf9f6; // Presque blanc, légèrement ivoire
-$color-surface: #ffffff; // Pour les cartes/blocs
+$color-bg: #fff3d9;
+$color-card: #fff8e8;
+$color-surface: #ffffff;
 
-// Accent
-$color-accent-whisky: #c85000; // Touche d'orange ambrée
-$color-accent-hover: #a64300;
+$color-footer: #ffffff;
 
-// État
+$color-accent: #9e4e00;
+$color-accent-hover: #7b3c00;
+
+$color-accent-whisky: #c25a00;
+$color-accent-rhum: #9e4e00;
+$color-accent-beer: #d67d00;
+
 $color-success: #3e7c47;
-$color-error-dark: #b03e3e;
+$color-error: #b03e3e;

@@ -3,13 +3,13 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background: #111;
+  background: #9e4e00; /* Couleur primaire */
   color: white;
   padding: 0.7rem 0;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  // min-height: auto;
-  // height: auto;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Évite que les icônes débordent */
 }
 
 .navbar-item {
@@ -18,19 +18,85 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
+  padding: 0.5rem 0.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  margin: 0 0.2rem;
+  overflow: hidden; /* Évite que les icônes débordent */
+  min-height: 64px; /* Hauteur minimale pour assurer une taille uniforme */
+}
+
+.navbar-item:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .navbar-item mat-icon {
-  font-size: 2.4rem;
-  height: inherit;
-  width: inherit;
-  margin-bottom: 0.15rem;
+  font-size: 2.2rem;
+  height: 1em;
+  width: 1em;
   line-height: 1;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto 0.15rem;
+}
+
+.navbar-item:hover mat-icon {
+  transform: translateY(-2px) scale(1.1);
 }
 
 .navbar-item span {
-  font-size: 0.95rem;
-  margin-top: 0.1rem;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
   text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+}
+
+.navbar-item:hover span {
+  color: #ffea80;
+  font-weight: 600;
+}
+
+/* Styles spécifiques pour chaque élément */
+.navbar-item.home mat-icon {
+  color: #fff;
+}
+
+.navbar-item.profile mat-icon {
+  color: #fff;
+}
+
+.navbar-item.admin mat-icon {
+  color: #ffea80;
+}
+
+.navbar-item.logout mat-icon {
+  color: #ffcccb;
+}
+
+/* Media queries pour les écrans plus grands */
+@media (min-width: 768px) {
+  .navbar-container {
+    padding: 0.8rem 0;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .navbar-item mat-icon {
+    font-size: 2.4rem;
+    height: 1em;
+    width: 1em;
+  }
+
+  .navbar-item span {
+    font-size: 1rem;
+  }
 }

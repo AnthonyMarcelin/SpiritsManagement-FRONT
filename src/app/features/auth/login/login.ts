@@ -14,6 +14,7 @@ import { AuthService } from '../../../core/services/auth';
 export class Login {
   email = '';
   password = '';
+  showPassword = false;
 
   error = '';
   showToast = false;
@@ -24,6 +25,10 @@ export class Login {
     private auth: AuthService,
     private router: Router,
   ) {}
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 
   showToastMessage(message: string) {
     this.toastMessage = message;

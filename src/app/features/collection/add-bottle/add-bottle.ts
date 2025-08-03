@@ -376,11 +376,6 @@ export class AddBottle implements OnInit {
                   this.router.navigate([`/collection/${this.alcoolType}`]);
                 }
               }, 2000);
-
-              setTimeout(() => {
-                const toast = document.querySelector('.error-toast');
-                if (toast) toast.classList.add('success');
-              }, 10);
             },
 
             error: (err: any) => {
@@ -396,11 +391,6 @@ export class AddBottle implements OnInit {
               this.errorToastMessage = message;
 
               this.showErrorToast = true;
-              setTimeout(() => {
-                const toast = document.querySelector('.error-toast');
-                if (toast) toast.classList.remove('success');
-              }, 10);
-
               setTimeout(() => {
                 this.showErrorToast = false;
               }, 3000);

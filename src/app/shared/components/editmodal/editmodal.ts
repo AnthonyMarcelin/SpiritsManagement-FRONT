@@ -27,6 +27,17 @@ export class Editmodal {
   }>();
   @Output() cancel = new EventEmitter<void>();
 
+  // Méthode pour obtenir le label du champ
+  getFieldLabel(): string {
+    // Toujours retourner une chaîne vide pour ne jamais afficher le label
+    return '';
+  }
+
+  // Méthode pour obtenir le titre de la modal
+  getModalTitle(): string {
+    return this.title || 'Modifier';
+  }
+
   onValidate() {
     if (this.fieldName === 'photo' && this.selectedFile) {
       this.validate.emit({ field: this.fieldName, value: this.selectedFile });

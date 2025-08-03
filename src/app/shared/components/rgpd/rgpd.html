@@ -1,69 +1,81 @@
-<div class="homepage-container">
+<div class="rgpd-container">
   <div class="header">
     <h1>Politique de confidentialité & RGPD</h1>
     <img
       class="header-logo"
       src="/logo/ChatGPT Image 9 juil. 2025, 20_41_54.png"
-      alt="logo du site"
+      alt="Logo du site"
     />
   </div>
-  <div class="card" style="align-items: center; text-align: center">
-    <button
-      (click)="goHome()"
-      style="
-        display: inline-block;
-        margin-bottom: 18px;
-        padding: 8px 22px;
-        border-radius: 22px;
-        background: var(--color-primary, #222);
-        color: var(--color-card, #fff);
-        font-weight: 600;
-        text-decoration: none;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        transition: background 0.2s;
-        border: none;
-        cursor: pointer;
-      "
-    >
-      ← Retour
-    </button>
-    <h2 class="homepage-title">Protection de vos données personnelles</h2>
-    <p>
-      Nous nous engageons à respecter la confidentialité de vos données et à les
-      protéger conformément au Règlement Général sur la Protection des Données
-      (RGPD).
-    </p>
-    <ul>
-      <li>
-        <strong>Collecte :</strong> Nous collectons uniquement les informations
-        nécessaires à la création et à la gestion de votre compte (email,
-        pseudonyme, préférences de collection).
-      </li>
-      <li>
-        <strong>Utilisation :</strong> Vos données sont utilisées exclusivement
-        pour vous fournir nos services et améliorer votre expérience sur la
-        plateforme.
-      </li>
-      <li>
-        <strong>Conservation :</strong> Vos données sont conservées de manière
-        sécurisée et ne sont jamais revendues à des tiers.
-      </li>
-      <li>
-        <strong>Droits :</strong> Vous pouvez à tout moment accéder, corriger ou
-        supprimer vos données personnelles depuis votre profil ou en nous
-        contactant.
-      </li>
-      <li>
-        <strong>Cookies :</strong> Seuls des cookies strictement nécessaires au
-        fonctionnement du site sont utilisés. Vous pouvez gérer vos préférences
-        à tout moment.
-      </li>
-    </ul>
-    <p>
-      Pour toute question ou demande concernant vos données personnelles,
-      contactez-nous via la page de contact ou à l’adresse indiquée dans les
-      mentions légales.
-    </p>
+
+  <div class="rgpd-card">
+    <div class="back-button-container">
+      <button class="back-btn" (click)="goHome()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M19 12H5"></path>
+          <path d="M12 19l-7-7 7-7"></path>
+        </svg>
+        Retour
+      </button>
+    </div>
+
+    <h2>Protection de vos données personnelles</h2>
+
+    <div class="rgpd-content">
+      <p>
+        Nous nous engageons à respecter la confidentialité de vos données et à
+        les protéger conformément au Règlement Général sur la Protection des
+        Données (RGPD).
+      </p>
+
+      <div class="rgpd-section">
+        <h3>Nos engagements</h3>
+        <ul class="rgpd-list">
+          <li>
+            <strong>Collecte :</strong> Nous collectons uniquement les
+            informations nécessaires à la création et à la gestion de votre
+            compte (email, pseudonyme, préférences de collection).
+          </li>
+          <li>
+            <strong>Utilisation :</strong> Vos données sont utilisées
+            exclusivement pour vous fournir nos services et améliorer votre
+            expérience sur la plateforme.
+          </li>
+          <li>
+            <strong>Conservation :</strong> Vos données sont conservées de
+            manière sécurisée et ne sont jamais revendues à des tiers.
+          </li>
+          <li>
+            <strong>Droits :</strong> Vous pouvez à tout moment accéder,
+            corriger ou supprimer vos données personnelles depuis votre profil
+            ou en nous contactant.
+          </li>
+          <li>
+            <strong>Cookies :</strong> Seuls des cookies strictement nécessaires
+            au fonctionnement du site sont utilisés. Vous pouvez gérer vos
+            préférences à tout moment.
+          </li>
+        </ul>
+      </div>
+
+      <div class="rgpd-contact">
+        <p>
+          Pour toute question ou demande concernant vos données personnelles,
+          contactez-nous via l'adresse atasoif&#64;outlook.fr.
+        </p>
+      </div>
+    </div>
   </div>
+
   <app-footer></app-footer>
 </div>

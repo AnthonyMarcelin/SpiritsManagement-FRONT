@@ -51,7 +51,7 @@ couleur label et tri collection par label
 
 Mdp au register dans le payload
 
-Promise register
+<!-- Promise register -->
 
 <!-- Favicon -->
 
@@ -63,4 +63,14 @@ Modif bouteille, on peut choisir prendre photo ou bibliotheque
 <!-- note obligatoire ? apparement erreur si pas de note. -->
 <!-- Et bloque la note entre 1 et 10 -->
 
-hover sur bouton de nav
+<!-- hover sur bouton de nav -->
+
+css rgpd
+
+Ajouter degre d'alcool
+
+admin page, ajout pete
+
+footer et rgpd
+
+clean code and comment

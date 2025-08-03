@@ -190,6 +190,11 @@ app-navbar {
 }
 
 @media (min-width: 1024px) {
+  .collection-container {
+    padding-left: 110px; /* Espace pour la sidebar */
+    padding-bottom: 1rem; /* Plus besoin de padding bottom pour la navbar */
+  }
+
   .page-title {
     font-size: 2.8rem;
     min-width: 75%;

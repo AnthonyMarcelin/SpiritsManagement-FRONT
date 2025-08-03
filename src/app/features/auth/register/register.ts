@@ -37,6 +37,8 @@ export class Register {
   email = '';
   password = '';
   confirmPassword = '';
+  showPassword = false;
+  showConfirmPassword = false;
 
   error = '';
   submitted = false;
@@ -84,6 +86,14 @@ export class Register {
   onPasswordInput(event: any) {
     this.password = event.target.value;
     this.validatePasswordCriteria(this.password);
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleConfirmPasswordVisibility() {
+    this.showConfirmPassword = !this.showConfirmPassword;
   }
 
   showErrorToastMessage(message: string) {

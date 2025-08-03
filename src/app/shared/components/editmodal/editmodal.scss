@@ -1,3 +1,5 @@
+@use "../../../../styles/variables.scss" as vars;
+
 /* Prévisualisation d'image dans le modal d'édition */
 .editmodal-preview {
   display: flex;
@@ -9,33 +11,31 @@
 .editmodal-preview img {
   max-width: 100%;
   max-height: 200px;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  border: 1.5px solid #e67e22;
-  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--color-primary, #9e4e00);
+  background: var(--color-surface, #ffffff);
 }
 /* Style moderne pour le select du modal d'édition */
 .editmodal-select {
   width: 100%;
   padding: 0.7em 2.5em 0.7em 1em;
-  border: 1.5px solid #d1d5db;
-  border-radius: 1em;
-  background: #fff
-    url('data:image/svg+xml;utf8,<svg fill="none" height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M10 14l6 6 6-6" stroke="%23888" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+  border: 1.5px solid rgba(207, 194, 174, 0.3);
+  border-radius: 0.7em;
+  background: var(--color-surface, #ffffff)
+    url('data:image/svg+xml;utf8,<svg fill="none" height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M10 14l6 6 6-6" stroke="%239e4e00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>')
     no-repeat right 1em center/1.5em;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
   font-size: 1.1em;
-  color: #222;
+  color: var(--color-text, #4a2a00);
   appearance: none;
-  transition:
-    border 0.2s,
-    box-shadow 0.2s;
+  transition: all 0.2s ease;
   margin-bottom: 1.2rem;
 }
 
 .editmodal-select:focus {
-  border-color: #e67e22;
-  box-shadow: 0 0 0 2px #ffe5c4;
+  border-color: var(--color-primary, #9e4e00);
+  box-shadow: 0 0 0 2px rgba(158, 78, 0, 0.15);
   outline: none;
 }
 
@@ -50,81 +50,165 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(44, 62, 80, 0.35);
+  background: rgba(74, 42, 0, 0.35);
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(3px);
+  animation: fade-in 0.2s ease-out;
 }
 
 .editmodal-card {
-  background: #fff;
+  background: var(--color-surface, #ffffff);
   border-radius: 16px;
-  box-shadow: 0 2px 24px rgba(44, 62, 80, 0.18);
+  box-shadow: 0 8px 30px rgba(74, 42, 0, 0.15);
   padding: 2rem 1.5rem 1.5rem 1.5rem;
   min-width: 320px;
   max-width: 90vw;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  animation: zoom-in 0.25s ease-out;
+  border: 1px solid rgba(207, 194, 174, 0.2);
 }
 
 h3 {
   margin-top: 0;
-  margin-bottom: 1.2rem;
-  font-size: 1.3rem;
-  color: #2c3e50;
-  font-family: "Montserrat", sans-serif;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--color-primary-dark, #7b3c00);
+  font-weight: 600;
   text-align: center;
+  position: relative;
+  padding-bottom: 0.5rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--color-primary, #9e4e00);
+    border-radius: 2px;
+  }
 }
 
 label {
-  font-size: 1rem;
-  color: #2c3e50;
+  font-size: 1.1rem;
+  color: var(--color-text, #4a2a00);
   margin-bottom: 0.5rem;
+  font-weight: 500;
 }
 
 input {
-  padding: 0.7rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(207, 194, 174, 0.3);
   font-size: 1rem;
   margin-bottom: 1.2rem;
   outline: none;
-  transition: border 0.2s;
+  transition: all 0.2s ease;
+  color: var(--color-text, #4a2a00);
+  background-color: var(--color-surface, #ffffff);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
+
 input:focus {
-  border-color: #e67e22;
+  border-color: var(--color-primary, #9e4e00);
+  box-shadow: 0 0 0 2px rgba(158, 78, 0, 0.15);
+}
+
+.editmodal-textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(207, 194, 174, 0.3);
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  outline: none;
+  transition: all 0.2s ease;
+  color: var(--color-text, #4a2a00);
+  background-color: var(--color-surface, #ffffff);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.editmodal-textarea:focus {
+  border-color: var(--color-primary, #9e4e00);
+  box-shadow: 0 0 0 2px rgba(158, 78, 0, 0.15);
 }
 
 .editmodal-actions {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
+  margin-top: 0.5rem;
 }
+
 .btn {
-  font-family: "Montserrat", sans-serif;
   font-size: 1rem;
-  border-radius: 8px;
-  padding: 0.6rem 1.3rem;
+  border-radius: 24px;
+  padding: 0.8rem 1.5rem;
   border: none;
   cursor: pointer;
-  transition:
-    background 0.2s,
-    color 0.2s;
+  transition: all 0.2s ease;
+  font-weight: 500;
 }
+
 .btn-primary {
-  background: #2c3e50;
-  color: #fff;
+  background: var(--color-primary, #9e4e00);
+  color: white;
 }
+
 .btn-primary:hover {
-  background: #e67e22;
-  color: #fff;
+  background: var(--color-primary-dark, #7b3c00);
+  box-shadow: 0 4px 12px rgba(158, 78, 0, 0.25);
+  transform: translateY(-2px);
 }
+
 .btn-secondary {
-  background: #e0e0e0;
-  color: #2c3e50;
+  background: #f1f1f1;
+  color: var(--color-text, #4a2a00);
 }
+
 .btn-secondary:hover {
-  background: #b2bec3;
+  background: #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.error-message {
+  color: var(--color-error, #b03e3e);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: rgba(176, 62, 62, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid var(--color-error, #b03e3e);
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

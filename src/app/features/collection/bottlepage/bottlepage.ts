@@ -59,6 +59,7 @@ export class Bottlepage implements OnInit {
   showDeleteModal = false;
   toastTimeout: any;
   showEditModal = false;
+  showImageModal = false;
   labelOptions: any[] = [];
   typeOptions: any[] = [];
   peatLevelOptions: any[] = [];
@@ -75,6 +76,25 @@ export class Bottlepage implements OnInit {
 
   goToCollection(): void {
     this.router.navigate([`/collection/${this.bottleType}`]);
+  }
+
+  // Méthode pour traduire les noms des champs en français
+  getFieldTranslation(fieldName: string): string {
+    const translations: { [key: string]: string } = {
+      name: 'nom',
+      review: 'avis',
+      price: 'prix',
+      origin: 'origine',
+      peatLevel: 'niveau de tourbe',
+      supplier: "lieu d'achat",
+      description: 'description',
+      note: 'note',
+      photo: 'photo',
+      type: 'type',
+      label: 'étiquette',
+    };
+
+    return translations[fieldName] || fieldName;
   }
 
   async openEditModal(field: string = 'name') {
@@ -288,5 +308,15 @@ export class Bottlepage implements OnInit {
     this.toastTimeout = setTimeout(() => {
       this.showToast = false;
     }, 3500);
+  }
+
+  openImageModal() {
+    this.showImageModal = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeImageModal() {
+    this.showImageModal = false;
+    document.body.style.overflow = 'auto';
   }
 }

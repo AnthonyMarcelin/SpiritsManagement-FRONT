@@ -1,8 +1,10 @@
 <div class="editmodal-overlay">
   <div class="editmodal-card">
-    <h3>{{ title || "Modifier" }}</h3>
+    <h3>{{ getModalTitle() }}</h3>
     <form (ngSubmit)="onValidate()">
-      <label [for]="fieldId">{{ label || "Nouvelle valeur" }}</label>
+      @if (getFieldLabel().length > 0) {
+        <label [for]="fieldId">{{ getFieldLabel() }}</label>
+      }
       @if (fieldName === "photo") {
         <input
           [id]="fieldId"
@@ -31,6 +33,16 @@
             {{ opt.name || opt.label || opt.value || opt }}
           </option>
         </select>
+      } @else if (fieldName === "description" || fieldName === "review") {
+        <textarea
+          class="editmodal-textarea"
+          [id]="fieldId"
+          [(ngModel)]="value"
+          name="editValue"
+          rows="5"
+          placeholder="Saisissez votre texte ici..."
+          required
+        ></textarea>
       } @else {
         <input
           [id]="fieldId"

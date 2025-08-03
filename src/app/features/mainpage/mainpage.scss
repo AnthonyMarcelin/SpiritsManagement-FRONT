@@ -99,6 +99,11 @@ app-navbar {
 }
 
 @media (min-width: 1024px) {
+  .mainpage-container {
+    padding-left: 110px; /* Espace pour la sidebar */
+    padding-bottom: 1rem; /* Plus besoin de padding bottom pour la navbar */
+  }
+
   .mainpage-logo {
     width: 160px;
     height: 160px;

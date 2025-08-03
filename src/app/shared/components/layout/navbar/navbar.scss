@@ -82,8 +82,8 @@
   color: #ffcccb;
 }
 
-/* Media queries pour les écrans plus grands */
-@media (min-width: 768px) {
+/* Media queries pour tablette */
+@media (min-width: 768px) and (max-width: 1023px) {
   .navbar-container {
     padding: 0.8rem 0;
     max-width: 600px;
@@ -98,5 +98,38 @@
 
   .navbar-item span {
     font-size: 1rem;
+  }
+}
+
+/* Media queries pour desktop - transformation en sidebar */
+@media (min-width: 1024px) {
+  .navbar-container {
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 90px;
+    height: auto;
+    border-radius: 0 20px 20px 0;
+    border-top-left-radius: 0;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 0;
+  }
+
+  .navbar-item {
+    margin: 0.8rem 0;
+    min-height: 90px;
+    width: 100%;
+  }
+
+  .navbar-item mat-icon {
+    font-size: 2.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .navbar-item span {
+    font-size: 0.9rem;
+    letter-spacing: 0;
   }
 }

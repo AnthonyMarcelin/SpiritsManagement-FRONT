@@ -1,13 +1,30 @@
 <div class="bottle-card" (click)="onCardClick()">
-  <img class="bottle-img" [src]="bottle?.photo" [alt]="bottle?.name" />
+  <div class="bottle-image">
+    <img
+      class="bottle-img"
+      [src]="bottle?.photo || 'assets/images/default-bottle.png'"
+      [alt]="bottle?.name"
+    />
+  </div>
   <div class="bottle-info">
     <h2 class="bottle-name">{{ bottle?.name }}</h2>
-    <div class="bottle-note">Note : {{ bottle?.note }}/10</div>
-    <div
-      class="bottle-price"
-      *ngIf="bottle?.price !== null && bottle?.price !== undefined"
-    >
-      Prix : {{ bottle?.price | number: "1.2-2" }} €
+    <div class="bottle-meta">
+      <div class="bottle-note">
+        <span class="meta-label">NOTE</span>
+        <div class="rating-display">
+          <div class="rating-bar">
+            <div
+              class="rating-fill"
+              [style.width.%]="(bottle?.note || 0) * 10"
+            ></div>
+          </div>
+          <span class="rating-value">{{ bottle?.note }}/10</span>
+        </div>
+      </div>
+      <div class="bottle-type" *ngIf="bottle?.type || typeName">
+        <span class="meta-label">TYPE</span>
+        <span class="meta-value">{{ bottle?.type || typeName }}</span>
+      </div>
     </div>
   </div>
 </div>

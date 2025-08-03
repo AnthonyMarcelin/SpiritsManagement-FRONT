@@ -1,24 +1,35 @@
-<h1>Ma collection</h1>
-<div class="searchbar-row">
-  <div class="searchbar-col">
-    <app-searchbar
-      [placeholder]="'Rechercher dans ma collection...'"
-      [(searchText)]="searchText"
-      (searchTextChange)="onSearchChange()"
-    ></app-searchbar>
+<div class="collection-container">
+  <div class="header">
+    <h1 class="page-title">Mes {{ getCollectionTitle() }}</h1>
+    <button class="add-button" (click)="goToAddBottle()">
+      <span class="add-icon">+</span>
+      <span class="add-text">Ajouter</span>
+    </button>
   </div>
-  <div class="optionbar-col">
-    <app-optionbar [alcool]="alcool"></app-optionbar>
-  </div>
-</div>
-<app-sortbar (sortChange)="onSortChange($event)"></app-sortbar>
 
-<div class="bottle-list">
-  <div *ngFor="let bottle of filteredBottles">
-    <app-bottle-card
-      [bottle]="bottle"
-      (bottleClick)="onBottleClick($event)"
-    ></app-bottle-card>
+  <div class="subtitle">
+    Explore chacun de tes whiskys et découvre tes notes de dégustation.
+  </div>
+
+  <div class="searchbar-row">
+    <div class="searchbar-col">
+      <app-searchbar
+        [placeholder]="'Rechercher dans ma collection...'"
+        [(searchText)]="searchText"
+        (searchTextChange)="onSearchChange()"
+      ></app-searchbar>
+    </div>
+  </div>
+
+  <app-sortbar (sortChange)="onSortChange($event)"></app-sortbar>
+
+  <div class="bottle-list">
+    <div *ngFor="let bottle of filteredBottles" class="bottle-item">
+      <app-bottle-card
+        [bottle]="bottle"
+        (bottleClick)="onBottleClick($event)"
+      ></app-bottle-card>
+    </div>
   </div>
 </div>
 

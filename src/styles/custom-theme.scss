@@ -1,0 +1,55 @@
+/**
+ * Thème personnalisé pour Angular Material avec notre typographie
+ */
+
+@use "@angular/material" as mat;
+
+// Définition de la typographie personnalisée
+$custom-typography: mat.define-typography-config(
+  $font-family: "'Inter', sans-serif",
+  $headline-1: mat.define-typography-level(
+      2rem,
+      1.2,
+      700,
+      $font-family: "'Poppins', sans-serif"
+    ),
+  $headline-2: mat.define-typography-level(
+      1.75rem,
+      1.2,
+      700,
+      $font-family: "'Poppins', sans-serif"
+    ),
+  $headline-3: mat.define-typography-level(
+      1.5rem,
+      1.2,
+      700,
+      $font-family: "'Poppins', sans-serif"
+    ),
+  $headline-4: mat.define-typography-level(
+      1.25rem,
+      1.2,
+      700,
+      $font-family: "'Poppins', sans-serif"
+    ),
+  $headline-5: mat.define-typography-level(
+      1.1rem,
+      1.2,
+      700,
+      $font-family: "'Poppins', sans-serif"
+    ),
+  $headline-6: mat.define-typography-level(
+      1rem,
+      1.2,
+      700,
+      $font-family: "'Poppins', sans-serif"
+    ),
+  $subtitle-1: mat.define-typography-level(1rem, 1.5, 500),
+  $subtitle-2: mat.define-typography-level(0.875rem, 1.5, 500),
+  $body-1: mat.define-typography-level(1rem, 1.5, 400),
+  $body-2: mat.define-typography-level(0.875rem, 1.5, 400),
+  $caption: mat.define-typography-level(0.75rem, 1.5, 400),
+  $button: mat.define-typography-level(0.875rem, 1.5, 500),
+);
+
+// Application de la typographie à Angular Material
+@include mat.core($custom-typography);

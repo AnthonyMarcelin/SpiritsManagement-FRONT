@@ -1,20 +1,42 @@
 .bottle-card {
-  background: #fef7e5;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px #0001;
-  padding: 1rem;
+  background-color: var(--color-surface, #ffffff);
+  border-radius: 1.5rem;
+  padding: 1.25rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   margin-bottom: 1rem;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(207, 194, 174, 0.2);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.bottle-image {
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--color-secondary, #ede4d3);
+  border: 3px solid var(--color-secondary-dark, #cfc2ae);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .bottle-img {
-  width: 64px;
-  height: 64px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 12px;
-  background: #ececec;
 }
 
 .bottle-info {
@@ -25,15 +47,137 @@
 }
 
 .bottle-name {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin: 0;
-  color: #7b3f00;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 0.1rem 0;
+  color: var(--color-primary-dark, #774c1b);
+  font-family: "Poppins", sans-serif;
+  line-height: 1.1;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+
+.bottle-meta {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
 }
 
 .bottle-note,
-.bottle-price {
-  font-size: 1rem;
-  color: #555;
-  margin-top: 0.3rem;
+.bottle-type {
+  display: flex;
+  flex-direction: column;
+  padding: 0.35rem 0.7rem;
+  border-radius: 0.8rem;
+  font-size: 0.85rem;
+  background-color: #8c5e24; /* Couleur spécifique pour un meilleur contraste */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.bottle-note {
+  min-width: 120px;
+  width: fit-content;
+}
+
+.bottle-type {
+  width: fit-content;
+}
+
+.meta-label {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+  color: var(--color-light, #ffffff);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.meta-value {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-light, #ffffff);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.rating-display {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.rating-bar {
+  flex: 1;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.3); /* Fond plus visible */
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.rating-fill {
+  height: 100%;
+  background: var(--color-light, #ffffff); /* Barre claire plus visible */
+  border-radius: 3px;
+}
+
+.rating-value {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-light, #ffffff);
+  min-width: 40px;
+  text-align: right;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles responsives pour mobile */
+@media (max-width: 576px) {
+  .bottle-card {
+    padding: 1rem;
+    gap: 0.8rem;
+  }
+
+  .bottle-image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .bottle-name {
+    font-size: 1.3rem;
+  }
+
+  .bottle-meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+  }
+
+  .bottle-note,
+  .bottle-type {
+    width: auto;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .meta-label {
+    font-size: 0.65rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .rating-bar {
+    height: 5px;
+  }
+
+  .meta-value,
+  .rating-value {
+    font-size: 0.85rem;
+  }
 }

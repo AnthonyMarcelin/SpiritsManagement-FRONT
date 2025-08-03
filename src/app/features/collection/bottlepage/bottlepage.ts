@@ -59,6 +59,7 @@ export class Bottlepage implements OnInit {
   showDeleteModal = false;
   toastTimeout: any;
   showEditModal = false;
+  showImageModal = false;
   labelOptions: any[] = [];
   typeOptions: any[] = [];
   peatLevelOptions: any[] = [];
@@ -288,5 +289,15 @@ export class Bottlepage implements OnInit {
     this.toastTimeout = setTimeout(() => {
       this.showToast = false;
     }, 3500);
+  }
+
+  openImageModal() {
+    this.showImageModal = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeImageModal() {
+    this.showImageModal = false;
+    document.body.style.overflow = 'auto';
   }
 }

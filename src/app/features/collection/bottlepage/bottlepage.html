@@ -9,6 +9,7 @@
       [src]="bottle.photo || '/images/notfound.png'"
       alt="Photo de la bouteille"
       class="bottle-photo-img"
+      (click)="openImageModal()"
     />
     <button
       type="button"
@@ -106,17 +107,52 @@
       </div>
     </div>
 
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <div class="input-with-icon">
+        <textarea
+          id="description"
+          name="description"
+          rows="4"
+          [value]="bottle.description ?? ''"
+          readonly
+        ></textarea>
+        <button
+          type="button"
+          class="edit-icon"
+          aria-label="Modifier la description"
+          (click)="openEditModal('description')"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 17.25V21h3.75l11.06-11.06a1 1 0 0 0 0-1.41l-2.24-2.24a1 1 0 0 0-1.41 0L3 17.25z"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+            <path
+              d="M14.06 7.94l2.24 2.24"
+              stroke="#888"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
     <!-- Review -->
     <div class="form-group">
-      <label for="review">Review</label>
+      <label for="review">Avis</label>
       <div class="input-with-icon">
-        <input
+        <textarea
           id="review"
           name="review"
-          type="text"
+          rows="4"
           [value]="bottle.review"
           readonly
-        />
+        ></textarea>
         <button
           type="button"
           class="edit-icon"
@@ -356,10 +392,10 @@
   <div class="bottle-dates">
     <div>
       Date de création du compte :
-      {{ bottle.created_at | date: "dd/MM/yyyy HH:mm" }}
+      {{ bottle.created_at | date: "dd/MM/yyyy" }}
     </div>
     <div>
-      Dernière modification : {{ bottle.updated_at | date: "dd/MM/yyyy HH:mm" }}
+      Dernière modification : {{ bottle.updated_at | date: "dd/MM/yyyy" }}
     </div>
   </div>
 
@@ -410,5 +446,16 @@
       (cancel)="onDeleteCancel()"
     />
   }
-  <!-- Fin du formulaire et du container principal -->
+
+  @if (showImageModal) {
+    <div class="image-modal" (click)="closeImageModal()">
+      <div class="image-modal-content">
+        <button class="close-modal" (click)="closeImageModal()">×</button>
+        <img
+          [src]="bottle.photo || '/images/notfound.png'"
+          alt="Photo agrandie de la bouteille"
+        />
+      </div>
+    </div>
+  }
 </div>

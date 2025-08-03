@@ -1,9 +1,11 @@
-@use "../../../../styles/variables.scss";
+@use "../../../../styles/variables.scss" as vars;
+
 /* Astérisque rouge pour champs obligatoires */
 .required {
-  color: #d32f2f;
+  color: var(--color-error);
   font-weight: bold;
 }
+
 /* Bloc photo bouteille */
 .photo-block {
   display: flex;
@@ -11,54 +13,75 @@
   align-items: center;
   position: relative;
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+
+  .bottle-photo-img {
+    border-radius: 1.5rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    max-width: 250px;
+    height: auto;
+    border: 4px solid #fff;
+  }
 
   .edit-icon {
     position: absolute;
-    bottom: 1.5rem;
-    right: calc(50% - 5rem);
-    background: #fffdf2;
+    bottom: 1rem;
+    right: calc(50% - 6rem);
+    background: var(--color-surface, #ffffff);
     border-radius: 50%;
     padding: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+      background: var(--color-primary, #9e4e00);
+
+      svg path {
+        stroke: white;
+      }
+    }
   }
 }
 
 .bottle-name {
-  color: #7b3c00; /* Couleur primaire dark */
+  color: var(--color-primary-dark, #7b3c00);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .bottle-photo-img {
   max-width: 200px;
   max-height: 200px;
-  border-radius: 50%; /* Image circulaire comme dans le design */
+  border-radius: 1.5rem;
   margin-bottom: 1.5rem;
-  background: #fff3e0; /* Couleur légèrement plus chaude pour le fond des images */
+  background: var(--color-surface-light, #fff3e0);
   object-fit: cover;
-  border: 4px solid #fffdf2; /* Bordure claire */
+  border: 4px solid var(--color-surface, #fffdf2);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 /* Style moderne pour les <select> du modal d'édition */
 select {
   width: 100%;
   padding: 0.6em 2.5em 0.6em 1em;
-  border: 1px solid #d1d5db;
+  border: 1px solid rgba(207, 194, 174, 0.3);
   border-radius: 0.7em;
-  background: #fff
-    url('data:image/svg+xml;utf8,<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5" stroke="%23888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+  background: var(--color-surface, #ffffff)
+    url('data:image/svg+xml;utf8,<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5" stroke="%239e4e00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')
     no-repeat right 1em center/1.2em;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   font-size: 1em;
-  color: #222;
+  color: var(--color-text, #4a2a00);
   appearance: none;
-  transition:
-    border 0.2s,
-    box-shadow 0.2s;
+  transition: all 0.2s ease;
 }
 
 select:focus {
-  border-color: #888;
-  box-shadow: 0 0 0 2px #e0e7ff;
+  border-color: var(--color-primary, #9e4e00);
+  box-shadow: 0 0 0 2px rgba(158, 78, 0, 0.15);
   outline: none;
 }
 
@@ -69,34 +92,52 @@ select:disabled {
 }
 
 .bottle-container {
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
-  background: #fff8e6; /* Couleur crème du screenshot */
-  padding: 2rem 1.5rem 4rem 1.5rem;
+  background: var(--color-bg, #fff3d9);
+  padding: 2rem 1.5rem 5rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  position: relative;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.03);
 }
 
 h1 {
-  color: #7b3c00; /* Couleur primaire dark */
+  color: var(--color-primary-dark, #7b3c00);
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
   width: 100%;
+  position: relative;
+  padding-bottom: 0.5rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--color-primary, #9e4e00);
+    border-radius: 2px;
+  }
 }
 
 .bottle-form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #fffdf2; /* Couleur des cartes */
+  background-color: var(--color-surface, #fffdf2);
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   margin-top: 1rem;
+  border: 1px solid rgba(207, 194, 174, 0.2);
 }
 
 .form-group {
@@ -108,28 +149,66 @@ h1 {
 }
 
 label {
-  color: #4a2a00; /* Couleur texte */
+  color: var(--color-text, #4a2a00);
   font-weight: 500;
   font-size: 1.1rem;
+  margin-bottom: 0.25rem;
 }
 
 .input-with-icon {
   display: flex;
   align-items: center;
-  background: #fffdf2; /* Couleur des cartes */
-  border-radius: 12px;
-  border: 1px solid #d9c8a7; /* Couleur de bordure plus légère */
-  padding: 0.7rem 1.2rem;
-}
+  background: var(--color-surface, #ffffff);
+  border-radius: 16px;
+  border: 1px solid rgba(207, 194, 174, 0.3);
+  padding: 0.8rem 1.3rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+  min-height: 56px;
+  position: relative;
 
-input {
+  &:has(textarea) {
+    align-items: flex-start;
+    padding-top: 1rem;
+
+    .edit-icon {
+      margin-top: 0.5rem;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: rgba(207, 194, 174, 0.5);
+  }
+}
+input,
+textarea {
   flex: 1;
   border: none;
   background: transparent;
   font-size: 1.1rem;
-  color: #4a2a00; /* Couleur texte */
+  color: var(--color-text, #4a2a00);
   outline: none;
   padding: 0.25rem 0;
+  font-family: inherit;
+  min-width: 0; /* Permet à l'input de rétrécir si nécessaire */
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+  padding: 0.5rem 0;
+  width: 100%;
+}
+
+.note-symbol,
+.euro-symbol {
+  color: var(--color-primary, #9e4e00);
+  font-weight: 600;
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
 .edit-icon {
@@ -140,13 +219,17 @@ input {
   padding: 0;
   display: flex;
   align-items: center;
-  transition: color 0.2s;
+  transition: all 0.2s;
+  flex-shrink: 0;
 }
+
 .edit-icon svg path {
-  stroke: #9e4e00; /* Couleur primaire */
+  stroke: var(--color-primary, #9e4e00);
+  transition: stroke 0.2s;
 }
+
 .edit-icon:hover svg path {
-  stroke: #7b3c00; /* Couleur primaire dark */
+  stroke: var(--color-primary-dark, #7b3c00);
 }
 
 .btn {
@@ -156,27 +239,33 @@ input {
   border: none;
   cursor: pointer;
   margin-top: 1.5rem;
-  transition:
-    background 0.2s,
-    color 0.2s;
+  transition: all 0.2s ease;
   font-weight: 500;
 }
+
 .btn-primary {
-  background: #9e4e00; /* Couleur primaire */
-  color: #fff;
+  background: var(--color-primary, #9e4e00);
+  color: white;
 }
+
 .btn-primary:hover {
-  background: #7b3c00; /* Couleur primaire dark */
-  color: #fff;
+  background: var(--color-primary-dark, #7b3c00);
+  box-shadow: 0 4px 12px rgba(158, 78, 0, 0.25);
+  transform: translateY(-2px);
 }
+
 .btn-danger {
-  background: #b03e3e; /* Couleur d'erreur */
-  color: #fff;
+  background: var(--color-error, #b03e3e);
+  color: white;
   margin-top: 2.5rem;
 }
+
 .btn-danger:hover {
-  background: #8e3232; /* Version plus foncée */
+  background: var(--color-error-dark, #8e3232);
+  box-shadow: 0 4px 12px rgba(176, 62, 62, 0.25);
+  transform: translateY(-2px);
 }
+
 .btn-fullwidth {
   width: 100%;
   margin-top: 2rem;
@@ -186,14 +275,15 @@ input {
 
 .bottle-dates {
   margin-top: 2rem;
-  background: #fffdf2; /* Couleur des cartes */
+  background: var(--color-surface, #fffdf2);
   border-radius: 16px;
   padding: 1.2rem;
   font-size: 1rem;
-  color: #4a2a00; /* Couleur texte */
+  color: var(--color-text, #4a2a00);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   width: 100%;
   text-align: center;
+  border: 1px solid rgba(207, 194, 174, 0.2);
 }
 
 .reset-toast {
@@ -203,16 +293,139 @@ input {
   font-size: 1rem;
   font-weight: 600;
   text-align: center;
-  background: #fffdf2; /* Couleur des cartes */
-  color: #4a2a00; /* Couleur texte */
+  background: var(--color-surface, #fffdf2);
+  color: var(--color-text, #4a2a00);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   width: 100%;
+  transition: all 0.3s ease;
+
+  &.success {
+    background: #eafaf1;
+    color: #3e7c47;
+    border-left: 4px solid #3e7c47;
+  }
+
+  &.error {
+    background: #fdecea;
+    color: var(--color-error, #b03e3e);
+    border-left: 4px solid var(--color-error, #b03e3e);
+  }
 }
-.reset-toast.success {
-  background: #eafaf1;
-  color: #3e7c47; /* Couleur succès */
+
+/* Styles pour la modale d'image */
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  backdrop-filter: blur(5px);
+  animation: fade-in 0.2s ease-out;
 }
-.reset-toast.error {
-  background: #fdecea;
-  color: #b03e3e; /* Couleur erreur */
+
+.image-modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  animation: zoom-in 0.3s ease-out;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 1001;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  }
+}
+
+.bottle-photo-img {
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Media queries pour les écrans plus grands */
+@media (min-width: 768px) {
+  .bottle-container {
+    max-width: 800px;
+    padding: 2.5rem 2.5rem 5rem 2.5rem;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .bottle-form {
+    padding: 2rem;
+  }
+
+  textarea {
+    min-height: 120px;
+  }
+
+  .form-group {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .input-with-icon {
+    padding: 1rem 1.5rem;
+  }
 }

@@ -133,4 +133,8 @@ export class Collection {
         return 'collection';
     }
   }
+
+  getGenderPrefix(): string {
+    return this.alcool === 'beer' ? 'chacune' : 'chacun';
+  }
 }

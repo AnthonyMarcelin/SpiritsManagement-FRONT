@@ -1,0 +1,153 @@
+@use "../../../../styles/variables.scss" as vars;
+
+// Variables pour les breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Mixins pour le responsive
+@mixin respond-to($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+.login-toast {
+  position: fixed;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 260px;
+  max-width: 90vw;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+  z-index: 1000;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+  background: var(--color-error);
+  opacity: 0.97;
+  animation: fadeInToast 0.3s;
+  text-align: center;
+
+  @include respond-to($breakpoint-sm) {
+    min-width: 270px;
+    padding: 0.9rem 1.8rem;
+    font-size: 1rem;
+  }
+
+  @include respond-to($breakpoint-md) {
+    min-width: 280px;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+}
+
+@keyframes fadeInToast {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 0.97;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+// Styles pour le conteneur de mot de passe
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--color-bg);
+  border-radius: 16px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.2s ease;
+
+  &:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(158, 78, 0, 0.1);
+  }
+
+  input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    outline: none;
+    padding: 0.75rem 1rem;
+    padding-right: 2.75rem;
+    width: 100%;
+    border-radius: 16px;
+  }
+
+  .toggle-password-btn {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    color: var(--color-primary);
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    z-index: 2;
+
+    &:hover {
+      opacity: 1;
+      color: var(--color-secondary);
+    }
+
+    svg {
+      transition: all 0.2s ease;
+      stroke: currentColor;
+    }
+  }
+}
+
+// Lien mot de passe oublié modernisé
+.forgot-link {
+  margin-top: 10px;
+  text-align: center;
+
+  @include respond-to($breakpoint-sm) {
+    margin-top: 11px;
+  }
+
+  @include respond-to($breakpoint-md) {
+    margin-top: 12px;
+  }
+}
+
+.forgot-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 248, 232, 0.8) 60%,
+    rgba(255, 243, 217, 0.8) 100%
+  );
+  color: var(--color-primary);
+  border: none;
+  border-radius: 14px;
+  padding: 5px 14px 5px 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 1px 4px rgba(158, 78, 0, 0.07);
+  transition:
+    background 0.18s,
+    color 0.18s,
+    transform 0.2s;
+}

@@ -78,6 +78,25 @@ export class Bottlepage implements OnInit {
     this.router.navigate([`/collection/${this.bottleType}`]);
   }
 
+  // Méthode pour traduire les noms des champs en français
+  getFieldTranslation(fieldName: string): string {
+    const translations: { [key: string]: string } = {
+      name: 'nom',
+      review: 'avis',
+      price: 'prix',
+      origin: 'origine',
+      peatLevel: 'niveau de tourbe',
+      supplier: "lieu d'achat",
+      description: 'description',
+      note: 'note',
+      photo: 'photo',
+      type: 'type',
+      label: 'étiquette',
+    };
+
+    return translations[fieldName] || fieldName;
+  }
+
   async openEditModal(field: string = 'name') {
     this.editField = field;
     if (field === 'label') {

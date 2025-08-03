@@ -288,6 +288,7 @@ textarea {
 
 .reset-toast {
   margin-top: 1.5rem;
+  margin-bottom: 1rem;
   padding: 1rem 1.5rem;
   border-radius: 12px;
   font-size: 1rem;
@@ -295,20 +296,45 @@ textarea {
   text-align: center;
   background: var(--color-surface, #fffdf2);
   color: var(--color-text, #4a2a00);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   width: 100%;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-left: 5px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 
   &.success {
-    background: #eafaf1;
-    color: #3e7c47;
-    border-left: 4px solid #3e7c47;
+    background: linear-gradient(135deg, #f3faf3, #e0f5e9);
+    color: #2d5f37;
+    border-left-color: #3e7c47;
+
+    &::before {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%233e7c47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>');
+    }
   }
 
   &.error {
-    background: #fdecea;
-    color: var(--color-error, #b03e3e);
-    border-left: 4px solid var(--color-error, #b03e3e);
+    background: linear-gradient(135deg, #fdf3f2, #fbe6e4);
+    color: var(--color-error-dark, #8e3232);
+    border-left-color: var(--color-error, #b03e3e);
+
+    &::before {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23b03e3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>');
+    }
   }
 }
 

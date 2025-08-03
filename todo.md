@@ -66,3 +66,5 @@ Modif bouteille, on peut choisir prendre photo ou bibliotheque
 <!-- hover sur bouton de nav -->
 
 css rgpd
+
+Ajouter degre d'alcool

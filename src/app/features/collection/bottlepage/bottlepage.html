@@ -80,7 +80,7 @@
           id="note"
           name="note"
           type="number"
-          [value]="bottle.note"
+          [value]="bottle.note ?? 0"
           readonly
         />
         <button
@@ -185,7 +185,7 @@
           id="price"
           name="price"
           type="number"
-          [value]="bottle.price"
+          [value]="bottle.price ?? 0"
           readonly
         />
         <span class="euro-symbol">€</span>
@@ -411,6 +411,7 @@
     <div
       class="reset-toast"
       [ngClass]="{ success: toastSuccess, error: !toastSuccess }"
+      role="alert"
     >
       {{ toastMessage }}
     </div>
@@ -418,8 +419,7 @@
 
   @if (showEditModal) {
     <app-editmodal
-      [title]="'Modifier ' + editField"
-      [label]="'Nouvelle valeur'"
+      [title]="'Modifier ' + getFieldTranslation(editField)"
       [type]="editField === 'price' ? 'number' : 'text'"
       [fieldId]="'edit' + editField"
       [value]="bottle[editField]"

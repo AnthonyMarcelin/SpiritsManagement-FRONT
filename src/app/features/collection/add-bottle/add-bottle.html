@@ -1,158 +1,253 @@
-<h1>Ajouter une bouteille</h1>
-<div *ngIf="showErrorToast" class="error-toast">
-  {{ errorToastMessage }}
-</div>
-<form class="add-bottle-form">
-  <div class="form-row">
-    <label for="name">Nom <span class="required">*</span></label>
-    <input
-      id="name"
-      name="name"
-      type="text"
-      [(ngModel)]="bottle.name"
-      required
-    />
+<div class="add-bottle-container">
+  <h1 class="page-title">Ajouter une bouteille</h1>
+
+  <div
+    *ngIf="showErrorToast"
+    class="reset-toast"
+    [ngClass]="{ success: errorToastMessage.includes('ajoutée') }"
+  >
+    {{ errorToastMessage }}
   </div>
-  <div class="form-row">
-    <label for="description">Description</label>
-    <textarea
-      id="description"
-      name="description"
-      rows="3"
-      [(ngModel)]="bottle.description"
-    ></textarea>
-  </div>
-  <div class="form-row">
-    <label for="review">Avis</label>
-    <textarea
-      id="review"
-      name="review"
-      rows="2"
-      [(ngModel)]="bottle.review"
-    ></textarea>
-  </div>
-  <div class="form-row">
-    <label for="note">Note</label>
-    <input
-      id="note"
-      name="note"
-      type="number"
-      step="0.1"
-      min="0"
-      max="10"
-      [(ngModel)]="bottle.note"
-      #noteInput="ngModel"
-    />
-    @if (noteInput.invalid && noteInput.touched) {
-      <div class="error-message">La note doit être comprise entre 0 et 10.</div>
-    }
-  </div>
-  <div class="form-row">
-    <label for="price">Prix <span class="required">*</span> (€)</label>
-    <input
-      id="price"
-      name="price"
-      type="number"
-      step="0.01"
-      min="0"
-      [(ngModel)]="bottle.price"
-      required
-    />
-  </div>
-  <div class="form-row">
-    <label for="photo">Photo</label>
-    <input
-      id="photo"
-      name="photo"
-      type="file"
-      accept="image/*"
-      (change)="onPhotoSelected($event)"
-      capture="environment"
-    />
-    <div *ngIf="photoPreviewUrl" class="photo-preview">
-      <img
-        [src]="photoPreviewUrl"
-        alt="Aperçu photo"
-        style="
-          max-width: 100%;
-          max-height: 200px;
-          margin-top: 0.5rem;
-          border-radius: 8px;
-        "
-      />
+
+  <form class="add-bottle-form">
+    <div class="form-section">
+      <h2>Informations générales</h2>
+
+      <div class="form-row">
+        <label for="name">Nom <span class="required">*</span></label>
+        <div class="input-wrapper">
+          <input
+            id="name"
+            name="name"
+            type="text"
+            [(ngModel)]="bottle.name"
+            required
+            placeholder="Nom de la bouteille"
+          />
+        </div>
+      </div>
+
+      <div class="form-row photo-row">
+        <label for="photo">Photo</label>
+        <div class="photo-upload-area">
+          <div class="photo-input-wrapper">
+            <input
+              id="photo"
+              name="photo"
+              type="file"
+              accept="image/*"
+              (change)="onPhotoSelected($event)"
+              capture="environment"
+              class="photo-input"
+            />
+            <div class="photo-upload-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <span>Sélectionner une image</span>
+            </div>
+          </div>
+          <div *ngIf="photoPreviewUrl" class="photo-preview">
+            <img [src]="photoPreviewUrl" alt="Aperçu photo" />
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="form-row">
-    <label for="labelId">Label <span class="required">*</span></label>
-    <select id="labelId" name="labelId" [(ngModel)]="bottle.labelId" required>
-      <option value="">Sélectionner</option>
-      <option *ngFor="let label of labels" [value]="label.id">
-        {{ label.name }}
-      </option>
-    </select>
-  </div>
-  <div class="form-row">
-    <label for="originId">Origine</label>
-    <input
-      id="originId"
-      name="originId"
-      type="text"
-      [(ngModel)]="bottle.originId"
-      (input)="onOriginInput($event)"
-      [attr.list]="'origin-list'"
-      autocomplete="off"
-      required
-    />
-    <datalist id="origin-list">
-      <option
-        *ngFor="let origin of originSuggestions"
-        [value]="origin.country"
-      ></option>
-    </datalist>
-  </div>
-  <div class="form-row">
-    <label for="supplierId">Fournisseur</label>
-    <input
-      id="supplierId"
-      name="supplierId"
-      type="text"
-      [(ngModel)]="bottle.supplierId"
-      (input)="onSupplierInput($event)"
-      [attr.list]="'supplier-list'"
-      autocomplete="off"
-      required
-    />
-    <datalist id="supplier-list">
-      <option
-        *ngFor="let supplier of supplierSuggestions"
-        [value]="supplier.name"
-      ></option>
-    </datalist>
-  </div>
-  <div class="form-row">
-    <label for="typeId">Type <span class="required">*</span></label>
-    <select id="typeId" name="typeId" [(ngModel)]="bottle.typeId" required>
-      <option value="">Sélectionner</option>
-      <option *ngFor="let type of filteredTypes" [value]="type.id">
-        {{ type.name }}
-      </option>
-    </select>
-  </div>
-  <div class="form-row" *ngIf="alcoolType === 'whisky'">
-    <label for="peatLevelId"
-      >Niveau de tourbe <span class="required">*</span></label
-    >
-    <select
-      id="peatLevelId"
-      name="peatLevelId"
-      [(ngModel)]="bottle.peatLevelId"
-    >
-      <option value="">Sélectionner</option>
-      <option *ngFor="let peat of peatLevels" [value]="peat.id">
-        {{ peat.name }}
-      </option>
-    </select>
-  </div>
-  <button type="submit" (click)="onAddBottle()">Ajouter</button>
-  <button type="button" class="cancel-btn" (click)="onCancel()">Annuler</button>
-</form>
+
+    <div class="form-section">
+      <h2>Caractéristiques</h2>
+
+      <div class="form-grid">
+        <div class="form-row">
+          <label for="labelId">Label <span class="required">*</span></label>
+          <div class="select-wrapper">
+            <select
+              id="labelId"
+              name="labelId"
+              [(ngModel)]="bottle.labelId"
+              required
+            >
+              <option value="">Sélectionner</option>
+              <option *ngFor="let label of labels" [value]="label.id">
+                {{ label.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="typeId">Type <span class="required">*</span></label>
+          <div class="select-wrapper">
+            <select
+              id="typeId"
+              name="typeId"
+              [(ngModel)]="bottle.typeId"
+              required
+            >
+              <option value="">Sélectionner</option>
+              <option *ngFor="let type of filteredTypes" [value]="type.id">
+                {{ type.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row" *ngIf="alcoolType === 'whisky'">
+          <label for="peatLevelId"
+            >Niveau de tourbe <span class="required">*</span></label
+          >
+          <div class="select-wrapper">
+            <select
+              id="peatLevelId"
+              name="peatLevelId"
+              [(ngModel)]="bottle.peatLevelId"
+            >
+              <option value="">Sélectionner</option>
+              <option *ngFor="let peat of peatLevels" [value]="peat.id">
+                {{ peat.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="price">Prix <span class="required">*</span></label>
+          <div class="input-wrapper price-input">
+            <input
+              id="price"
+              name="price"
+              type="number"
+              step="0.01"
+              min="0"
+              [(ngModel)]="bottle.price"
+              required
+              placeholder="0.00"
+            />
+            <span class="euro-symbol">€</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="note">Note</label>
+          <div class="input-wrapper">
+            <input
+              id="note"
+              name="note"
+              type="number"
+              step="0.1"
+              min="0"
+              max="10"
+              [(ngModel)]="bottle.note"
+              #noteInput="ngModel"
+              placeholder="Sur 10"
+            />
+            @if (noteInput.invalid && noteInput.touched) {
+              <div class="error-message">
+                La note doit être comprise entre 0 et 10.
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="originId">Origine</label>
+        <div class="input-wrapper">
+          <input
+            id="originId"
+            name="originId"
+            type="text"
+            [(ngModel)]="bottle.originId"
+            (input)="onOriginInput($event)"
+            [attr.list]="'origin-list'"
+            autocomplete="off"
+            placeholder="Pays d'origine"
+            required
+          />
+          <datalist id="origin-list">
+            <option
+              *ngFor="let origin of originSuggestions"
+              [value]="origin.country"
+            ></option>
+          </datalist>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="supplierId">Fournisseur</label>
+        <div class="input-wrapper">
+          <input
+            id="supplierId"
+            name="supplierId"
+            type="text"
+            [(ngModel)]="bottle.supplierId"
+            (input)="onSupplierInput($event)"
+            [attr.list]="'supplier-list'"
+            autocomplete="off"
+            placeholder="Nom du fournisseur"
+            required
+          />
+          <datalist id="supplier-list">
+            <option
+              *ngFor="let supplier of supplierSuggestions"
+              [value]="supplier.name"
+            ></option>
+          </datalist>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Évaluation</h2>
+
+      <div class="form-row">
+        <label for="description"
+          >Description <span class="required">*</span></label
+        >
+        <div class="input-wrapper">
+          <textarea
+            id="description"
+            name="description"
+            rows="3"
+            [(ngModel)]="bottle.description"
+            placeholder="Décrivez cette bouteille"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="review">Avis</label>
+        <div class="input-wrapper">
+          <textarea
+            id="review"
+            name="review"
+            rows="3"
+            [(ngModel)]="bottle.review"
+            placeholder="Votre avis personnel"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" (click)="onCancel()">
+        Annuler
+      </button>
+      <button type="submit" class="btn-submit" (click)="onAddBottle()">
+        Ajouter la bouteille
+      </button>
+    </div>
+  </form>
+</div>

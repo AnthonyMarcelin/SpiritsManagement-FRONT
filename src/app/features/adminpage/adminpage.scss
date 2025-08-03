@@ -1,8 +1,23 @@
+@use "../../../styles/variables.scss" as vars;
+
+// Variables pour les breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Mixins pour le responsive
+@mixin respond-to($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
 .modern-admin {
   max-width: 1100px;
   margin: 2.5rem auto;
   padding: 2.5rem 2rem 1.5rem 2rem;
-  background: #f9fafb;
+  background: var(--color-bg);
   border-radius: 18px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   font-family: "Inter", "Segoe UI", Arial, sans-serif;
@@ -23,26 +38,43 @@
   margin-bottom: 0.5rem;
 }
 .admin-logo {
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 8px rgba(158, 78, 0, 0.1);
+  background: var(--color-card);
+  padding: 10px;
+  border: 3px solid rgba(158, 78, 0, 0.2);
+
+  @include respond-to($breakpoint-sm) {
+    width: 90px;
+    height: 90px;
+  }
 }
 .btn-header-return {
   margin-left: auto;
   font-size: 1rem;
   padding: 0.45rem 1.3rem;
-  box-shadow: 0 2px 8px rgba(45, 122, 238, 0.08);
+  box-shadow: 0 2px 8px rgba(158, 78, 0, 0.15);
 }
 .admin-header h1 {
   font-size: 2.2rem;
   margin: 0.2rem 0 0.3rem 0;
-  color: #2d7aee;
+  color: var(--color-primary);
   letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(158, 78, 0, 0.2);
+
+  @include respond-to($breakpoint-sm) {
+    font-size: 2.5rem;
+  }
+
+  @include respond-to($breakpoint-md) {
+    font-size: 2.8rem;
+  }
 }
 .admin-subtitle {
-  color: #6b7280;
+  color: var(--color-secondary);
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
@@ -74,20 +106,28 @@
 .admin-block.card {
   flex: 1 1 340px;
   min-width: 320px;
-  background: #fff;
-  border-radius: 12px;
+  background: var(--color-card);
+  border-radius: 18px;
   padding: 1.7rem 1.3rem 1.2rem 1.3rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 2px 12px rgba(45, 122, 238, 0.07);
-  border: 1.5px solid #e3e8f0;
+  box-shadow: 0 2px 12px rgba(158, 78, 0, 0.1);
+  border: 1.5px solid rgba(158, 78, 0, 0.1);
   display: flex;
   flex-direction: column;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 18px rgba(158, 78, 0, 0.15);
+  }
 }
 .admin-block h2 {
   margin-top: 0;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   margin-bottom: 1.1rem;
-  color: #1a2a3a;
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -104,16 +144,19 @@
 .admin-form input[type="text"] {
   flex: 1;
   padding: 0.45rem 0.8rem;
-  border: 1.5px solid #d1d5db;
-  border-radius: 5px;
+  border: 1.5px solid rgba(158, 78, 0, 0.2);
+  border-radius: 8px;
   font-size: 1rem;
-  background: #f3f4f6;
-  transition: border 0.2s;
+  background: rgba(255, 255, 255, 0.8);
+  transition:
+    border 0.2s,
+    background 0.2s;
 }
 .admin-form input[type="text"]:focus {
-  border: 1.5px solid #2d7aee;
+  border: 1.5px solid var(--color-primary);
   outline: none;
   background: #fff;
+  box-shadow: 0 0 0 2px rgba(158, 78, 0, 0.1);
 }
 
 .admin-list {
@@ -125,8 +168,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.4rem 0;
-  border-bottom: 1px solid #f0f0f0;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(158, 78, 0, 0.1);
   font-size: 1.04rem;
 }
 .admin-list-item:last-child {
@@ -137,10 +180,10 @@
 .type-name,
 .user-email {
   font-weight: 500;
-  color: #2d3748;
+  color: var(--color-text);
 }
 .user-role {
-  color: #2d7aee;
+  color: var(--color-accent-whisky);
   font-size: 0.98em;
   margin-left: 0.3em;
 }
@@ -148,7 +191,7 @@
 // Boutons
 .btn {
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 0.35rem 0.95rem;
   font-size: 1rem;
   font-weight: 500;
@@ -156,61 +199,70 @@
   margin-left: 0.3rem;
   transition:
     background 0.18s,
-    color 0.18s;
+    color 0.18s,
+    transform 0.2s;
   outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  }
 }
 .btn-primary {
-  background: #2d7aee;
+  background: var(--color-primary);
   color: #fff;
 }
 .btn-primary:hover {
-  background: #1a5bb8;
+  background: var(--color-primary-dark);
 }
 .btn-success {
-  background: #22c55e;
+  background: var(--color-success);
   color: #fff;
 }
 .btn-success:hover {
-  background: #15803d;
+  background: darken(#3e7c47, 10%);
 }
 .btn-warning {
-  background: #fbbf24;
-  color: #1a2a3a;
-}
-.btn-warning:hover {
-  background: #f59e0b;
+  background: var(--color-accent-beer);
   color: #fff;
 }
+.btn-warning:hover {
+  background: darken(#d67d00, 10%);
+}
 .btn-danger {
-  background: #ef4444;
+  background: var(--color-error);
   color: #fff;
 }
 .btn-danger:hover {
-  background: #b91c1c;
+  background: darken(#b03e3e, 10%);
 }
 .btn-secondary {
   background: #e5e7eb;
-  color: #374151;
+  color: var(--color-text);
 }
 .btn-secondary:hover {
-  background: #cbd5e1;
+  background: #d1d5db;
 }
 .btn-main {
-  background: linear-gradient(90deg, #2d7aee 60%, #22c55e 100%);
+  background: var(--color-primary);
   color: #fff;
   font-size: 1.1rem;
   padding: 0.6rem 2.2rem;
   margin-top: 1.2rem;
-  box-shadow: 0 2px 8px rgba(45, 122, 238, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(158, 78, 0, 0.15);
 }
 .btn-main:hover {
-  background: linear-gradient(90deg, #1a5bb8 60%, #15803d 100%);
+  background: var(--color-accent-whisky);
 }
 .btn[disabled],
 .btn:disabled {
   background: #e5e7eb !important;
   color: #b0b0b0 !important;
   cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 // Type groups
@@ -227,7 +279,7 @@
 }
 .type-group h3 {
   font-size: 1.08rem;
-  color: #2d7aee;
+  color: var(--color-primary);
   margin-bottom: 0.3rem;
 }
 .type-mobile-item {
@@ -238,7 +290,7 @@
 }
 .type-label {
   font-weight: 500;
-  color: #2d3748;
+  color: var(--color-text);
   margin-bottom: 0.2rem;
 }
 .type-actions {
@@ -246,6 +298,64 @@
   gap: 0.4rem;
   flex-wrap: wrap;
   margin-top: 0.1rem;
+}
+
+// Tables
+.table-container {
+  overflow-x: auto;
+  border-radius: 16px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  margin: 1.5rem 0;
+  background-color: var(--color-card);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+  font-size: 0.95rem;
+
+  th {
+    background-color: var(--color-background);
+    color: var(--color-primary-dark);
+    font-weight: 600;
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 2px solid var(--color-primary-light);
+  }
+
+  td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--color-accent-light);
+    color: var(--color-text);
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:hover td {
+    background-color: var(--color-background);
+  }
+
+  .action-cell {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+  }
+
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0.5rem;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
 }
 
 @media (min-width: 700px) {
@@ -264,20 +374,80 @@
   display: flex;
   justify-content: center;
   margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-accent-light);
+
+  .footer-text {
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+  }
+
+  .footer-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--color-accent-whisky);
+      text-decoration: underline;
+    }
+  }
 }
 
 // Responsive
 @media (max-width: 900px) {
+  .modern-admin {
+    padding: 2rem 1.5rem 1rem;
+    margin: 2rem 1rem;
+  }
+
   .admin-sections {
     flex-direction: column;
     gap: 1.2rem;
   }
+
   .admin-block.card {
     min-width: 0;
     width: 100%;
   }
+
   .type-groups {
     flex-direction: column;
     gap: 0.7rem;
+  }
+
+  .admin-header h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .admin-subtitle {
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .modern-admin {
+    padding: 1.5rem 1rem 0.8rem;
+    margin: 1.5rem 0.8rem;
+    border-radius: 14px;
+  }
+
+  .admin-form {
+    flex-direction: column;
+  }
+
+  .admin-form input[type="text"] {
+    width: 100%;
+  }
+
+  .admin-block h2 {
+    font-size: 1.3rem;
+  }
+
+  .table-container {
+    margin: 1rem 0;
   }
 }

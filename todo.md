@@ -70,3 +70,7 @@ css rgpd
 Ajouter degre d'alcool
 
 admin page, ajout pete
+
+footer et rgpd
+
+clean code and comment

@@ -1,6 +1,6 @@
 .mainpage-logo {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   margin-top: 0.5rem;
 }
 
@@ -8,14 +8,26 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--background, #f8f8f8);
+  background-color: #fff8e6; /* Couleur crème comme collection */
+  padding: 0.5rem;
+  padding-bottom: 70px; // Pour laisser de l'espace pour la navbar
 }
 
 .mainpage-header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  padding: 2rem 0 1rem 0;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.mainpage-header h1 {
+  color: #7b3c00; /* Couleur primaire dark */
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin: 0;
 }
 
 .mainpage-content {
@@ -23,27 +35,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 1.5rem 1rem 5rem 1rem; // espace pour la navbar
+  padding: 0.5rem 1rem;
   box-sizing: border-box;
 }
 
 .mainpage-content h2 {
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
-  color: var(--primary, #7b3f00);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #7b3c00; /* Couleur primaire dark */
+  font-weight: 500;
+  text-align: center;
+  width: 100%;
 }
 
 .alcohol-cards {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  align-items: stretch !important;
+  gap: 1rem;
+  align-items: stretch;
   width: 100%;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
 app-navbar {
@@ -52,4 +66,53 @@ app-navbar {
   right: 0;
   bottom: 0;
   z-index: 10;
+}
+
+/* Media queries pour tablet et desktop */
+@media (min-width: 768px) {
+  .mainpage-container {
+    padding: 1rem;
+  }
+
+  .mainpage-logo {
+    width: 140px;
+    height: 140px;
+  }
+
+  .mainpage-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .mainpage-content {
+    max-width: 700px;
+    padding: 0.5rem 2rem;
+  }
+
+  .mainpage-content h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .alcohol-cards {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mainpage-logo {
+    width: 160px;
+    height: 160px;
+  }
+
+  .mainpage-header h1 {
+    font-size: 3rem;
+  }
+
+  .mainpage-content {
+    max-width: 800px;
+  }
+
+  .mainpage-content h2 {
+    font-size: 2.5rem;
+  }
 }

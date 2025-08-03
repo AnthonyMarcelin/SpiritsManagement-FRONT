@@ -1,63 +1,62 @@
 .alcohol-card {
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background-color: var(--color-surface, #ffffff);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1.2rem;
-  padding: 1rem 1.5rem;
-  width: 100% !important;
-  max-width: 100% !important;
+  padding: 1.25rem;
+  width: 100%;
   box-sizing: border-box;
   cursor: pointer;
   transition:
-    box-shadow 0.2s,
-    transform 0.2s;
-  position: relative;
+    transform 0.2s,
+    box-shadow 0.2s;
+  border: 1px solid rgba(207, 194, 174, 0.2);
 }
+
 .alcohol-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px) scale(1.02);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 .alcohol-img-container {
-  width: 80px;
-  height: 80px;
-  border-radius: 12px;
-  background: #ececec;
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background-color: var(--color-secondary, #ede4d3);
+  border: 3px solid var(--color-secondary-dark, #cfc2ae);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .alcohol-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  display: block;
 }
 
 .alcohol-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   flex: 1;
-  height: 100%;
 }
+
 .alcohol-card h1 {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  color: var(--primary, #7b3f00);
-  text-align: center;
-  width: 100%;
+  color: #7b3c00; /* Couleur primaire dark */
+  margin: 0 0 0.4rem;
 }
 
 .alcohol-card span {
   font-size: 1rem;
-  color: var(--secondary, #555);
-  margin-top: 0.2rem;
+  color: #5a5a5a;
   display: block;
-  text-align: center;
 }

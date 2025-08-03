@@ -5,21 +5,12 @@ import { BeerService } from '../../core/services/collection/beer.service';
 import { RhumService } from '../../core/services/collection/rhum.service';
 import { WhiskyService } from '../../core/services/collection/whisky.service';
 import { Navbar } from '../../shared/components/layout/navbar/navbar';
-import { Optionbar } from '../../shared/components/optionbar/optionbar';
 import { Searchbar } from '../../shared/components/searchbar/searchbar';
 import { Sortbar } from '../../shared/components/sortbar/sortbar';
 import { BottleCard } from './bottle-card/bottle-card';
 @Component({
   selector: 'app-collection',
-  imports: [
-    Searchbar,
-    Optionbar,
-    Sortbar,
-    Navbar,
-    BottleCard,
-    CommonModule,
-    RouterModule,
-  ],
+  imports: [Navbar, BottleCard, CommonModule, RouterModule, Searchbar, Sortbar],
   templateUrl: './collection.html',
   styleUrl: './collection.scss',
 })
@@ -120,5 +111,26 @@ export class Collection {
       return 0;
     });
     this.filteredBottles = arr;
+  }
+
+  goToAddBottle() {
+    if (this.alcool) {
+      this.router.navigate(['/' + this.alcool + '/add_bottle']);
+    } else {
+      this.router.navigate(['/add_bottle']);
+    }
+  }
+
+  getCollectionTitle(): string {
+    switch (this.alcool) {
+      case 'whisky':
+        return 'whiskies';
+      case 'beer':
+        return 'bières';
+      case 'rhum':
+        return 'rhums';
+      default:
+        return 'collection';
+    }
   }
 }

@@ -1,8 +1,26 @@
-@use "../../../styles/variables.scss";
+@use "../../../styles/variables.scss" as vars;
+
+// Variables pour les breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Mixins pour le responsive
+@mixin respond-to($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
 
 .homepage-title {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+
+  @media (min-width: $breakpoint-md) {
+    margin-bottom: 1.5rem;
+  }
 }
+
 .homepage-container {
   min-height: 100vh;
   background: var(--color-bg);
@@ -10,119 +28,414 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  overflow: hidden;
+  padding: 0 16px;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0;
+  }
+
+  @include respond-to($breakpoint-lg) {
+    justify-content: center;
+    padding-bottom: 50px; // Espace pour le footer
+  }
+
+  @include respond-to($breakpoint-xl) {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 15%;
+      left: 5%;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(158, 78, 0, 0.07);
+      z-index: 0;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 20%;
+      right: 8%;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(158, 78, 0, 0.05);
+      z-index: 0;
+    }
+  }
 }
+
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 24px;
   margin-bottom: 16px;
+
+  @media (min-width: $breakpoint-md) {
+    margin-top: 40px;
+  }
 }
 
 .header-logo {
-  margin-top: 18px;
+  margin-top: 16px;
   margin-bottom: 0;
-  width: 180px;
-  height: 180px;
+  width: 140px;
+  height: 140px;
   object-fit: contain;
   background: var(--color-card);
   border-radius: 50%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  padding: 12px;
+  padding: 16px;
+  border: 4px solid rgba(158, 78, 0, 0.2);
+
+  @media (min-width: $breakpoint-sm) {
+    width: 160px;
+    height: 160px;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    width: 180px;
+    height: 180px;
+    padding: 20px;
+    border: 5px solid rgba(158, 78, 0, 0.2);
+  }
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2.6rem;
   font-weight: 700;
   color: var(--color-primary);
   text-align: center;
   margin-bottom: 0px;
+  text-shadow: 1px 1px 3px rgba(158, 78, 0, 0.2);
+
+  @media (min-width: $breakpoint-sm) {
+    font-size: 3rem;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 3.5rem;
+  }
 }
 
 .card {
   background: var(--color-card);
-  border-radius: 32px 32px 0 0;
+  border-radius: 24px 24px 0 0;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-  width: 90vw;
+  width: 100%;
   max-width: 400px;
-  margin-top: 24px;
-  padding: 32px 24px 24px 24px;
+  margin-top: 16px;
+  padding: 24px 16px 20px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 1;
+
+  @include respond-to($breakpoint-sm) {
+    width: 90vw;
+    border-radius: 28px 28px 0 0;
+    margin-top: 20px;
+    padding: 28px 20px 22px 20px;
+  }
+
+  @include respond-to($breakpoint-md) {
+    border-radius: 32px 32px 0 0;
+    margin-top: 24px;
+    padding: 32px 24px 24px 24px;
+  }
+
+  @include respond-to($breakpoint-lg) {
+    border-radius: 32px;
+    margin-top: 30px;
+    max-width: 460px;
+  }
+
+  @include respond-to($breakpoint-xl) {
+    max-width: 500px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    }
+  }
 }
 
 .button-group {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
-  margin-bottom: 24px;
+  width: 100%;
+  gap: 14px;
+  margin-bottom: 20px;
+
+  @media (min-width: $breakpoint-sm) {
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    flex-direction: row;
+    justify-content: center;
+    max-width: 600px;
+  }
 }
 
 .button-group a {
-  display: block;
-  width: 90%;
-  max-width: 260px;
-  background: variables.$color-primary;
-  color: variables.$color-light;
-  border-radius: 24px;
-  padding: 12px 32px;
-  font-size: 1.3rem;
+  border: none;
+  background: var(--color-primary);
+  color: var(--color-light);
+  border-radius: 20px;
+  padding: 10px 24px;
+  font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  transition: background 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 200px;
+
+  @media (min-width: $breakpoint-sm) {
+    max-width: 240px;
+    border-radius: 22px;
+    padding: 11px 28px;
+    font-size: 1.2rem;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    max-width: 260px;
+    border-radius: 24px;
+    padding: 12px 32px;
+    font-size: 1.3rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    width: 45%;
+  }
 }
 
 .button-group a:hover {
-  background: variables.$color-accent-whisky;
-  color: variables.$color-light;
+  background: var(--color-accent-whisky);
+  color: var(--color-light);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 button {
   background: var(--color-primary);
-  color: var(--color-card);
+  color: var(--color-light);
   border: none;
-  border-radius: 24px;
-  padding: 12px 32px;
-  font-size: 1rem;
+  border-radius: 20px;
+  padding: 10px 24px;
+  font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
-  min-width: 120px;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 200px;
+
+  @media (min-width: $breakpoint-sm) {
+    max-width: 240px;
+    border-radius: 22px;
+    padding: 11px 28px;
+    font-size: 1.2rem;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    max-width: 260px;
+    border-radius: 24px;
+    padding: 12px 32px;
+    font-size: 1.3rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    width: 45%;
+  }
 }
 
 button:hover {
-  background: var(--color-secondary);
+  background: var(--color-accent-whisky);
+  color: var(--color-light);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 h2 {
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--color-secondary);
-  margin-top: 12px;
+  margin-top: 10px;
   margin-bottom: 8px;
   text-align: center;
   letter-spacing: 0.5px;
+
+  @media (min-width: $breakpoint-sm) {
+    font-size: 1.4rem;
+    margin-top: 12px;
+    margin-bottom: 10px;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 1.6rem;
+    margin-top: 14px;
+    margin-bottom: 12px;
+  }
 }
 
 .card p {
   color: var(--color-secondary);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-align: center;
   margin: 0;
+  line-height: 1.5;
+
+  @media (min-width: $breakpoint-sm) {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 1.3rem;
+    line-height: 1.6;
+  }
 }
 
+.privacy-link {
+  display: block;
+  margin-top: 18px;
+  text-align: center;
+  text-decoration: underline;
+  color: var(--color-primary);
+  font-size: 1rem;
+  transition: color 0.2s;
+
+  @media (min-width: $breakpoint-sm) {
+    margin-top: 20px;
+    font-size: 1.05rem;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    margin-top: 22px;
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    color: var(--color-accent-whisky);
+  }
+}
+
+// Supprimer toute la largeur du footer
 .footer {
   margin-top: auto;
-  position: static;
   width: 100%;
   text-align: center;
-  color: var(--color-footer);
-  font-size: 0.95rem;
+  color: var(--color-light);
+  font-size: 0.85rem;
   position: absolute;
-  bottom: 18px;
+  bottom: 0;
   left: 0;
+  background-color: var(--color-primary);
+  padding: 6px 0;
+  z-index: 2;
+
+  @include respond-to($breakpoint-sm) {
+    font-size: 0.9rem;
+    padding: 7px 0;
+  }
+
+  @include respond-to($breakpoint-md) {
+    font-size: 0.95rem;
+    padding: 8px 0;
+  }
+
+  @include respond-to($breakpoint-lg) {
+    padding: 10px 0;
+  }
+}
+
+// Ajout d'animations pour améliorer l'expérience utilisateur
+@media (prefers-reduced-motion: no-preference) {
+  .header-logo {
+    animation: fadeInDown 1s ease;
+  }
+
+  .button-group a {
+    animation: fadeInUp 0.8s ease;
+
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+  }
+
+  h1 {
+    animation: fadeInTitle 1s ease;
+  }
+
+  .card p,
+  .homepage-title {
+    animation: fadeIn 1s ease 0.3s both;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInTitle {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }

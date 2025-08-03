@@ -1,9 +1,37 @@
 <div class="bottle-container">
-  <h1>
-    <div class="bottle-name">
-      {{ bottle.name }}
-    </div>
+  <h1 class="bottle-name">
+    {{ bottle.name }}
   </h1>
+
+  <div class="form-group photo-block">
+    <img
+      id="bottle-photo"
+      [src]="bottle.photo || '/images/notfound.png'"
+      alt="Photo de la bouteille"
+      class="bottle-photo-img"
+    />
+    <button
+      type="button"
+      class="edit-icon"
+      aria-label="Modifier la photo"
+      (click)="openEditModal('photo')"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M3 17.25V21h3.75l11.06-11.06a1 1 0 0 0 0-1.41l-2.24-2.24a1 1 0 0 0-1.41 0L3 17.25z"
+          stroke="#888"
+          stroke-width="2"
+          fill="none"
+        />
+        <path
+          d="M14.06 7.94l2.24 2.24"
+          stroke="#888"
+          stroke-width="2"
+          fill="none"
+        />
+      </svg>
+    </button>
+  </div>
 
   <form class="bottle-form">
     <!-- Name -->
@@ -41,20 +69,24 @@
       </div>
     </div>
 
+    <!-- Photo field removed from here - moved to the top of the page -->
+
+    <!-- Note -->
     <div class="form-group">
-      <label for="bottle-photo">Photo</label>
-      <div class="input-with-icon photo-block">
-        <img
-          id="bottle-photo"
-          [src]="bottle.photo || '/images/notfound.png'"
-          alt="Photo de la bouteille"
-          class="bottle-photo-img"
+      <label for="note">Note (sur 10)</label>
+      <div class="input-with-icon">
+        <input
+          id="note"
+          name="note"
+          type="number"
+          [value]="bottle.note"
+          readonly
         />
         <button
           type="button"
           class="edit-icon"
-          aria-label="Modifier la photo"
-          (click)="openEditModal('photo')"
+          aria-label="Modifier la note"
+          (click)="openEditModal('note')"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
             <path

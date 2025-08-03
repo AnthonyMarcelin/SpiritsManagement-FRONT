@@ -98,9 +98,7 @@
           autocomplete="confirmPassword"
         />
       </div>
-      <button type="submit" [disabled]="!registerForm.form.valid">
-        S'inscrire
-      </button>
+      <button type="submit" class="submit-btn">S'inscrire</button>
       <div class="form-group error-group">
         @if (password && confirmPassword && password !== confirmPassword) {
           <div class="error">Les mots de passe diffèrent.</div>

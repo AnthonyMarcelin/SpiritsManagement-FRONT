@@ -1,52 +1,51 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.dev/guide/theming
-@use "@angular/material" as mat;
-@use "styles/variables.scss";
+/* Import des variables personnalisées */
+@use "styles/variables.scss" as vars;
 
-html {
-  @include mat.theme(
-    (
-      color: (
-        theme-type: light,
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-      ),
-      typography: Roboto,
-      density: 0,
-    )
-  );
-} // Custom Theming for Angular Material
-// For more information: https://material.angular.dev/guide/theming
-@import "@angular/material/prebuilt-themes/azure-blue.css";
+/* Import des polices Google Fonts (déjà inclus dans index.html) */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Inter:wght@400;500;700&family=Rubik:wght@400;500;700&display=swap'); */
 
-html {
-  @include mat.theme(
-    (
-      color: (
-        theme-type: light,
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-      ),
-      typography: Roboto,
-      density: 0,
-    )
-  );
-} /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
 
 html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
 }
 
-html,
-body {
-  height: 100%;
+* {
+  box-sizing: border-box;
 }
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+/* Typographie */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+p,
+span,
+div,
+button,
+input,
+select,
+textarea {
+  font-weight: 400;
+}
+
+/* Styles spécifiques pour les éléments interactifs */
+button,
+.btn,
+a.btn,
+input[type="button"],
+input[type="submit"] {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
 }

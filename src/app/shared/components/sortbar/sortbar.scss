@@ -1,37 +1,114 @@
-// Style du container
+// Style mobile-first
 .sortbar-container {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.5rem 0;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  width: 100%;
+  background-color: #fffdf2;
+  border-radius: 12px;
 }
 
 label {
-  font-weight: 500;
-  color: var(--primary, #7b3f00);
-  font-size: 1rem;
+  font-weight: 600;
+  color: #7b3c00; /* Couleur primaire dark */
+  font-size: 0.95rem;
+  text-align: left;
+  margin-bottom: 0.1rem;
 }
 
 select {
-  padding: 0.5rem 2.5rem 0.5rem 1rem;
-  border-radius: 8px;
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border-radius: 10px;
   border: 1px solid #d1bfa7;
   background: #fff;
-  color: #7b3f00;
+  color: #7b3c00; /* Couleur primaire dark */
   font-size: 1rem;
   font-weight: 500;
   box-shadow: 0 2px 8px rgba(123, 63, 0, 0.07);
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.2s ease;
   cursor: pointer;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%237b3c00' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  position: relative; /* Ajout pour gérer la position */
+  left: 0; /* Force l'alignement à gauche */
 }
 
 select:focus {
-  border-color: #7b3f00;
+  border-color: #9e4e00; /* Couleur primaire */
+  box-shadow: 0 0 0 3px rgba(158, 78, 0, 0.15);
 }
 
 option {
-  color: #7b3f00;
+  color: #7b3c00; /* Couleur primaire dark */
   background: #fff;
   font-size: 1rem;
+  padding: 0.5rem;
+}
+
+/* Media queries pour les écrans plus grands */
+@media (min-width: 768px) {
+  .sortbar-container {
+    flex-direction: row;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+  }
+
+  label {
+    font-size: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  select {
+    max-width: 300px;
+  }
+}
+
+/* Fix pour le select en focus sur mobile */
+@media (max-width: 767px) {
+  select:focus,
+  select:active {
+    width: 100% !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    max-width: 100% !important;
+    transform: none !important;
+  }
+}
+
+// Media queries pour tablet et desktop
+@media (min-width: 768px) {
+  .sortbar-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  label {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  select {
+    width: auto;
+    min-width: 200px;
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  select {
+    min-width: 250px;
+  }
 }

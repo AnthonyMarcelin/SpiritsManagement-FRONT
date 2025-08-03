@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
@@ -11,6 +11,7 @@ import { AuthService } from '../../../core/services/auth';
   standalone: true,
   templateUrl: './register.html',
   styleUrl: './register.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class Register {
   resendEmail = '';
@@ -97,6 +98,20 @@ export class Register {
   onSubmit() {
     this.submitted = true;
     this.validatePasswordCriteria(this.password);
+
+    // Vérification des champs obligatoires
+    if (
+      !this.pseudo ||
+      !this.firstName ||
+      !this.lastName ||
+      !this.email ||
+      !this.password ||
+      !this.confirmPassword
+    ) {
+      this.error = 'Veuillez remplir tous les champs obligatoires.';
+      return;
+    }
+
     if (this.password !== this.confirmPassword) {
       this.error = 'Les mots de passe ne correspondent pas.';
       return;

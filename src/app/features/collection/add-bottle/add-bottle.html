@@ -31,13 +31,18 @@
         <label for="photo">Photo</label>
         <div class="photo-upload-area">
           <div class="photo-input-wrapper">
+            <!--
+              Commenting out "capture" attribute to allow users to choose between camera and gallery on mobile
+              When this attribute is present, mobile browsers only open the camera
+              When absent, users can choose between taking a new photo or selecting from their gallery
+              put : capture = "environment" to use the back camera by default
+              -->
             <input
               id="photo"
               name="photo"
               type="file"
               accept="image/*"
               (change)="onPhotoSelected($event)"
-              capture="environment"
               class="photo-input"
             />
             <div class="photo-upload-button">

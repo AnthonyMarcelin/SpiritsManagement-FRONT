@@ -3,35 +3,38 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0.8rem;
   width: 100%;
+  background-color: #fffdf2;
+  border-radius: 12px;
 }
 
 label {
-  font-weight: 500;
-  color: var(--primary, #7b3f00);
-  font-size: 0.9rem;
+  font-weight: 600;
+  color: #7b3c00; /* Couleur primaire dark */
+  font-size: 0.95rem;
   text-align: left;
+  margin-bottom: 0.1rem;
 }
 
 select {
   width: 100%;
-  padding: 0.75rem 2rem 0.75rem 1rem;
-  border-radius: 8px;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border-radius: 10px;
   border: 1px solid #d1bfa7;
   background: #fff;
-  color: #7b3f00;
+  color: #7b3c00; /* Couleur primaire dark */
   font-size: 1rem;
   font-weight: 500;
   box-shadow: 0 2px 8px rgba(123, 63, 0, 0.07);
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.2s ease;
   cursor: pointer;
   box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%237b3f00' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%237b3c00' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
   background-position: right 0.75rem center;
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
@@ -40,15 +43,35 @@ select {
 }
 
 select:focus {
-  border-color: #7b3f00;
-  box-shadow: 0 0 0 2px rgba(123, 63, 0, 0.1);
+  border-color: #9e4e00; /* Couleur primaire */
+  box-shadow: 0 0 0 3px rgba(158, 78, 0, 0.15);
 }
 
 option {
-  color: #7b3f00;
+  color: #7b3c00; /* Couleur primaire dark */
   background: #fff;
   font-size: 1rem;
   padding: 0.5rem;
+}
+
+/* Media queries pour les écrans plus grands */
+@media (min-width: 768px) {
+  .sortbar-container {
+    flex-direction: row;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+  }
+
+  label {
+    font-size: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  select {
+    max-width: 300px;
+  }
 }
 
 /* Fix pour le select en focus sur mobile */

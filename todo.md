@@ -68,3 +68,5 @@ Modif bouteille, on peut choisir prendre photo ou bibliotheque
 css rgpd
 
 Ajouter degre d'alcool
+
+admin page, ajout pete

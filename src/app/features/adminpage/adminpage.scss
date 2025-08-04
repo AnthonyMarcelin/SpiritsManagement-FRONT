@@ -6,7 +6,6 @@ $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 
-// Mixins pour le responsive
 @mixin respond-to($breakpoint) {
   @media (min-width: $breakpoint) {
     @content;
@@ -188,7 +187,6 @@ $breakpoint-xl: 1200px;
   margin-left: 0.3em;
 }
 
-// Boutons
 .btn {
   border: none;
   border-radius: 10px;
@@ -265,9 +263,6 @@ $breakpoint-xl: 1200px;
   box-shadow: none !important;
 }
 
-// Type groups
-
-// --- Types Mobile First ---
 .type-groups {
   display: flex;
   flex-direction: column;
@@ -300,7 +295,6 @@ $breakpoint-xl: 1200px;
   margin-top: 0.1rem;
 }
 
-// Tables
 .table-container {
   overflow-x: auto;
   border-radius: 16px;
@@ -369,7 +363,6 @@ table {
   }
 }
 
-// Footer
 .admin-footer {
   display: flex;
   justify-content: center;
@@ -395,7 +388,6 @@ table {
   }
 }
 
-// Responsive
 @media (max-width: 900px) {
   .modern-admin {
     padding: 2rem 1.5rem 1rem;

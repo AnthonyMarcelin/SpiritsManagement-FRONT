@@ -1,12 +1,8 @@
 @use "../../../styles/variables.scss" as vars;
-
-// Variables pour les breakpoints
 $breakpoint-sm: 576px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
-
-// Mixins pour le responsive
 @mixin respond-to($breakpoint) {
   @media (min-width: $breakpoint) {
     @content;
@@ -37,7 +33,7 @@ $breakpoint-xl: 1200px;
 
   @include respond-to($breakpoint-lg) {
     justify-content: center;
-    padding-bottom: 50px; // Espace pour le footer
+    padding-bottom: 50px;
   }
 
   @include respond-to($breakpoint-xl) {
@@ -345,7 +341,6 @@ h2 {
   }
 }
 
-// Supprimer toute la largeur du footer
 .footer {
   margin-top: auto;
   width: 100%;
@@ -374,7 +369,6 @@ h2 {
   }
 }
 
-// Ajout d'animations pour améliorer l'expérience utilisateur
 @media (prefers-reduced-motion: no-preference) {
   .header-logo {
     animation: fadeInDown 1s ease;

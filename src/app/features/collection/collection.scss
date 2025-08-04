@@ -1,8 +1,8 @@
 .collection-container {
-  background-color: #fff8e6; /* Couleur crème du screenshot */
+  background-color: #fff8e6;
   min-height: 100vh;
   padding: 0.5rem;
-  padding-bottom: 70px; // Pour laisser de l'espace pour la navbar
+  padding-bottom: 70px;
 }
 
 .header {
@@ -17,7 +17,7 @@
 }
 
 .page-title {
-  color: #7b3c00; /* Couleur primaire dark */
+  color: #7b3c00;
   font-size: 1.8rem;
   font-weight: bold;
   margin: 0;
@@ -29,7 +29,7 @@
 }
 
 .add-button {
-  background-color: #9e4e00; /* Couleur primaire */
+  background-color: #9e4e00;
   color: white;
   border: none;
   border-radius: 24px;
@@ -46,7 +46,7 @@
 }
 
 .add-button:hover {
-  background-color: #7b3c00; /* Couleur primaire dark */
+  background-color: #7b3c00;
 }
 
 .add-icon {
@@ -73,7 +73,7 @@
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 1rem;
-  background-color: #fffdf2; /* Couleur légèrement plus claire pour les éléments de contrôle */
+  background-color: #fffdf2;
   border-radius: 12px;
   padding: 0.6rem 0.8rem;
 }
@@ -115,12 +115,12 @@ app-optionbar {
 app-sortbar {
   display: block;
   margin-bottom: 1rem;
-  background-color: #fffdf2; /* Couleur légèrement plus claire pour les éléments de contrôle */
+  background-color: #fffdf2;
   border-radius: 12px;
   padding: 0.5rem;
   width: 100%;
   box-sizing: border-box;
-  overflow-x: visible; /* Important: permet au select de déborder si nécessaire */
+  overflow-x: visible;
 }
 
 .bottle-list {
@@ -142,7 +142,6 @@ app-navbar {
   z-index: 10;
 }
 
-/* Media queries pour tablet et desktop */
 @media (min-width: 768px) {
   .collection-container {
     padding: 1rem;
@@ -191,8 +190,8 @@ app-navbar {
 
 @media (min-width: 1024px) {
   .collection-container {
-    padding-left: 110px; /* Espace pour la sidebar */
-    padding-bottom: 1rem; /* Plus besoin de padding bottom pour la navbar */
+    padding-left: 110px;
+    padding-bottom: 1rem;
   }
 
   .page-title {

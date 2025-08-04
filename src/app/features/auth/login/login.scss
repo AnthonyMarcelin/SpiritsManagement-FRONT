@@ -1,12 +1,8 @@
 @use "../../../../styles/variables.scss" as vars;
-
-// Variables pour les breakpoints
 $breakpoint-sm: 576px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
-
-// Mixins pour le responsive
 @mixin respond-to($breakpoint) {
   @media (min-width: $breakpoint) {
     @content;
@@ -55,8 +51,6 @@ $breakpoint-xl: 1200px;
     transform: translateX(-50%) translateY(0);
   }
 }
-
-// Styles pour le conteneur de mot de passe
 .password-input-container {
   position: relative;
   display: block;
@@ -112,8 +106,6 @@ $breakpoint-xl: 1200px;
   height: 100%;
   vertical-align: middle;
 }
-
-// Lien mot de passe oublié modernisé
 .forgot-link {
   margin-top: 10px;
   text-align: center;
@@ -476,8 +468,6 @@ button {
     padding: 8px 0;
   }
 }
-
-// Ajout d'animations pour améliorer l'expérience utilisateur
 @media (prefers-reduced-motion: no-preference) {
   .header-logo {
     animation: fadeInDown 1s ease;

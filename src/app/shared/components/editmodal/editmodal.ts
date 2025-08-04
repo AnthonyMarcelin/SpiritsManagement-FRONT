@@ -27,13 +27,10 @@ export class Editmodal {
   }>();
   @Output() cancel = new EventEmitter<void>();
 
-  // Méthode pour obtenir le label du champ
   getFieldLabel(): string {
-    // Toujours retourner une chaîne vide pour ne jamais afficher le label
     return '';
   }
 
-  // Méthode pour obtenir le titre de la modal
   getModalTitle(): string {
     return this.title || 'Modifier';
   }
@@ -51,16 +48,12 @@ export class Editmodal {
 
   onFileChange(event: Event) {
     const input = event.target as HTMLInputElement;
-
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
-
       const reader = new FileReader();
-
       reader.onload = (e: any) => {
         this.previewUrl = e.target.result;
       };
-
       reader.readAsDataURL(this.selectedFile);
     } else {
       this.previewUrl = undefined;

@@ -12,7 +12,6 @@ import { Homepage } from './features/homepage/homepage';
 import { Mainpage } from './features/mainpage/mainpage';
 import { NotFound } from './features/not-found/not-found';
 
-// Lazy loading pour forgot-password
 import { ForgotPasswordComponent } from './features/auth/forgot-password/forgot-password';
 import { Profilepage } from './features/profilepage/profilepage';
 import { RGPDComponent } from './shared/components/rgpd/rgpd';

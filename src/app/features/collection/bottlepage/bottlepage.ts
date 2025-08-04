@@ -78,7 +78,6 @@ export class Bottlepage implements OnInit {
     this.router.navigate([`/collection/${this.bottleType}`]);
   }
 
-  // Méthode pour traduire les noms des champs en français
   getFieldTranslation(fieldName: string): string {
     const translations: { [key: string]: string } = {
       name: 'nom',

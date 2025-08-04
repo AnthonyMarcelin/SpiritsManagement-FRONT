@@ -197,7 +197,6 @@
         ) {
           <div class="error">{{ error }}</div>
         }
-        <!-- Affichage du formulaire de renvoi d'email de validation si l'email existe déjà -->
         <form
           (ngSubmit)="onResendVerification()"
           *ngIf="resendEmail"

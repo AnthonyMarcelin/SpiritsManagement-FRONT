@@ -107,13 +107,11 @@ export class Profilepage implements OnInit {
   }
 
   validatePassword(password: string): boolean {
-    // Vérifie les modalités du mot de passe
     const rules = [/.{8,}/, /[A-Z]/, /[a-z]/, /[0-9]/, /[^A-Za-z0-9]/];
     return rules.every((rule) => rule.test(password));
   }
 
   onChangePasswordSubmit(payload: any) {
-    // Filtrer les événements natifs
     if (
       !payload ||
       typeof payload !== 'object' ||

@@ -49,14 +49,14 @@ modif auth
 
 couleur label et tri collection par label
 
-Mdp au register dans le payload
+<!-- Mdp au register dans le payload -->
 
 <!-- Promise register -->
 
 <!-- Favicon -->
 
-ajout bouteille : on peut uniquement prendre une photo
-Modif bouteille, on peut choisir prendre photo ou bibliotheque
+<!-- ajout bouteille : on peut uniquement prendre une photo
+Modif bouteille, on peut choisir prendre photo ou bibliotheque -->
 
 <!-- Mettre les selects en obligatoire pour le create en front -->
 
@@ -69,8 +69,8 @@ css rgpd
 
 Ajouter degre d'alcool
 
-admin page, ajout pete
+<!-- admin page, ajout pete -->
 
 footer et rgpd
 
-clean code and comment
+<!-- clean code and comment -->

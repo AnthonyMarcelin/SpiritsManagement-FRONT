@@ -74,3 +74,6 @@ Ajouter degre d'alcool
 footer et rgpd
 
 <!-- clean code and comment -->
+
+lien non centre
+![](image-1.png)

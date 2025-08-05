@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.atasoif.fr/api',
+  apiUrl: 'https://spiritsmanagement-api-production.up.railway.app/api',
   enableLogs: false,
   enableAnalytics: true,
   apiTimeout: 5000,

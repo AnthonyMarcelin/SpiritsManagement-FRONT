@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../../core/services/api.service';
+import { AuthService } from '../../core/services/auth';
 import { Editmodal } from '../../shared/components/editmodal/editmodal';
 import { Passwordmodal } from '../../shared/components/passwordmodal/passwordmodal';
 
@@ -47,10 +48,14 @@ export class Profilepage implements OnInit {
   toastSuccess = true;
   toastTimeout: any;
   showEditModal = false;
+  showDeleteAccountModal = false;
+  deleteAccountLoading = false;
+  deleteAccountError = '';
 
   constructor(
     private api: ApiService,
     private router: Router,
+    private authService: AuthService,
   ) {}
 
   goToMainpage(): void {
@@ -174,5 +179,43 @@ export class Profilepage implements OnInit {
     this.toastTimeout = setTimeout(() => {
       this.showToast = false;
     }, 3500);
+  }
+
+  openDeleteAccountModal() {
+    this.showDeleteAccountModal = true;
+    this.deleteAccountError = '';
+  }
+
+  closeDeleteAccountModal() {
+    this.showDeleteAccountModal = false;
+    this.deleteAccountLoading = false;
+    this.deleteAccountError = '';
+  }
+
+  async deleteAccount() {
+    this.deleteAccountLoading = true;
+    this.deleteAccountError = '';
+
+    try {
+      // Appel API pour supprimer le compte
+      await firstValueFrom(this.api.delete('auth/me'));
+
+      // Déconnexion via le logout (qui fait un appel API)
+      await firstValueFrom(this.authService.logout());
+
+      // Effacer le token en mémoire
+      this.authService.setToken('');
+
+      // Redirection vers la page d'accueil
+      this.router.navigate(['/']);
+
+      // Afficher un toast de confirmation
+      // Note: Ce toast pourrait ne pas s'afficher à cause de la redirection
+      this.showProfileToast('Votre compte a été supprimé avec succès', true);
+    } catch (e) {
+      this.deleteAccountError =
+        'Une erreur est survenue lors de la suppression du compte.';
+      this.deleteAccountLoading = false;
+    }
   }
 }

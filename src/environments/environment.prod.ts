@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://spiritsmanagement-api-production.up.railway.app/api',
+  apiUrl: 'https://api.atasoif.fr/api',
   enableLogs: false,
   enableAnalytics: true,
   apiTimeout: 5000,
@@ -10,6 +10,5 @@ export const environment = {
   defaultLanguage: 'fr',
   imagekitPublicKey: 'public_s6kjkUKPu9V6N0XIvNA1WDVvPYc=',
   imagekitUrlEndpoint: 'https://ik.imagekit.io/atasoif/',
-  imagekitAuthEndpoint:
-    'https://spiritsmanagement-api-production.up.railway.app/api/imagekit/auth',
+  imagekitAuthEndpoint: 'https://api.atasoif.fr/api/imagekit/auth',
 };

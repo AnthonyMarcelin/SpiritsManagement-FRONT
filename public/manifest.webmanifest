@@ -1,6 +1,6 @@
 {
-  "name": "spirits-management-front",
-  "short_name": "spirits-management-front",
+  "name": "À ta soif !",
+  "short_name": "À ta soif !",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

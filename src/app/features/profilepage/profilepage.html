@@ -135,7 +135,10 @@
     </div>
 
     <div class="profile-actions">
-      <button class="btn btn-danger delete-account">
+      <button
+        class="btn btn-danger delete-account"
+        (click)="openDeleteAccountModal()"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -184,5 +187,43 @@
       (close)="closeChangePasswordModal()"
       (submit)="onChangePasswordSubmit($event)"
     />
+  }
+
+  @if (showDeleteAccountModal) {
+    <div class="modal-overlay">
+      <div class="modal-content delete-account-modal">
+        <h3 class="modal-title">Supprimer mon compte</h3>
+        <p class="modal-message">
+          Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est
+          irréversible et entraînera la perte de toutes vos données.
+        </p>
+
+        @if (deleteAccountError) {
+          <div class="error-message">{{ deleteAccountError }}</div>
+        }
+
+        <div class="modal-actions">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="closeDeleteAccountModal()"
+            [disabled]="deleteAccountLoading"
+          >
+            Annuler
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="deleteAccount()"
+            [disabled]="deleteAccountLoading"
+          >
+            @if (deleteAccountLoading) {
+              <span class="spinner"></span>
+            }
+            Confirmer la suppression
+          </button>
+        </div>
+      </div>
+    </div>
   }
 </div>

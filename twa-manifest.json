@@ -20,8 +20,8 @@
     "path": "/home/anthony/Documents/dev/SpiritManagement/SpiritsManagement-FRONT/android.keystore",
     "alias": "upload"
   },
-  "appVersionName": "1",
-  "appVersionCode": 1,
+  "appVersionName": "1.2",
+  "appVersionCode": 1.2,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://www.atasoif.fr/manifest.webmanifest",

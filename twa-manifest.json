@@ -21,7 +21,7 @@
     "alias": "upload"
   },
   "appVersionName": "1.2",
-  "appVersionCode": 1.2,
+  "appVersionCode": 2,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://www.atasoif.fr/manifest.webmanifest",
@@ -42,5 +42,5 @@
   "protocolHandlers": [],
   "fileHandlers": [],
   "launchHandlerClientMode": "",
-  "appVersion": "1"
+  "appVersion": "1.2"
 }

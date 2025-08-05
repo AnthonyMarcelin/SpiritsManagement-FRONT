@@ -142,7 +142,6 @@ export class Profilepage implements OnInit {
       this.passwordError = 'Le mot de passe ne respecte pas les modalités.';
       return;
     }
-    // Réinitialisation immédiate avant l'appel API
     this.passwordError = '';
     this.passwordLoading = true;
     firstValueFrom(
@@ -197,20 +196,14 @@ export class Profilepage implements OnInit {
     this.deleteAccountError = '';
 
     try {
-      // Appel API pour supprimer le compte
       await firstValueFrom(this.api.delete('auth/me'));
 
-      // Déconnexion via le logout (qui fait un appel API)
       await firstValueFrom(this.authService.logout());
 
-      // Effacer le token en mémoire
       this.authService.setToken('');
 
-      // Redirection vers la page d'accueil
       this.router.navigate(['/']);
 
-      // Afficher un toast de confirmation
-      // Note: Ce toast pourrait ne pas s'afficher à cause de la redirection
       this.showProfileToast('Votre compte a été supprimé avec succès', true);
     } catch (e) {
       this.deleteAccountError =

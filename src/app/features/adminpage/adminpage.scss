@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../../../styles/variables.scss" as vars;
 
 // Variables pour les breakpoints
@@ -219,21 +220,21 @@ $breakpoint-xl: 1200px;
   color: #fff;
 }
 .btn-success:hover {
-  background: darken(#3e7c47, 10%);
+  background: color.adjust(#3e7c47, $lightness: -10%);
 }
 .btn-warning {
   background: var(--color-accent-beer);
   color: #fff;
 }
 .btn-warning:hover {
-  background: darken(#d67d00, 10%);
+  background: color.adjust(#d67d00, $lightness: -10%);
 }
 .btn-danger {
   background: var(--color-error);
   color: #fff;
 }
 .btn-danger:hover {
-  background: darken(#b03e3e, 10%);
+  background: color.adjust(#b03e3e, $lightness: -10%);
 }
 .btn-secondary {
   background: #e5e7eb;

@@ -38,6 +38,9 @@ yarn-error.log
 /coverage
 /libpeerconnection.log
 testem.log
+
+# Clé de signature Android
+android.keystore
 /typings
 
 # System files

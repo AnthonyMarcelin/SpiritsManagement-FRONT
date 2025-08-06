@@ -1,9 +1,22 @@
 {
-  "name": "À ta soif !",
+  "name": "À ta soif ! - Gestion de collection de spiritueux",
   "short_name": "À ta soif !",
+  "description": "Application de gestion de votre collection personnelle de spiritueux : whisky, rhum, bière et plus encore.",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "categories": ["lifestyle", "utilities", "food"],
+  "screenshots": [
+    {
+      "src": "images/screenshots/screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Page d'accueil"
+    }
+  ],
   "icons": [
     {
       "src": "icons/icon-72x72.png",

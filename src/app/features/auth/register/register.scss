@@ -608,32 +608,6 @@ button {
     text-decoration: underline;
   }
 }
-
-.footer {
-  width: 100%;
-  text-align: center;
-  color: var(--color-light);
-  font-size: 0.85rem;
-  position: relative;
-  bottom: 0;
-  left: 0;
-  background-color: var(--color-primary);
-  padding: 6px 0;
-  margin-top: 24px;
-  z-index: 2;
-
-  @include respond-to($breakpoint-sm) {
-    font-size: 0.9rem;
-    padding: 7px 0;
-    margin-top: 28px;
-  }
-
-  @include respond-to($breakpoint-md) {
-    font-size: 0.95rem;
-    padding: 8px 0;
-    margin-top: 32px;
-  }
-}
 @media (prefers-reduced-motion: no-preference) {
   .header-logo {
     animation: fadeInDown 1s ease;

@@ -3,13 +3,14 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
+import { FooterComponent } from '../../../shared/components/footer/footer';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
   standalone: true,
-  imports: [FormsModule, RouterModule, CommonModule],
+  imports: [FormsModule, RouterModule, CommonModule, FooterComponent],
 })
 export class Login {
   email = '';

@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../../core/services/auth';
+import { FooterComponent } from '../../../shared/components/footer/footer';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule, RouterModule, CommonModule],
+  imports: [FormsModule, RouterModule, CommonModule, FooterComponent],
   standalone: true,
   templateUrl: './register.html',
   styleUrl: './register.scss',

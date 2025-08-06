@@ -1,0 +1,4 @@
+#Tue Aug 05 15:23:32 CEST 2025
+base.0=/home/anthony/Documents/dev/SpiritManagement/SpiritsManagement-FRONT/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

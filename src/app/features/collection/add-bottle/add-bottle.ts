@@ -286,14 +286,12 @@ export class AddBottle implements OnInit {
           !this.bottle.labelId ||
           !this.bottle.typeId ||
           (this.alcoolType === 'whisky' && !this.bottle.peatLevelId) ||
-          (this.alcoolType === 'whisky' &&
-            (!this.bottle.originId ||
-              typeof this.bottle.originId !== 'string' ||
-              this.bottle.originId.trim() === '')) ||
-          (this.alcoolType === 'whisky' &&
-            (!this.bottle.supplierId ||
-              typeof this.bottle.supplierId !== 'string' ||
-              this.bottle.supplierId.trim() === ''))
+          !this.bottle.originId ||
+          typeof this.bottle.originId !== 'string' ||
+          this.bottle.originId.trim() === '' ||
+          !this.bottle.supplierId ||
+          typeof this.bottle.supplierId !== 'string' ||
+          this.bottle.supplierId.trim() === ''
         ) {
           this.errorToastMessage =
             'Tous les champs obligatoires doivent être remplis.';

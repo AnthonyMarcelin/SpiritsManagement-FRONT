@@ -168,7 +168,10 @@
       </div>
 
       <div class="form-row">
-        <label for="originId">Origine</label>
+        <label for="originId"
+          >Origine
+          <span *ngIf="alcoolType === 'whisky'" class="required">*</span></label
+        >
         <div class="input-wrapper">
           <input
             id="originId"
@@ -179,7 +182,7 @@
             [attr.list]="'origin-list'"
             autocomplete="off"
             placeholder="Pays d'origine"
-            required
+            [required]="alcoolType === 'whisky'"
           />
           <datalist id="origin-list">
             <option
@@ -191,7 +194,10 @@
       </div>
 
       <div class="form-row">
-        <label for="supplierId">Fournisseur</label>
+        <label for="supplierId"
+          >Fournisseur
+          <span *ngIf="alcoolType === 'whisky'" class="required">*</span></label
+        >
         <div class="input-wrapper">
           <input
             id="supplierId"
@@ -202,7 +208,7 @@
             [attr.list]="'supplier-list'"
             autocomplete="off"
             placeholder="Nom du fournisseur"
-            required
+            [required]="alcoolType === 'whisky'"
           />
           <datalist id="supplier-list">
             <option
